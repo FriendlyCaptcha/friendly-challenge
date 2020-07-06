@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FriendlyCaptcha</title>
+    <script src="friendlycaptcha.min.js" defer async></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  </head>
+  <body>
+    <!-- This index.html is used for e2e testing -->
+    <form>
+      <div class="frc-captcha" data-sitekey="FCMJG78ALVB8Q405" data-callback="doneCallback"></div>
+    </form>
+    <script>
+      function doneCallback() {
+        const doneEl = document.createElement("div")
+        doneEl.id = "frc-captcha-done-callback-generated-element";
+        document.body.appendChild(doneEl);
+      }
+    </script>
+  </body>
+</html>

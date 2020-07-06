@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "target": "ES2017",
+      // "lib": ["ES2015", "dom", "WebWorker"],
+      "types": ["jest", "node", "./node_modules/typescript/lib/lib.dom"],
+      "strict": true,
+      "preserveConstEnums": false,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "esModuleInterop": true
+    },
+    "include": [
+      // "./src/**/*.ts",
+      "./test/**/*.ts",
+    ],
+    "exclude": ["node_modules/", "dist/"]
+  }
+  

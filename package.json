@@ -1,11 +1,21 @@
 {
   "name": "friendly-challenge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "scripts": {
     "prebuild": "rimraf dist",
     "lint": "eslint src/**/*.ts test/**/*.ts",
-    "build": "rollup -c rollup.config.ts && cp src/html/index.html dist/index.html",
+    "build:html": "cp src/html/index.html dist/index.html",
+    "build:worker": "npm run build:worker:ts && npm run build:worker:compat && npm run build:worker:addpolyfill && npm run build:worker:minify",
+    "build:worker:ts": "rollup -c rollup.worker.config.ts",
+    "build:worker:compat": "babel dist/worker.js -o dist/worker.compat.js",
+    "build:worker:addpolyfill": "cat node_modules/promis/promise.js dist/worker.compat.js > dist/worker.compat.poly.js && mv dist/worker.compat.poly.js dist/worker.compat.js && sed -i 's/window/self/g' dist/worker.compat.js",
+    "build:worker:minify": "terser dist/worker.js -o dist/worker.min.js --config-file terser.json --ecma 2017 --toplevel && terser dist/worker.compat.js -o dist/worker.compat.min.js --config-file terser.json --safari10 --toplevel",
+    "build:widget": "npm run build:widget:ts && npm run build:widget:compat && npm run build:widget:minify",
+    "build:widget:ts": "rollup -c rollup.widget.config.ts",
+    "build:widget:compat": "babel dist/widget-pre-babel.js -o dist/widget.js && rm dist/widget-pre-babel.js",
+    "build:widget:minify": "terser dist/widget.module.js -o dist/widget.module.min.js --config-file terser.json --ecma 2017 --module && terser dist/widget.js -o dist/widget.min.js --config-file terser.json --safari10 --toplevel --wrap friendlyChallenge",
+    "build": "npm run build:worker && npm run build:widget && npm run build:html",
     "start": "rollup -c rollup.config.ts -w",
     "test": "nightwatch",
     "test:prod": "npm run lint && npm run test"
@@ -17,12 +27,10 @@
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
-    "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
-    "@rollup/plugin-babel": "^5.0.4",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
-    "@rollup/plugin-wasm": "^5.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
     "@types/jest": "^25.2.3",
     "@types/nightwatch": "^1.1.6",
     "@types/node": "^14.0.9",
@@ -31,22 +39,22 @@
     "chromedriver": "^83.0.0",
     "clean-css": "^4.2.3",
     "eslint": "^6.8.0",
+    "fast-async": "^7.0.6",
     "jest": "^26.0.1",
     "nightwatch": "^1.3.6",
     "rimraf": "^3.0.2",
     "rollup": "^2.16.1",
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-string": "^3.0.0",
-    "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
     "ts-jest": "^26.0.0",
-    "typescript": "^3.5.3",
-    "webpack-cli": "^3.3.12"
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.10.4",
     "core-js": "^3.6.5",
-    "friendly-pow": "0.0.4"
+    "friendly-pow": "0.0.6",
+    "promis": "^1.1.4"
   }
 }

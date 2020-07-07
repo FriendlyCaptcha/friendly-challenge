@@ -1,0 +1,10 @@
+{
+  "compress": {
+    "passes": 4,
+    "keep_fargs": false
+  },
+  "output": {
+    "comments": false,
+    "beautify": false
+  }
+}

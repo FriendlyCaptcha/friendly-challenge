@@ -1,36 +1,47 @@
 import { base64 } from 'friendly-pow/wasm/optimized.wrap';
 import { decode, encode } from 'friendly-pow/base64';
-import { getRunningHTML, getReadyHTML, getDoneHTML, updateProgressBar, findParentFormElement, executeOnceOnFocusInEvent, getErrorHTML, getFetchingHTML } from './dom';
+import { getRunningHTML, getReadyHTML, getDoneHTML, updateProgressBar, findParentFormElement, executeOnceOnFocusInEvent, getErrorHTML, getFetchingHTML, injectStyle } from './dom';
 // @ts-ignore
-import workerString from '../dist/frc-worker.js';
+import workerString from '../dist/worker.min.js';
 import { DoneMessage, ProgressMessage } from './types';
 import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 
 const PUZZLE_ENDPOINT_URL = "https://dev.friendlycaptcha.com/api/v1/puzzle";
 const URL = window.URL || window.webkitURL;
 
-export interface FriendlyCaptchaOptions {
+export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
     startMode: "auto" | "focus" | "none";
     puzzleEndpoint: string;
 
-    startedCallback: () => any,
     readyCallback: () => any,
+    startedCallback: () => any,
     doneCallback: (solution: string) => any,
     errorCallback: (error: any) => any,
 }
 
-export class FriendlyCaptcha {
+export class WidgetInstance {
     private worker: Worker | null = null;
     private puzzle?: Puzzle;
-    private element: HTMLElement;
 
+    /**
+     * The root element of this widget instance.
+     */
+    private e: HTMLElement;
+
+    /**
+     * The captcha has been succesfully solved.
+     */
     public valid: boolean = false;
-    private opts: FriendlyCaptchaOptions;
+    private opts: WidgetInstanceOptions;
 
+    /**
+     * Some errors may cause a need for the (worker) to be reinitialized. If this is
+     * true `init` will be called again when start is called.
+     */
     private needsReInit = false;
 
-    constructor(element: HTMLElement, options: Partial<FriendlyCaptchaOptions> = {}) {
+    constructor(element: HTMLElement, options: Partial<WidgetInstanceOptions> = {}) {
         this.opts = Object.assign({
             forceJSFallback: false,
             startMode: "focus",
@@ -40,18 +51,20 @@ export class FriendlyCaptcha {
             doneCallback: () => 0,
             errorCallback: () => 0,
         }, options);
-        this.element = element;
+        this.e = element;
         element.innerText = "FriendlyCaptcha initializing..";
+        injectStyle();
+        this.init(this.opts.startMode === "auto");
     }
 
     public init(forceStart?: boolean) {
         this.initWorker();
         this.setupSolver();
 
-        if (forceStart || this.opts.startMode === "auto") {
+        if (forceStart) {
             this.start();
         } else if (this.opts.startMode === "focus") {
-            const form = findParentFormElement(this.element);
+            const form = findParentFormElement(this.e);
             if (form) {
                 executeOnceOnFocusInEvent(form, () => {this.start()});
             } else {
@@ -60,6 +73,10 @@ export class FriendlyCaptcha {
         }
     }
 
+    /**
+     * Compile the WASM and send the compiled module to the webworker. 
+     * If WASM support is not present, it tells the webworker to initialize the JS solver instead.
+     */
     async setupSolver() {
         if (this.opts.forceJSFallback) {
             this.worker!.postMessage({type: "js"});
@@ -74,16 +91,23 @@ export class FriendlyCaptcha {
         }
     }
 
+    /**
+     * Add a listener to the button that calls `this.start` on click.
+     */
     private makeButtonStart() {
-        const b = this.element.querySelector("button")
-        b?.addEventListener("click", (e) => this.start(), {once: true, passive: true})
-        b?.addEventListener("touchstart", (e) => this.start(), {once: true, passive: true})
+        const b = this.e.querySelector("button")
+        if (b) {
+            b.addEventListener("click", (e) => this.start(), {once: true, passive: true})
+            b.addEventListener("touchstart", (e) => this.start(), {once: true, passive: true})
+        }
     }
 
     private onWorkerError(e: any) {
         this.needsReInit = true;
-        this.element.innerHTML = getErrorHTML("Background worker error " + e.message);
+        this.e.innerHTML = getErrorHTML("Background worker error " + e.message);
         this.makeButtonStart();
+
+        // Just out of precaution
         this.opts.forceJSFallback = true;
     }
 
@@ -91,38 +115,37 @@ export class FriendlyCaptcha {
         const workerBlob = new Blob([workerString] as any, { type: "text/javascript" });
         this.worker = new Worker(URL.createObjectURL(workerBlob));
         this.worker.onerror = (e: ErrorEvent) => this.onWorkerError(e);
+
         this.worker.onmessage = (e: any) => {
             const data = e.data;
             if (!data) return;
             if (data.type === "progress") {
-                updateProgressBar(this.element, data as ProgressMessage);
+                updateProgressBar(this.e, data as ProgressMessage);
             } else if (data.type === "ready") {
-                this.element.innerHTML = getReadyHTML();
+                this.e.innerHTML = getReadyHTML();
                 this.makeButtonStart();
                 this.opts.readyCallback();
             } else if (data.type === "started") {
-                this.element.innerHTML = getRunningHTML();
+                this.e.innerHTML = getRunningHTML();
                 this.opts.startedCallback();
             } else if (data.type === "done") {
                 const solutionPayload = this.handleDone(data);
                 this.opts.doneCallback(solutionPayload);
-                const callback = this.element.dataset["callback"];
+                const callback = this.e.dataset["callback"];
                 if (callback) {
                     (window as any)[callback](this);
                 }
             } else if (data.type === "error") {
                 this.onWorkerError(data);
-            } else {
-                console.log("Received: " + JSON.stringify(data))
             }
         }
     }
 
     public async start() {
-        const sitekey = this.element.dataset["sitekey"];
+        const sitekey = this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
-            this.element.innerHTML = getErrorHTML("Website problem: sitekey not set", false)
+            this.e.innerHTML = getErrorHTML("Website problem: sitekey not set", false)
             return;
         }
 
@@ -133,15 +156,15 @@ export class FriendlyCaptcha {
         }
 
         try {
-            this.element.innerHTML = getFetchingHTML()
+            this.e.innerHTML = getFetchingHTML()
             this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
         } catch(e) {
-            this.element.innerHTML = getErrorHTML(e);
+            this.e.innerHTML = getErrorHTML(e);
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 
-            this.opts.errorCallback({code, description: e.toString()})
-            const callback = this.element.dataset["callback-error"];
+            this.opts.errorCallback({code, description: e.toString(), error: e})
+            const callback = this.e.dataset["callback-error"];
             if (callback) {
                 (window as any)[callback](this);
             }
@@ -150,10 +173,15 @@ export class FriendlyCaptcha {
         this.worker!.postMessage({type: "start", buffer: this.puzzle!.buffer, n: this.puzzle!.n, threshold: this.puzzle!.threshold});
     }
 
+    /**
+     * This is to be called when the puzzle has been succesfully completed.
+     * Here the hidden field gets updated with the solution.
+     * @param data message from the webworker
+     */
     private handleDone(data: DoneMessage) {
         this.valid = true;
         const puzzleSolutionMessage = `${this.puzzle!.signature}.${this.puzzle!.base64}.${encode(data.solution)}.${encode(data.diagnostics)}`;
-        this.element.innerHTML = getDoneHTML(puzzleSolutionMessage, data);
+        this.e.innerHTML = getDoneHTML(puzzleSolutionMessage, data);
         return puzzleSolutionMessage;
     }
 }

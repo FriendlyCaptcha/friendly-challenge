@@ -1,12 +1,15 @@
-export { FriendlyCaptcha } from "./captcha";
-import { findCaptchaElement, injectStyle } from "./dom";
-import { FriendlyCaptcha } from "./captcha";
+import { findCaptchaElement } from "./dom";
+import { WidgetInstance } from "./captcha";
 
+let autoWidget = null;
 const element = findCaptchaElement() as HTMLElement;
-
-if (element) {
-    injectStyle();
-    const c = new FriendlyCaptcha(element);
-    (window as any).friendlyCaptchaDefaultInstance = c;
-    c.init();
+if (element && !element.dataset["attached"]) {
+    autoWidget = new WidgetInstance(element);
+    element.dataset["attached"] = "1";
 }
+
+// @ts-ignore
+window.friendlyChallenge = {
+    WidgetInstance,
+    autoWidget
+};

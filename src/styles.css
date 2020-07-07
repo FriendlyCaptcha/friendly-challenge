@@ -11,12 +11,7 @@
     line-height: 1.35;
     text-decoration: none;
     background-color: initial;
-
     color: #222;
-}
-
-.frc-captcha.dark * {
-    color: #FFF;
 }
 
 .frc-captcha {
@@ -114,13 +109,13 @@
     background-color: #222;
 }
 
+.dark.frc-captcha * {
+    color: #fff;
+}
+
 .dark .frc-icon {
     fill: #fff;
     stroke: #fff;
-}
-
-.dark.frc-captcha a {
-    color: #fff;
 }
 
 .dark .frc-progress {

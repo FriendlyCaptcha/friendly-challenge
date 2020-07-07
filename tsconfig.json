@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
       "module": "ESNext",
-      "target": "ES2017",
-      // "lib": ["ES2015", "dom", "WebWorker"],
+      "target": "es2017",
       "types": ["jest", "node", "./node_modules/typescript/lib/lib.dom"],
       "strict": true,
       "preserveConstEnums": false,
       "moduleResolution": "node",
       "sourceMap": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "removeComments": true,
     },
     "include": [
       // "./src/**/*.ts",

@@ -127,8 +127,6 @@ export function updateProgressBar(element: HTMLElement, data: ProgressMessage) {
         p.value = perc;
         p.innerText = perc.toFixed(2) + "%"
         p.title = (data.i+1) + "/" + data.n + " (" + (data.h/data.t*0.001).toFixed(0) + "K/s)";
-    } else {
-        console.log("Progress bar not found")
     }
 }
 

@@ -6,7 +6,7 @@ import {SOLVER_TYPE_JS, SOLVER_TYPE_WASM} from "friendly-pow/constants";
 import { Solver, StartMessage, DoneMessage, ProgressMessage } from './types';
 
 // Not technically correct, but it makes TS happy..
-//@ts-ignore
+// @ts-ignore
 declare var self: Worker;
 
 (self as any).ASC_TARGET = 0;

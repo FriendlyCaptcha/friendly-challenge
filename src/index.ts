@@ -1,0 +1,1 @@
+export {WidgetInstance} from "./captcha";

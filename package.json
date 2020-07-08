@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -15,14 +15,17 @@
     "build:widget:ts": "rollup -c rollup.widget.config.ts",
     "build:widget:compat": "babel dist/widget-pre-babel.js -o dist/widget.js && rm dist/widget-pre-babel.js",
     "build:widget:minify": "terser dist/widget.module.js -o dist/widget.module.min.js --config-file terser.json --ecma 2017 --module && terser dist/widget.js -o dist/widget.min.js --config-file terser.json --safari10 --toplevel --wrap friendlyChallenge",
-    "build": "npm run build:worker && npm run build:widget && npm run build:html",
+    "build:library": "rollup -c rollup.library.config.ts",
+    "build": "npm run build:worker && npm run build:widget && npm run build:library && cp package.json dist/package.json",
     "start": "rollup -c rollup.config.ts -w",
     "test": "nightwatch",
-    "test:prod": "npm run lint && npm run test"
+    "test:prod": "npm run lint && npm run test",
+    "dist": "cd dist && npm publish --ignore-scripts --dry-run",
+    "prepublishOnly": "echo \"Error: Don't run 'npm publish' in root. Use 'npm run dist' instead.\" && exit 1"
   },
-  "files": [
-    "dist"
-  ],
+  "type": "module",
+  "types": "friendly-challenge.d.ts",
+  "module": "index.js",
   "author": "Guido Zuidhof <me@guido.io>",
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -44,6 +47,7 @@
     "nightwatch": "^1.3.6",
     "rimraf": "^3.0.2",
     "rollup": "^2.16.1",
+    "rollup-plugin-dts": "^1.4.7",
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-typescript2": "^0.27.1",

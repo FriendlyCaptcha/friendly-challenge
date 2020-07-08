@@ -1,6 +1,6 @@
 import { base64 } from 'friendly-pow/wasm/optimized.wrap';
 import { decode, encode } from 'friendly-pow/base64';
-import { getRunningHTML, getReadyHTML, getDoneHTML, updateProgressBar, findParentFormElement, executeOnceOnFocusInEvent, getErrorHTML, getFetchingHTML, injectStyle } from './dom';
+import { getRunningHTML, getReadyHTML, getDoneHTML, updateProgressBar, findParentFormElement, executeOnceOnFocusInEvent, getErrorHTML, getFetchingHTML, injectStyle, getExpiredHTML } from './dom';
 // @ts-ignore
 import workerString from '../dist/worker.min.js';
 import { DoneMessage, ProgressMessage } from './types';
@@ -14,10 +14,10 @@ export interface WidgetInstanceOptions {
     startMode: "auto" | "focus" | "none";
     puzzleEndpoint: string;
 
-    readyCallback: () => any,
-    startedCallback: () => any,
-    doneCallback: (solution: string) => any,
-    errorCallback: (error: any) => any,
+    readyCallback: () => any;
+    startedCallback: () => any;
+    doneCallback: (solution: string) => any;
+    errorCallback: (error: any) => any;
 }
 
 export class WidgetInstance {
@@ -32,7 +32,7 @@ export class WidgetInstance {
     /**
      * The captcha has been succesfully solved.
      */
-    public valid: boolean = false;
+    public valid = false;
     private opts: WidgetInstanceOptions;
 
     /**
@@ -54,7 +54,7 @@ export class WidgetInstance {
         this.e = element;
         element.innerText = "FriendlyCaptcha initializing..";
         injectStyle();
-        this.init(this.opts.startMode === "auto");
+        this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");
     }
 
     public init(forceStart?: boolean) {
@@ -63,10 +63,10 @@ export class WidgetInstance {
 
         if (forceStart) {
             this.start();
-        } else if (this.opts.startMode === "focus") {
+        } else if (this.opts.startMode === "focus" || this.e.dataset["start"] === "focus") {
             const form = findParentFormElement(this.e);
             if (form) {
-                executeOnceOnFocusInEvent(form, () => {this.start()});
+                executeOnceOnFocusInEvent(form, () => {this.start();});
             } else {
                 console.log("FriendlyCaptcha div seems not to be contained in a form, autostart will not work");
             }
@@ -95,10 +95,10 @@ export class WidgetInstance {
      * Add a listener to the button that calls `this.start` on click.
      */
     private makeButtonStart() {
-        const b = this.e.querySelector("button")
+        const b = this.e.querySelector("button");
         if (b) {
-            b.addEventListener("click", (e) => this.start(), {once: true, passive: true})
-            b.addEventListener("touchstart", (e) => this.start(), {once: true, passive: true})
+            b.addEventListener("click", (e) => this.start(), {once: true, passive: true});
+            b.addEventListener("touchstart", (e) => this.start(), {once: true, passive: true});
         }
     }
 
@@ -138,14 +138,19 @@ export class WidgetInstance {
             } else if (data.type === "error") {
                 this.onWorkerError(data);
             }
-        }
+        };
+    }
+
+    private expire() {
+        this.e.innerHTML = getExpiredHTML();
+        this.makeButtonStart();
     }
 
     public async start() {
         const sitekey = this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
-            this.e.innerHTML = getErrorHTML("Website problem: sitekey not set", false)
+            this.e.innerHTML = getErrorHTML("Website problem: sitekey not set", false);
             return;
         }
 
@@ -156,14 +161,15 @@ export class WidgetInstance {
         }
 
         try {
-            this.e.innerHTML = getFetchingHTML()
+            this.e.innerHTML = getFetchingHTML();
             this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
+            setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
         } catch(e) {
             this.e.innerHTML = getErrorHTML(e);
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 
-            this.opts.errorCallback({code, description: e.toString(), error: e})
+            this.opts.errorCallback({code, description: e.toString(), error: e});
             const callback = this.e.dataset["callback-error"];
             if (callback) {
                 (window as any)[callback](this);
@@ -182,6 +188,8 @@ export class WidgetInstance {
         this.valid = true;
         const puzzleSolutionMessage = `${this.puzzle!.signature}.${this.puzzle!.base64}.${encode(data.solution)}.${encode(data.diagnostics)}`;
         this.e.innerHTML = getDoneHTML(puzzleSolutionMessage, data);
+        this.worker = null;
+        this.needsReInit = true;
         return puzzleSolutionMessage;
     }
 }

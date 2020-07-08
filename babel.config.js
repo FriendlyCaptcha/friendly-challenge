@@ -18,7 +18,7 @@ module.exports = {
           ],
           // "debug": true,
           "targets": {
-            "browsers": [">0.1%", "not dead", "not ie 11", "not ie_mob 11"]
+            "browsers": [">0.05%", "not dead", "not ie 11", "not ie_mob 11"]
           },
           "modules": "auto",
           "useBuiltIns": "entry",

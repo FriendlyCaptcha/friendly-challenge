@@ -1,6 +1,6 @@
 import { decode } from "friendly-pow/base64";
 import { difficultyToThreshold } from "friendly-pow/encoding";
-import { NUMBER_OF_PUZZLES_OFFSET, PUZZLE_DIFFICULTY_OFFSET } from "friendly-pow/puzzle";
+import { NUMBER_OF_PUZZLES_OFFSET, PUZZLE_DIFFICULTY_OFFSET, PUZZLE_EXPIRY_OFFSET } from "friendly-pow/puzzle";
 
 export interface Puzzle {
     signature: string;
@@ -8,20 +8,20 @@ export interface Puzzle {
     buffer: Uint8Array; // input puzzle
     threshold: number; // Related to difficulty
     n: number; // Amount of puzzles to solve
+    expiry: number; // Expiry in milliseconds from now
 }
 
 export function decodeBase64Puzzle(base64Puzzle: string): Puzzle {
     const parts = base64Puzzle.split(".");
     const puzzle = parts[1];
     const arr = decode(puzzle);
-    const numPuzzles = arr[NUMBER_OF_PUZZLES_OFFSET];
-    const threshold = difficultyToThreshold(arr[PUZZLE_DIFFICULTY_OFFSET]);
     return {
         signature: parts[0],
         base64: puzzle,
         buffer: arr,
-        n: numPuzzles,
-        threshold: threshold,
+        n: arr[NUMBER_OF_PUZZLES_OFFSET],
+        threshold: difficultyToThreshold(arr[PUZZLE_DIFFICULTY_OFFSET]),
+        expiry: arr[PUZZLE_EXPIRY_OFFSET] * 300000,
     }
 }
 

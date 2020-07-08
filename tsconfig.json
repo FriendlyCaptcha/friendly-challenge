@@ -2,17 +2,16 @@
     "compilerOptions": {
       "module": "ESNext",
       "target": "es2017",
-      "types": ["jest", "node", "./node_modules/typescript/lib/lib.dom"],
+      "types": ["jest", "node"],
       "strict": true,
       "preserveConstEnums": false,
       "moduleResolution": "node",
       "sourceMap": true,
       "esModuleInterop": true,
-      "removeComments": true,
     },
     "include": [
-      // "./src/**/*.ts",
-      "./test/**/*.ts",
+      "./src/**/*.ts",
+      // "./test/**/*.ts",
     ],
     "exclude": ["node_modules/", "dist/"]
   }

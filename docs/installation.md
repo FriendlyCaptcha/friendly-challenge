@@ -21,21 +21,21 @@ Click the `Create Application` button and enter the necessary details. Once you 
 
 ### Adding the widget script
 
-The **friendly-challenge** library will add the CAPTCHA widget. You have two options on how to add this to your website, either you can use a script tag to load **friendly-challenge** from any CDN that hosts NPM packages, or you can import the code into your own Javascript bundle.
+The **friendly-challenge** library will add the CAPTCHA widget. You have two options on how to add this to your website, either you can use a script tag to load the widget from any CDN that hosts NPM packages, or you can import the code into your own Javascript bundle.
 
 #### Option A: Using a script tag
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.1.0/dist/friendly-challenge.module.min.js" defer async></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.1.0/dist/friendly-challenge.min.js" defer async></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.2.0/widget.module.min.js" defer async></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.2.0/widget.min.js" defer async></script>
 
 <!-- from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.1.0/dist/friendly-challenge.module.min.js" defer async></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.1.0/dist/friendlycaptcha.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.2.0/dist/widget.module.min.js" defer async></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.2.0/dist/widget.min.js" async defer></script>
 ```
 
-> Make sure to always import a specific version (e.g. `friendly-challenge@0.1.0`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
+> Make sure to always import a specific version (e.g. `friendly-challenge@0.2.0`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
 
 It is recommended that you include the `async` and `defer` attributes like in the examples above, they make sure that the browser does not wait to load these scripts to show your website.
 
@@ -47,10 +47,10 @@ npm install --save friendly-challenge
 
 You can then import it into your app:
 ```javascript
-import "friendly-challenge"
+import "friendly-challenge/widget";
 ```
 
-> It is also possible to create and interact with the widget using the Javascript API. In this tutorial we will consider the simple case in which you want to secure a simple HTML form. If you are making a single page application (using e.g. React) you will probably want to use the API instead.
+> It is also possible to create and interact with the widget using the Javascript API. In this tutorial we will consider the simple case in which you want to secure a simple HTML form. If you are making a single page application (using e.g. React) you will probably want to use the API instead. See the [API documentation page]("/api).
 
 ### Adding the widget itself
 

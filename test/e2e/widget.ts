@@ -3,7 +3,7 @@ import { NightwatchBrowser } from 'nightwatch';
 module.exports = {
     'FriendlyCaptcha widget works in the happy case' : function (client: NightwatchBrowser) {
         client
-        .url('localhost:8080/dist/index.html')
+        .url('localhost:8080/dist')
         .waitForElementVisible("body")
         .assert.elementPresent(".frc-captcha")
         .waitForElementVisible(".frc-content")
@@ -20,9 +20,9 @@ module.exports = {
         // Wait for done
         .waitForElementNotPresent(".frc-progress")
         .assert.containsText('.frc-text', 'I\'m not a robot')
-        .getAttribute(".frc-text", "title", function(s){console.log(s.value)}) 
-        .expect.element("input[name=frc-captcha-solution]").value.to.match(/[a-f0-9]{32}\.[a-zA-Z0-9/+=]*\.[a-zA-Z0-9/+=]*\.[a-zA-Z0-9/+=]{4}/)
+        .getAttribute(".frc-text", "title", function(s){console.log(s.value);}) 
         .assert.elementPresent("#frc-captcha-done-callback-generated-element")
+        .expect.element("input[name=frc-captcha-solution]").value.to.match(/[a-f0-9]{32}\.[a-zA-Z0-9/+=]*\.[a-zA-Z0-9/+=]*\.[a-zA-Z0-9/+=]{4}/);
         // .end()
     }
 };

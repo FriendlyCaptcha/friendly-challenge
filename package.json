@@ -16,9 +16,10 @@
     "build:widget:compat": "babel dist/widget-pre-babel.js -o dist/widget.js && rm dist/widget-pre-babel.js",
     "build:widget:minify": "terser dist/widget.module.js -o dist/widget.module.min.js --config-file terser.json --ecma 2017 --module && terser dist/widget.js -o dist/widget.min.js --config-file terser.json --safari10 --toplevel --wrap friendlyChallenge",
     "build:library": "rollup -c rollup.library.config.ts",
+    "build:tests": "tsc",
     "build": "npm run build:worker && npm run build:widget && npm run build:library && cp package.json dist/package.json",
     "start": "rollup -c rollup.config.ts -w",
-    "test": "nightwatch",
+    "test": "npm run build:tests && nightwatch",
     "test:prod": "npm run lint && npm run test",
     "dist": "cd dist && npm publish --ignore-scripts --dry-run",
     "prepublishOnly": "echo \"Error: Don't run 'npm publish' in root. Use 'npm run dist' instead.\" && exit 1"

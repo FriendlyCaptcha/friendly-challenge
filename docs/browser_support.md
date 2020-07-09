@@ -1,7 +1,8 @@
 # Browser Support
 
-## Supported browsers
 All modern browsers are supported, on both mobile and desktop. That includes Safari, Edge, Chrome, Firefox, and Opera, released in the last 8 years. It does not include Internet Explorer (see the *Internet Explorer* section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22since+2013%22%2C+%22not+dead%22%2C+%22not+ie+%3C%3D+11%22%2C+%22not+ie_mob+%3C%3D+11%22).
+
+## Polyfills
 
 You are responsible for adding the necessary polyfills for old browsers (`fetch`, `Promise`, `URL` and `Object.assign`), you could use these:
 ```
@@ -11,24 +12,26 @@ You are responsible for adding the necessary polyfills for old browsers (`fetch`
 <script src="https://cdn.jsdelivr.net/npm/object-assign-polyfill@0.1.0"></script>
 ```
 
-If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues). Very old browser support is not battle tested yet, if you need to support very old browsers in production you should provide a fallback to a different CAPTCHA for now.
+If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues).
 
-### Compatability mode for the library
+> Very old browser support is not battle tested yet, if you need to support very old browsers in production you should provide a fallback to a different CAPTCHA for now.
 
-If you are importing friendly-challenge into your own bundle and want to support old browsers (those that don't support ES2017) you should change your imports to be from `friendly-challenge/compat`. For example:
+## Compatability mode for the library
+
+If you are importing *friendly-challenge* into your own bundle and want to support old browsers (those that don't support ES2017) you should change your imports to be from `friendly-challenge/compat`. For example:
 
 ```
 import {WidgetInstance} from 'friendly-challenge'
-// should be
+// change to
 import {WidgetInstance} from 'friendly-challenge/compat'
 ```
 
-Both imports are ES2017, so you should use a tool like Babel to transpile it to ES5 or below. The difference between these two imports is the webworker script which is included as a string in the source code, for the *compat* library it is ES5 compatible and includes necessary polyfills (at the cost of slighlty worse performance and an extra 3KB bundle size).
+Both imports are ES2017, use a tool like Babel to transpile it to ES5 or lower. The difference between these two imports is the webworker script which is included as a string. In the *compat* build it is ES5 compatible and includes necessary polyfills (at the cost of slighlty worse performance and an extra 3KB bundle size).
 
-### Old browser speed
-The Javascript engine in old browsers is generally much slower than modern ones, the CAPTCHA may take one or more minutes to solve on very old browsers (>5 years old).
+## Old browser speed
+The Javascript engine in old browsers is generally much slower than modern ones, the CAPTCHA may take a minute to solve on very old browsers (>5 years old).
 
-### Internet Explorer
+## Internet Explorer
 The FriendlyCaptcha widget does not support Internet Explorer out of the box. Some notes:
 * Technically, no features are used that prevent use in IE 10 or 11, it does work.
 * The issue is that you need to host the background worker script on your own domain as it can't be created from a string.

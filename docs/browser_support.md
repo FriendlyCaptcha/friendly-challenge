@@ -3,11 +3,12 @@
 ## Supported browsers
 All modern browsers are supported, on both mobile and desktop. That includes Safari, Edge, Chrome, Firefox, and Opera, released in the last 8 years. It does not include Internet Explorer (see the *Internet Explorer* section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22since+2013%22%2C+%22not+dead%22%2C+%22not+ie+%3C%3D+11%22%2C+%22not+ie_mob+%3C%3D+11%22).
 
-You are responsible for adding the necessary polyfills for old browsers (`fetch`, `Promise`, and `URL`), you could use these:
+You are responsible for adding the necessary polyfills for old browsers (`fetch`, `Promise`, `URL` and `Object.assign`), you could use these:
 ```
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/url-polyfill@1.1.9/url-polyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/object-assign-polyfill@0.1.0"></script>
 ```
 
 If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues). Very old browser support is not battle tested yet, if you need to support very old browsers in production you should provide a fallback to a different CAPTCHA for now.

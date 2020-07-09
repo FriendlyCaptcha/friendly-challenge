@@ -5,6 +5,16 @@ import {createDiagnosticsBuffer} from 'friendly-pow/diagnostics';
 import {SOLVER_TYPE_JS, SOLVER_TYPE_WASM} from "friendly-pow/constants";
 import { Solver, StartMessage, DoneMessage, ProgressMessage } from './types';
 
+if (!Uint8Array.prototype.slice) {
+    Object.defineProperty(Uint8Array.prototype, 'slice', {
+      value: function (begin: number, end: number)
+       {
+          return new Uint8Array(Array.prototype.slice.call(this, begin, end));
+       }
+    });
+  }
+
+
 // Not technically correct, but it makes TS happy..
 // @ts-ignore
 declare var self: Worker;
@@ -103,8 +113,6 @@ self.onmessage = async (evt: any) => {
             }
             
             self.postMessage(doneMessage);
-            // @ts-ignore
-            self.close()
         }
     } catch (e) {
         setTimeout(() => {throw e});

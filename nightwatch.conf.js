@@ -1,30 +1,31 @@
-const chromedriver = require("chromedriver");
+const nightwatchConfig = {
+  src_folders: ["test/e2e"],
+  selenium : {
+    "start_process" : false,
+    "host" : "hub-cloud.browserstack.com",
+    "port" : 80
+  },
 
-module.exports = {
-    // An array of folders (excluding subfolders) where your tests are located;
-    // if this is not specified, the test source must be passed as the second argument to the test runner.
-    src_folders: ["test/e2e"],
-
-    webdriver: {
-      start_process: true,
-      port: 4444,
-      server_path: require('chromedriver').path,
-      cli_args: [
-        // very verbose geckodriver logs
-        // '-vv'
-      ]
-    },
-  
-    test_settings: {
-      default: {
-        // launch_url: 'http://localhost:8080',
-        desiredCapabilities : {
-          browserName : 'chrome',
-        //   alwaysMatch: {
-        //     // Enable this if you encounter unexpected SSL certificate errors in Firefox
-        //     // acceptInsecureCerts: true,
-        //   }
-        }
+  test_settings: {
+    default: {
+      globals: {
+        "waitForConditionTimeout": 20000
+      },
+      desiredCapabilities: {
+        'browserstack.user': 'guidozuidhof1',
+        'browserstack.key': 'WwE8ciGuuwJfVi4Ri4nK',
+        'browser': 'chrome',
+        'name': 'Bstack-[Nightwatch] Sample Test'
       }
     }
-  };
+  }
+};
+
+// Code to copy seleniumhost/port into test settings
+for(var i in nightwatchConfig.test_settings){
+  var config = nightwatchConfig.test_settings[i];
+  config['selenium_host'] = nightwatchConfig.selenium.host;
+  config['selenium_port'] = nightwatchConfig.selenium.port;
+}
+
+module.exports = nightwatchConfig;

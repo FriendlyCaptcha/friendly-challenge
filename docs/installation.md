@@ -27,15 +27,15 @@ The **friendly-challenge** library will add the CAPTCHA widget. You have two opt
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.2.0/widget.module.min.js" defer async></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.2.0/widget.min.js" defer async></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.2.2/widget.module.min.js" defer async></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.2.2/widget.min.js" defer async></script>
 
 <!-- from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.2.0/dist/widget.module.min.js" defer async></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.2.0/dist/widget.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.2.2/dist/widget.module.min.js" defer async></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.2.2/dist/widget.min.js" async defer></script>
 ```
 
-> Make sure to always import a specific version (e.g. `friendly-challenge@0.2.0`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
+> Make sure to always import a specific version (e.g. `friendly-challenge@0.2.2`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
 
 It is recommended that you include the `async` and `defer` attributes like in the examples above, they make sure that the browser does not wait to load these scripts to show your website.
 

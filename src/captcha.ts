@@ -165,7 +165,7 @@ export class WidgetInstance {
             this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
             setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
         } catch(e) {
-            this.e.innerHTML = getErrorHTML(e);
+            this.e.innerHTML = getErrorHTML(e.toString());
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 
@@ -188,7 +188,7 @@ export class WidgetInstance {
         this.valid = true;
         const puzzleSolutionMessage = `${this.puzzle!.signature}.${this.puzzle!.base64}.${encode(data.solution)}.${encode(data.diagnostics)}`;
         this.e.innerHTML = getDoneHTML(puzzleSolutionMessage, data);
-        this.worker = null;
+        // this.worker = null; // This literally crashes very old browsers..
         this.needsReInit = true;
         return puzzleSolutionMessage;
     }

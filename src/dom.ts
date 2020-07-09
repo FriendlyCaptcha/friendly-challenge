@@ -111,7 +111,7 @@ export function injectStyle() {
         const styleSheet = document.createElement("style")
         styleSheet.type = "text/css";
         styleSheet.id = "frc-style";
-        styleSheet.innerText = css
+        styleSheet.innerHTML = css
         document.head.appendChild(styleSheet)
     }
 }

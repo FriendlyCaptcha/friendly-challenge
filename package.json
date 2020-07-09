@@ -1,19 +1,19 @@
 {
   "name": "friendly-challenge",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "scripts": {
     "prebuild": "rimraf dist",
     "lint": "eslint src/**/*.ts test/**/*.ts",
-    "build:html": "cp src/html/index.html dist/index.html",
+    "build:html": "cp src/html/*.html dist/",
     "build:worker": "npm run build:worker:ts && npm run build:worker:compat && npm run build:worker:addpolyfill && npm run build:worker:minify",
     "build:worker:ts": "rollup -c rollup.worker.config.ts",
-    "build:worker:compat": "babel dist/worker.js -o dist/worker.compat.js",
+    "build:worker:compat": "babel dist/worker.js -o dist/worker.compat.js --config-file ./babel.fa.config.js && babel dist/worker.compat.js -o dist/worker.compat.js",
     "build:worker:addpolyfill": "cat node_modules/promis/promise.js dist/worker.compat.js > dist/worker.compat.poly.js && mv dist/worker.compat.poly.js dist/worker.compat.js && sed -i 's/window/self/g' dist/worker.compat.js",
-    "build:worker:minify": "terser dist/worker.js -o dist/worker.min.js --config-file terser.json --ecma 2017 --toplevel && terser dist/worker.compat.js -o dist/worker.compat.min.js --config-file terser.json --safari10 --toplevel",
+    "build:worker:minify": "terser dist/worker.js -o dist/worker.min.js --config-file terser.json --ecma 2017 --toplevel && terser dist/worker.compat.js -o dist/worker.compat.min.js --config-file terser.json --safari10 --toplevel --wrap frcWorker",
     "build:widget": "npm run build:widget:ts && npm run build:widget:compat && npm run build:widget:minify",
     "build:widget:ts": "rollup -c rollup.widget.config.ts",
-    "build:widget:compat": "babel dist/widget-pre-babel.js -o dist/widget.js && rm dist/widget-pre-babel.js",
+    "build:widget:compat": "babel dist/widget-pre-babel.js -o dist/widget.js --config-file ./babel.fa.config.js && babel dist/widget.js -o dist/widget.js && rm dist/widget-pre-babel.js",
     "build:widget:minify": "terser dist/widget.module.js -o dist/widget.module.min.js --config-file terser.json --ecma 2017 --module && terser dist/widget.js -o dist/widget.min.js --config-file terser.json --safari10 --toplevel --wrap friendlyChallenge",
     "build:library": "rollup -c rollup.library.config.ts",
     "build:tests": "tsc",
@@ -21,7 +21,7 @@
     "start": "rollup -c rollup.config.ts -w",
     "test": "npm run build:tests && nightwatch",
     "test:prod": "npm run lint && npm run test",
-    "dist": "cd dist && npm publish --ignore-scripts --dry-run",
+    "dist": "cd dist && npm publish --ignore-scripts",
     "prepublishOnly": "echo \"Error: Don't run 'npm publish' in root. Use 'npm run dist' instead.\" && exit 1"
   },
   "types": "friendly-challenge.d.ts",
@@ -30,6 +30,8 @@
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-block-scoped-functions": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
@@ -39,6 +41,11 @@
     "@types/node": "^14.0.9",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
+    "babel-plugin-class-properties": "^1.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-block-scoped-functions": "^6.22.0",
+    "babel-plugin-transform-hoist-nested-functions": "^1.2.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "chromedriver": "^83.0.0",
     "clean-css": "^4.2.3",
     "eslint": "^6.8.0",
@@ -59,7 +66,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.10.4",
     "core-js": "^3.6.5",
-    "friendly-pow": "0.0.6",
+    "friendly-pow": "0.0.8",
     "promis": "^1.1.4"
   }
 }

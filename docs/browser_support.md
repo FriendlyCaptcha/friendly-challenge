@@ -1,11 +1,16 @@
 # Browser Support
 
 ## Supported browsers
-All modern browsers are supported, on both mobile and desktop. That includes Safari, Edge, Chrome, Firefox, and Opera. It does not include Internet Explorer (see the *Internet Explorer* section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22%3E0.05%25%22%2C+%22not+dead%22%2C+%22not+ie+11%22%2C+%22not+ie_mob+11%22).
+All modern browsers are supported, on both mobile and desktop. That includes Safari, Edge, Chrome, Firefox, and Opera, released in the last 8 years. It does not include Internet Explorer (see the *Internet Explorer* section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22since+2013%22%2C+%22not+dead%22%2C+%22not+ie+%3C%3D+11%22%2C+%22not+ie_mob+%3C%3D+11%22).
 
-For all of the above browsers even very old versions (>8 years old) are supported. You are responsible for adding the necessary polyfills for these browsers (`fetch`, `Promise`, and `URL`).
+You are responsible for adding the necessary polyfills for old browsers (`fetch`, `Promise`, and `URL`), you could use these:
+```
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/url-polyfill@1.1.9/url-polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.1.0"></script>
+```
 
-**Very old browser support is not thoroughly tested at this point**, if you find any issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues). If you need to support very old browsers in production you should provide a fallback to a different CAPTCHA for now to be safe.
+If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues). Very old browser support is not battle tested yet, if you need to support very old browsers in production you should provide a fallback to a different CAPTCHA for now.
 
 ### Compatability mode for the library
 
@@ -17,17 +22,18 @@ import {WidgetInstance} from 'friendly-challenge'
 import {WidgetInstance} from 'friendly-challenge/compat'
 ```
 
-Both imports are ES2017, so you should use a tool like Babel to transpile it to ES5 or below. The difference between these two imports is the webworker script which is included as a string in the source code, for the *compat* library it is ES5 compatible and includes necessary polyfills (at the cost of worse performance and an extra 3KB bundle size).
+Both imports are ES2017, so you should use a tool like Babel to transpile it to ES5 or below. The difference between these two imports is the webworker script which is included as a string in the source code, for the *compat* library it is ES5 compatible and includes necessary polyfills (at the cost of slighlty worse performance and an extra 3KB bundle size).
+
+### Old browser speed
+The Javascript engine in old browsers is generally much slower than modern ones, the CAPTCHA may take one or more minutes to solve on very old browsers (>5 years old).
 
 ### Internet Explorer
 The FriendlyCaptcha widget does not support Internet Explorer out of the box. Some notes:
-* Technically, no features are used that prevent use in IE 10 or 11, and I got it to work.
-* The performance was however so bad that the CAPTCHA would take minutes to solve.
-* IE does not support loading a background worker from a string or from a different host, so you would have to host the background worker script on your own server, or you would need to run the worker synchronously which may freeze up the UI.
+* Technically, no features are used that prevent use in IE 10 or 11, it does work.
+* The issue is that you need to host the background worker script on your own domain as it can't be created from a string.
 
-These limitations as well as the awful user experience due to the slowness make FriendlyCaptcha a poor fit for internet explorer.
-
-> If you really need to support IE users on your website I recommend you use a fallback alternative CAPTCHA (such as reCAPTCHA) for those users. Alternatively you can get in touch and I can guide you through how to compile friendly-challenge with support for IE.
+This limitation makes it more tricky to integrate, you will need to compile the *friendly-challenge* library yourself and make some modifications.
+> If you really need to support IE users on your website I recommend you use a fallback alternative CAPTCHA (such as reCAPTCHA) for those users. Alternatively, if you are a paying user, you can get in touch and I can guide you through how to compile friendly-challenge with support for IE.
 
 ## NoScript
 Users need to have Javascript enabled to solve the CAPTCHA. I recommend you add a note for those users that have Javascript disabled by default:
@@ -36,4 +42,3 @@ Users need to have Javascript enabled to solve the CAPTCHA. I recommend you add 
 ```
 
 This will only be visible to users without Javascript enabled.
-

@@ -4,7 +4,7 @@ You can listen to events from the widget, or even create your own widgets progra
 
 > The widget code is all open source which should help with debugging, you can find the **WidgetInstance** class definition [here](https://github.com/gzuidhof/friendly-challenge/blob/master/src/captcha.ts).
 
-## data- fields
+## data-callback attribute
 For simple integrations you can specify callbacks directly on the widget HTML element.
 
 ```html
@@ -17,11 +17,11 @@ function myCallback(solution) {
 </script>
 ```
 
-The callback specified here should be defined in the global scope (i.e. on the `window` object). The callback will get called with one string argument: the `solution`  that should be sent to the server as proof that the CAPTCHA was completed.
+The callback specified here should be defined in the global scope (i.e. on the `window` object). The callback will get called with one string argument: the `solution`  that should be sent to the server as proof that the CAPTCHA was completed. You can use this to enable a submit button on a form when the CAPTCHA is complete.
 
 There is also `data-callback-error`, which gets called in case there was an error completing the CAPTCHA. This is an experimental feature and should not be depended on for now. The most likely reason for an error here is a network error: either the user's connection has dropped or FriendlyCaptcha's servers are down (never say never). Note that a retry button is present for the user so it may be recoverable.
 
-### Widget start mode
+## data-start attribute
 
 You can specify when the widget should start solving a puzzle, you can specify the `data-start` attribute with one of the following values:
    * `auto`: the solver will start as soon as possible. This is recommended if the user will definitely be submitting the CAPTCHA solution (e.g. there is only one form on the page), this has the best user experience.
@@ -33,9 +33,8 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-start="auto"></div>
 ```
 
-
 ## Javascript API
-For more advanced integrations you will probably can use the **friendly-challenge** Javascript API.
+For more advanced integrations you can use the **friendly-challenge** Javascript API.
 
 ### If you are using the widget script tag
 If you added widget script tag to your website, a global variable `friendlyChallenge` will be present on the window object.

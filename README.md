@@ -8,7 +8,7 @@ This repository contains the widget code and documentation for FriendlyCaptcha.
 
 FriendlyCaptcha is a proof-of-work based CAPTCHA alternative that respects the user's privacy, see the [**Friendly Captcha website**](https://friendlycaptcha.com).
 
-The widget uses artifacts from [**friendly-pow**](https://github.com/gzuidhof/friendly-pow), see that repository for the proof of work algorithms and their documentation.
-
 ## Getting started
 Read the [**documentation**](https://docs.friendlycaptcha.com).
+
+The widget uses artifacts from [**friendly-pow**](https://github.com/gzuidhof/friendly-pow) under the hood, see that repository for more details about the proof of work algorithm used in FriendlyCaptcha.

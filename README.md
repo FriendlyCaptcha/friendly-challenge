@@ -1,9 +1,8 @@
 # 🛡️ Friendly Challenge
 
-![FriendlyCaptcha widget solving screenshot](https://i.imgur.com/BNRdsxS.png) ![FriendlyCaptcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
-
-
 [![NPM badge](https://img.shields.io/npm/v/friendly-challenge)](https://www.npmjs.com/package/friendly-challenge) [![Documentation](https://img.shields.io/badge/Read%20the-documentation-1abc9c.svg)](https://docs.friendlycaptcha.com)
+
+![FriendlyCaptcha widget solving screenshot](https://i.imgur.com/BNRdsxS.png) ![FriendlyCaptcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
 
 This repository contains the widget code and documentation for FriendlyCaptcha. Visit the [**Friendly Captcha website**](https://friendlycaptcha.com).
 

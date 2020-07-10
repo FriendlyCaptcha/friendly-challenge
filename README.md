@@ -4,9 +4,9 @@
 
 ![FriendlyCaptcha widget solving screenshot](https://i.imgur.com/BNRdsxS.png) ![FriendlyCaptcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
 
-This repository contains the widget code and documentation for FriendlyCaptcha. Visit the [**Friendly Captcha website**](https://friendlycaptcha.com).
+This repository contains the widget code and documentation for FriendlyCaptcha.
 
-FriendlyCaptcha is a proof-of-work based CAPTCHA alternative that respects the user's privacy.
+FriendlyCaptcha is a proof-of-work based CAPTCHA alternative that respects the user's privacy, see the [**Friendly Captcha website**](https://friendlycaptcha.com).
 
 The widget uses artifacts from [**friendly-pow**](https://github.com/gzuidhof/friendly-pow), see that repository for the proof of work algorithms and their documentation.
 

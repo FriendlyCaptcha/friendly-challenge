@@ -2,12 +2,11 @@
 
 **There are three steps to adding FriendlyCaptcha to your website:**
 
-1. Create an account on the [**FriendlyCaptcha website**](https://friendlycaptcha.com) (it's free). There you will generate a `sitekey` and an `API Key`.
+1. Create an account on the [**FriendlyCaptcha website**](https://friendlycaptcha.com) (it's free) and generate a `sitekey`.
 2. Add the FriendlyCaptcha widget to your website
 3. Change your server code to verify the CAPTCHA solutions
 
 Let's go!
-
 
 ## 1. Generating a sitekey
 Log in to your FriendlyCaptcha account and head to the [account page](https://friendlycaptcha.com/signup).
@@ -104,9 +103,9 @@ If `success` is false, `errorCodes` will be a list containing at least one of th
 | `missing_secret`       | 400 | You forgot to add the secret (=API key) parameter. |
 | `invalid_secret`       | 401 | The API key you provided was invalid. |
 | `missing_solution` | 400 | You forgot to add the solution parameter. |
+| `bad_request` | 400 | Something else is wrong with your request, e.g. your request body is empty. |
 | `invalid_solution` | 200 | The solution you provided was invalid (perhaps the user tried to tamper with the puzzle). |
 | `timeout_or_duplicate` | 200 | The puzzle that the solution was for has expired or has already been used. |
-
 
 
 > ⚠️ Status code 200 does not mean the solution was valid, it just means the verification was performed succesfully. Use the `success` field.

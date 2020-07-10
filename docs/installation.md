@@ -21,7 +21,7 @@ Click the `Create Application` button and enter the necessary details. Once you 
 
 ### Adding the widget script
 
-The **friendly-challenge** library will add the CAPTCHA widget. You have two options on how to add this to your website, either you can use a script tag to load the widget from any CDN that hosts NPM packages, or you can import the code into your own Javascript bundle.
+The **friendly-challenge** library contains the code for CAPTCHA widget. You have two options on how to add this to your website, either you can use a script tag to load the widget from any CDN that hosts NPM packages, or you can import the code into your own Javascript bundle.
 
 #### Option A: Using a script tag
 

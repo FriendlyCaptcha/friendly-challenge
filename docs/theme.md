@@ -4,6 +4,10 @@ The styling of FriendlyCaptcha is done in plain CSS, and you can change it howev
 
 ## Dark mode
 
+![FriendlyCaptcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
+
+![FriendlyCaptcha widget finished screenshot dark mode](https://i.imgur.com/UgqOJaB.png)
+
 FriendlyCaptcha ships with two built-in themes, by adding the `dark` class to your `frc-captcha` element you can enable dark mode:
 
 ```html

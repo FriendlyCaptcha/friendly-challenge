@@ -83,7 +83,7 @@ To verify the CAPTCHA solution, make a POST request to `https://friendlycaptcha.
 | `secret`         | An API key that proves it's you, create one on the FriendlyCaptcha website |
 | `sitekey`        | **Optional:** the sitekey that you want to make sure the puzzle was generated from. |
 
-
+You can pass these parameters in a JSON body, or as formdata.
 
 ### The verification response
 

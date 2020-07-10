@@ -1,10 +1,14 @@
-# 🤖 Friendly Challenge
+# 🛡️ Friendly Challenge
 
 [![NPM badge](https://img.shields.io/npm/v/friendly-challenge)](https://www.npmjs.com/package/friendly-challenge) [![Documentation](https://img.shields.io/badge/Read%20the-documentation-1abc9c.svg)](https://docs.friendlycaptcha.com)
 
-The widget and docs for the proof of work challenge used in Friendly Captcha.
+![FriendlyCaptcha widget solving screenshot](https://i.imgur.com/BNRdsxS.png) ![FriendlyCaptcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
 
-It uses the build artifacts from [**friendly-pow**](https://github.com/gzuidhof/friendly-pow), see that repository's README for details on the proof of work challenge.
+This repository contains the widget code and documentation for FriendlyCaptcha.
+
+FriendlyCaptcha is a proof-of-work based CAPTCHA alternative that respects the user's privacy, see the [**Friendly Captcha website**](https://friendlycaptcha.com).
 
 ## Getting started
 Read the [**documentation**](https://docs.friendlycaptcha.com).
+
+The widget uses artifacts from [**friendly-pow**](https://github.com/gzuidhof/friendly-pow) under the hood, see that repository for more details about the proof of work algorithm used in FriendlyCaptcha.

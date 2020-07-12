@@ -40,7 +40,11 @@ export class WidgetInstance {
      * true `init` will be called again when start is called.
      */
     private needsReInit = false;
-    private hasStarted = false;
+
+    /**
+     * Start() has been called at least once ever.
+     */
+    private hasBeenStarted = false;
 
     constructor(element: HTMLElement, options: Partial<WidgetInstanceOptions> = {}) {
         this.opts = Object.assign({
@@ -67,7 +71,11 @@ export class WidgetInstance {
         } else if (this.opts.startMode === "focus" || this.e.dataset["start"] === "focus") {
             const form = findParentFormElement(this.e);
             if (form) {
-                executeOnceOnFocusInEvent(form, () => {this.start();});
+                executeOnceOnFocusInEvent(form, () => {
+                    if (!this.hasBeenStarted) {
+                        this.start();
+                    }
+                });
             } else {
                 console.log("FriendlyCaptcha div seems not to be contained in a form, autostart will not work");
             }
@@ -148,11 +156,7 @@ export class WidgetInstance {
     }
 
     public async start() {
-        if (this.hasStarted && !this.needsReInit) {
-            return;
-        }
-        this.hasStarted = true;
-
+        this.hasBeenStarted = true;
         const sitekey = this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");

@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "scripts": {
     "prebuild": "rimraf dist",

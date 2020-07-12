@@ -40,6 +40,7 @@ export class WidgetInstance {
      * true `init` will be called again when start is called.
      */
     private needsReInit = false;
+    private hasStarted = false;
 
     constructor(element: HTMLElement, options: Partial<WidgetInstanceOptions> = {}) {
         this.opts = Object.assign({
@@ -147,6 +148,11 @@ export class WidgetInstance {
     }
 
     public async start() {
+        if (this.hasStarted && !this.needsReInit) {
+            return;
+        }
+        this.hasStarted = true;
+
         const sitekey = this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");

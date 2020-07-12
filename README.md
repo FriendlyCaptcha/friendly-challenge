@@ -4,7 +4,7 @@
 
 ![FriendlyCaptcha widget solving screenshot](https://i.imgur.com/BNRdsxS.png) ![FriendlyCaptcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
 
-This repository contains the widget code and documentation for FriendlyCaptcha.
+This repository contains the widget code and documentation for FriendlyCaptcha, here is a [demo](https://friendlycaptcha.com/demo) of the widget in a real form.
 
 FriendlyCaptcha is a proof-of-work based CAPTCHA alternative that respects the user's privacy, see the [**Friendly Captcha website**](https://friendlycaptcha.com).
 

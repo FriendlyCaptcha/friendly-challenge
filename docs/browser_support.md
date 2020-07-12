@@ -1,10 +1,10 @@
 # Browser Support
 
-All modern browsers are supported, on both mobile and desktop. That includes Safari, Edge, Chrome, Firefox, and Opera, released in the last 8 years. It does not include Internet Explorer (see the *Internet Explorer* section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22since+2013%22%2C+%22not+dead%22%2C+%22not+ie+%3C%3D+11%22%2C+%22not+ie_mob+%3C%3D+11%22).
+All modern browsers are supported, on both mobile and desktop, all releases up to at least 8 years old. That includes Safari, Edge, Chrome, Firefox, and Opera. It does not include Internet Explorer (see the *Internet Explorer* section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22since+2013%22%2C+%22not+dead%22%2C+%22not+ie+%3C%3D+11%22%2C+%22not+ie_mob+%3C%3D+11%22).
 
 ## Polyfills
 
-You are responsible for adding the necessary polyfills for old browsers (`fetch`, `Promise`, `URL` and `Object.assign`), you could use these:
+If you want to support browsers over 4 years old, you are responsible for adding the necessary polyfills (`fetch`, `Promise`, `URL` and `Object.assign`), you could use these:
 ```
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/url-polyfill@1.1.9/url-polyfill.min.js"></script>
@@ -28,8 +28,8 @@ import {WidgetInstance} from 'friendly-challenge/compat'
 
 Both imports are ES2017, use a tool like Babel to transpile it to ES5 or lower. The difference between these two imports is the webworker script which is included as a string. In the *compat* build it is ES5 compatible and includes necessary polyfills (at the cost of slighlty worse performance and an extra 3KB bundle size).
 
-## Old browser speed
-The Javascript engine in old browsers is generally much slower than modern ones, the CAPTCHA may take a minute to solve on very old browsers (>5 years old).
+### Old browser speed
+The Javascript engine in old browsers is generally slower than modern ones, the CAPTCHA may take a minute to solve on very old browsers (>5 years old).
 
 ## Internet Explorer
 The FriendlyCaptcha widget does not support Internet Explorer out of the box. Some notes:

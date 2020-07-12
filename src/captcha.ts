@@ -6,7 +6,7 @@ import workerString from '../dist/worker.min.js';
 import { DoneMessage, ProgressMessage } from './types';
 import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 
-const PUZZLE_ENDPOINT_URL = "https://dev.friendlycaptcha.com/api/v1/puzzle";
+const PUZZLE_ENDPOINT_URL = "https://friendlycaptcha.com/api/v1/puzzle";
 const URL = window.URL || window.webkitURL;
 
 export interface WidgetInstanceOptions {

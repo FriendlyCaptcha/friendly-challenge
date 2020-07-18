@@ -9,12 +9,12 @@ Despite all information and building blocks being there to self-host the puzzle 
 > I would like to kindly ask you to consider donating to my [Github Sponsorship](https://github.com/sponsors/gzuidhof): it allows me to keep working on FriendlyCaptcha and other open source projects. I recently started to pursue this full-time and I hope I can keep that up. So far it is all coming from my own pocket which I can't keep up for very long. Any small amount helps and is much appreciated. 
 
 ## Programming language support
-The code to generate, sign and verify puzzles is available in Javascript and will run in Node, Deno, browsers and any other Javascript serverless environments. If you are using a different language such as Python or Go you should still be able to get things up and running too: all the steps use standardized tools (e.g. hash functions, encodings, other crypto stuff) that will be available in almost any target language.
+The code to generate, sign and verify puzzles is available in Javascript and will run in Node, Deno, browsers and any other Javascript serverless environments. If you are using a different language such as Python or Go you should still be able to get things up and running too: all the steps use standardized tools (e.g. hash functions, encodings, crypto) that will be available as a library in almost any programming language.
 
 All the code we will be using is found in the [**friendly-pow**](https://github.com/gzuidhof/friendly-pow) Github repository. The structure and algorithm of the puzzles are explained in more detail in the README of that repository.
 
 ## Data store
-You will need persistent storage, which preferably is globally consistent. You could use a database like Redis for this. If you only have a single application you can probably get away with keeping it in memory for now.
+You will need persistent storage, which preferably is globally consistent. You could use a database like Redis for this. If you only have a single application server you can probably get away with keeping it in memory for now.
 
 A puzzle in FriendlyCaptcha has an expiration date that ranges from 5 minutes to just under a day, we will need to keep submitted puzzles for at least that long to make sure puzzles are not used again (in a *replay attack*). This is very important as without this one could solve a single puzzle and then use its result for thousands of requests, which kind of defeats the point of a CAPTCHA.
 

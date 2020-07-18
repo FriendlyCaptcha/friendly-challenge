@@ -56,7 +56,9 @@ The widget will make a `GET` request with the sitekey url-encoded:
 The solution will be embedded in a hidden form input with name `frc-captcha-solution`, or you can read it out of the widget using Javascript. This string is the proof that the captcha was completed succesfully. When the captcha is not done yet the field will instead contain a string that always starts with a `.` explaining the state (e.g. `.SOLVING` or `.FETCHING`).
 
 A valid solution looks like this:
-```"b9e3c88c02a85ac71baf9f77547c5e60.XxNO/QdbzRU63mixAWQPlgAAAAAAAAAAlxuLKBLrVDk=.AAAAAPpyCgABAAAA4KUHAAIAAAA0+goAAwAAAMfRBAAEAAAAC2QKAAUAAACbOwEABgAAAO0zBQAHAAAAaPcMAAgAAACnvg0ACQAAADu5CAAKAAAAgm8CAAsAAAD6CwcADAAAAIP7DQANAAAA1boDAA4AAAAOuQAA.AgAB"```
+```
+b9e3c88c02a85ac71baf9f77547c5e60.XxNO/QdbzRU63mixAWQPlgAAAAAAAAAAlxuLKBLrVDk=.AAAAAPpyCgABAAAA4KUHAAIAAAA0+goAAwAAAMfRBAAEAAAAC2QKAAUAAACbOwEABgAAAO0zBQAHAAAAaPcMAAgAAACnvg0ACQAAADu5CAAKAAAAgm8CAAsAAAD6CwcADAAAAIP7DQANAAAA1boDAA4AAAAOuQAA.AgAB
+```
 
 This solution string consists of four parts. The first two parts are exactly the puzzle as sent by your endpoint, the third part is the `solution buffer` encoded as base64, and finally there is the `diagnostics buffer` encoded in base64 also. We will not touch on the diagnostics buffer, it is explained in more detail in the [*friendly-pow*](https://github.com/gzuidhof/friendly-pow) README.
 

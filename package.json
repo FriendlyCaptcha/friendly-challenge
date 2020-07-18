@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "license": "MIT",
   "repository": "https://github.com/gzuidhof/friendly-challenge",
@@ -68,7 +68,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.10.4",
     "core-js": "^3.6.5",
-    "friendly-pow": "0.1.0",
+    "friendly-pow": "0.1.2",
     "promis": "^1.1.4"
   }
 }

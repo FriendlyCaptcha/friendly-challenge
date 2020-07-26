@@ -26,12 +26,12 @@ The **friendly-challenge** library contains the code for CAPTCHA widget. You hav
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.5.1/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.5.1/widget.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.5.1/widget.module.min.js" integrity="sha512-vNgqk7iuul0VrQ4nSWkh7qvPW4oDnzoyJE9Uve3ePbEqAnxWxAgdhtmxPgi61/n8H5DVO7l45jcBKBTCgN/AFA==" crossorigin="anonymous" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.5.1/widget.min.js" integrity="sha512-wK4nd3FRtSk5c/6O85tJDlpjYNxhSAxKWcG9c6qtSYoLJaDl3gfV49NsFeerzk2heg3aKWDMv2k4i6uomGyVdA==" crossorigin="anonymous" async defer></script>
 
 <!-- OR from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.5.1/dist/widget.module.min.js" async defer></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.5.1/dist/widget.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.5.1/widget.module.min.js" integrity="sha512-vNgqk7iuul0VrQ4nSWkh7qvPW4oDnzoyJE9Uve3ePbEqAnxWxAgdhtmxPgi61/n8H5DVO7l45jcBKBTCgN/AFA==" crossorigin="anonymous" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.5.1/widget.min.js" integrity="sha512-wK4nd3FRtSk5c/6O85tJDlpjYNxhSAxKWcG9c6qtSYoLJaDl3gfV49NsFeerzk2heg3aKWDMv2k4i6uomGyVdA==" crossorigin="anonymous" async defer></script>
 ```
 
 > Make sure to always import a specific version (e.g. `friendly-challenge@0.5.1`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.

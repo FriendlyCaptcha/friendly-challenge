@@ -26,19 +26,19 @@ The **friendly-challenge** library contains the code for CAPTCHA widget. You hav
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.5.1/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.5.1/widget.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.6.0/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.6.0/widget.min.js" async defer></script>
 
 <!-- OR from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.5.1/dist/widget.module.min.js" async defer></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.5.1/dist/widget.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.6.0/dist/widget.module.min.js" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.6.0/dist/widget.min.js" async defer></script>
 ```
 
-> Make sure to always import a specific version (e.g. `friendly-challenge@0.5.1`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
+> Make sure to always import a specific version (e.g. `friendly-challenge@0.6.0`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
 
 It is recommended that you include the `async` and `defer` attributes like in the examples above, they make sure that the browser does not wait to load these scripts to show your website. The size of the scripts is 18KB (8.5KB compressed) for modern browsers, and 24KB (10KB compressed) for old browsers.
 
-> If you want to support old browsers, you are responsible for including polyfills, see the [**browser support**](browser_support?id=polyfills) page.
+> If you want to support old browsers, you can instead use a polyfill build, see the [**browser support**](browser_support?id=polyfills) page.
 
 #### Option B: Import the library into your Javascript code
 Alternatively, you can install the **friendly-challenge** library using a package manager such as npm:

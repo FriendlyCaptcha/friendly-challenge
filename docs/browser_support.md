@@ -4,17 +4,29 @@ All modern browsers are supported, on both mobile and desktop, all releases up t
 
 ## Polyfills
 
-If you want to support browsers over 4 years old, you are responsible for adding the necessary polyfills (`fetch`, `Promise`, `URL` and `Object.assign`), you could use these:
+If you want to support browsers over 4 years old, you will need some polyfills (`fetch`, `Promise`, `URL` and `Object.assign`).
+
+You can use the build that includes the polyfills:
+```html
+<!-- from unpkg -->
+<script type="module" src="https://unpkg.com/friendly-challenge@0.6.0/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.6.0/widget.polyfilled.min.js" async defer></script>
+
+<!-- OR from jsdelivr -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.6.0/dist/widget.module.min.js" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.6.0/dist/widget.polyfilled.min.js" async defer></script>
 ```
+
+Or you can include the polyfills manually:
+```html
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/url-polyfill@1.1.9/url-polyfill.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.1.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/object-assign-polyfill@0.1.0"></script>
 ```
 
-If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues).
 
-> Very old browser support is not battle tested yet, if you need to support very old browsers in production you should provide a fallback to a different CAPTCHA for now.
+If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues).
 
 ## Compatability mode for the library
 

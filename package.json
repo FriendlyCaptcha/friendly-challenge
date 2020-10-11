@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "license": "MIT",
   "repository": "https://github.com/gzuidhof/friendly-challenge",
@@ -13,10 +13,11 @@
     "build:worker:compat": "babel dist/worker.js -o dist/worker.compat.js --config-file ./babel.fa.config.js && babel dist/worker.compat.js -o dist/worker.compat.js",
     "build:worker:addpolyfill": "cat node_modules/promis/promise.js dist/worker.compat.js > dist/worker.compat.poly.js && mv dist/worker.compat.poly.js dist/worker.compat.js && sed -i 's/window/self/g' dist/worker.compat.js",
     "build:worker:minify": "terser dist/worker.js -o dist/worker.min.js --config-file terser.json --ecma 2017 --toplevel && terser dist/worker.compat.js -o dist/worker.compat.min.js --config-file terser.json --safari10 --toplevel --wrap frcWorker",
-    "build:widget": "npm run build:widget:ts && npm run build:widget:compat && npm run build:widget:minify",
+    "build:widget": "npm run build:widget:ts && npm run build:widget:compat && npm run build:widget:minify && npm run build:widget:compat:polyfilled",
     "build:widget:ts": "rollup -c rollup.widget.config.ts",
     "build:widget:compat": "babel dist/widget-pre-babel.js -o dist/widget.js --config-file ./babel.fa.config.js && babel dist/widget.js -o dist/widget.js && rm dist/widget-pre-babel.js",
     "build:widget:minify": "terser dist/widget.module.js -o dist/widget.module.min.js --config-file terser.json --ecma 2017 --module && terser dist/widget.js -o dist/widget.min.js --config-file terser.json --safari10 --toplevel --wrap friendlyChallenge",
+    "build:widget:compat:polyfilled": "cat src/polyfills.min.js dist/widget.min.js > dist/widget.polyfilled.min.js",
     "build:library": "rollup -c rollup.library.config.ts",
     "build:tests": "tsc",
     "build": "npm run build:worker && npm run build:widget && npm run build:library && npm run build:html && cp package.json dist/package.json",
@@ -69,6 +70,9 @@
     "@babel/runtime-corejs3": "^7.10.4",
     "core-js": "^3.6.5",
     "friendly-pow": "0.1.2",
-    "promis": "^1.1.4"
+    "object-assign-polyfill": "^0.1.0",
+    "promis": "^1.1.4",
+    "url-polyfill": "^1.1.10",
+    "whatwg-fetch": "^3.4.1"
   }
 }

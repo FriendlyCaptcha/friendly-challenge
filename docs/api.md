@@ -19,7 +19,7 @@ function myCallback(solution) {
 
 The callback specified here should be defined in the global scope (i.e. on the `window` object). The callback will get called with one string argument: the `solution`  that should be sent to the server as proof that the CAPTCHA was completed. You can use this to enable a submit button on a form when the CAPTCHA is complete.
 
-There is also `data-callback-error`, which gets called in case there was an error completing the CAPTCHA. This is an experimental feature and should not be depended on for now. The most likely reason for an error here is a network error: either the user's connection has dropped or FriendlyCaptcha's servers are down (never say never). Note that a retry button is present for the user so it may be recoverable.
+> *Experimental:* There is also `data-callback-error`, which gets called in case there was an error completing the CAPTCHA. This is an experimental feature and should not be depended on for now. The most likely reason for an error here is a network error: either the user's connection has dropped or FriendlyCaptcha's servers are down (never say never). Note that a retry button is present for the user so it may be recoverable.
 
 ## data-start attribute
 
@@ -72,7 +72,6 @@ const widget = new friendlyChallenge.WidgetInstance(element, options);
 widget.start()
 ```
 
-
 The options object takes the following fields, they are all optional:
 * **`startMode`**: string, default `"focus"`. Can be `"auto"`, `"focus"` or `"none"`. See documentation above (start mode) for the meaning of these.
 * **`readyCallback`**: function, called when the solver is done initializing and is ready to start.
@@ -83,5 +82,16 @@ The options object takes the following fields, they are all optional:
 * **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to FriendlyCaptcha's endpoint, you will only ever need to change this if you are creating your own puzzles.
 * **`forceJSFallback`**: boolean, default `false`:  Forces the widget to use the Javascript solver, which is much slower than the WebAssembly solver. Note that it will fallback to the JS solver automatically anyway. Recommended to never set this to true, it does not increase security.
 
+### Resetting the widget
+If you are building a single page application (SPA), chances are the page will not refresh after the captcha is submitted. As a solved captcha can only be used once, you will have to reset the widget yourself (e.g. on submission). You can call the `reset()` function on the widget instance to achieve this.
+
+For example, if you are using the automatically created widget:
+```javascript
+friendlyChallenge.autoWidget.reset();
+```
+
+### Destroying the widget
+To properly clean up the widget, you can use the `destroy()` function. It removes any DOM element and terminates any background workers.
+
 ## Questions or issues
-If you have any questions about the API or run into problems, the best place to get help is probably the *issues* or *discussions* page on the [github repository](https://github.com/gzuidhof/friendly-challenge/issues).
+If you have any questions about the API or run into problems, the best place to get help is probably the *issues* page on the [github repository](https://github.com/gzuidhof/friendly-challenge/issues).

@@ -16,6 +16,7 @@
     </form>
     <button id="start-button">Start widget</button>
     <button id="reset-button">Reset widget</button>
+    <button id="destroy-button">Destroy widget</button>
     <script>
       function doneCallback() {
         const doneEl = document.createElement("div")
@@ -29,6 +30,10 @@
 
       document.querySelector("#reset-button").addEventListener("click", function() {
         friendlyChallenge.autoWidget.reset();
+      });
+
+      document.querySelector("#destroy-button").addEventListener("click", function() {
+        friendlyChallenge.autoWidget.destroy();
       });
     </script>
   </body>

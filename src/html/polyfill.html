@@ -19,12 +19,22 @@
     <form>
       <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback"></div>
     </form>
+    <button id="start-button">Start widget</button>
+    <button id="reset-button">Reset widget</button>
     <script>
       function doneCallback() {
         const doneEl = document.createElement("div")
         doneEl.id = "frc-captcha-done-callback-generated-element";
         document.body.appendChild(doneEl);
       }
+
+      document.querySelector("#start-button").addEventListener("click", function() {
+        friendlyChallenge.autoWidget.start();
+      });
+
+      document.querySelector("#reset-button").addEventListener("click", function() {
+        friendlyChallenge.autoWidget.reset();
+      });
     </script>
   </body>
 </html>

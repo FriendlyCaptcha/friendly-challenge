@@ -20,7 +20,7 @@
     "build:library": "rollup -c rollup.library.config.ts",
     "build:tests": "tsc",
     "build": "npm run build:worker && npm run build:widget && npm run build:library && npm run build:html && cp package.json dist/package.json",
-    "start": "rollup -c rollup.config.ts -w",
+    "start": "rollup -c rollup.widget.config.ts -w",
     "test": "npm run build:tests && nightwatch",
     "test:prod": "npm run lint && npm run test",
     "dist": "cd dist && npm publish --ignore-scripts",

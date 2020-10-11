@@ -68,7 +68,7 @@ export class WidgetInstance {
 
         if (forceStart) {
             this.start();
-        } else if (this.opts.startMode === "focus" || this.e.dataset["start"] === "focus") {
+        } else if (this.e.dataset["start"] !== "none" && (this.opts.startMode === "focus" || this.e.dataset["start"] === "focus")) {
             const form = findParentFormElement(this.e);
             if (form) {
                 executeOnceOnFocusInEvent(form, () => {
@@ -198,8 +198,22 @@ export class WidgetInstance {
         this.valid = true;
         const puzzleSolutionMessage = `${this.puzzle!.signature}.${this.puzzle!.base64}.${encode(data.solution)}.${encode(data.diagnostics)}`;
         this.e.innerHTML = getDoneHTML(puzzleSolutionMessage, data);
+        if (this.worker) this.worker.terminate();
         // this.worker = null; // This literally crashes very old browsers..
         this.needsReInit = true;
+        
         return puzzleSolutionMessage;
+    }
+
+    /**
+     * Resets the widget to the initial state.
+     * This is useful in situations where the page does not refresh when you submit and the form may be re-submitted again
+     */
+    public reset() {
+        if (this.worker) this.worker.terminate();
+        this.worker = null;
+        this.needsReInit = false;
+        this.hasBeenStarted = false;
+        this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");
     }
 }

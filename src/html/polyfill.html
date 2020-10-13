@@ -35,6 +35,10 @@
       document.querySelector("#destroy-button").addEventListener("click", function() {
         friendlyChallenge.autoWidget.destroy();
       });
+
+      document.querySelector("#theme-button").addEventListener("click", function() {
+        document.querySelector(".frc-captcha").classList.toggle("dark");
+      });
     </script>
   </body>
 </html>

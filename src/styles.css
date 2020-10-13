@@ -52,6 +52,7 @@
     position: absolute;
     bottom: 0px;
     right: 6px;
+    line-height: 1;
 }
 
 .frc-banner * {
@@ -111,6 +112,10 @@
 
 .dark.frc-captcha * {
     color: #fff;
+}
+
+.dark.frc-captcha button {
+    background-color: #444;
 }
 
 .dark .frc-icon {

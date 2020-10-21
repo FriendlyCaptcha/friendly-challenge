@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "license": "MIT",
   "repository": "https://github.com/gzuidhof/friendly-challenge",
@@ -11,7 +11,7 @@
     "build:worker": "npm run build:worker:ts && npm run build:worker:compat && npm run build:worker:addpolyfill && npm run build:worker:minify",
     "build:worker:ts": "rollup -c rollup.worker.config.ts",
     "build:worker:compat": "babel dist/worker.js -o dist/worker.compat.js --config-file ./babel.fa.config.js && babel dist/worker.compat.js -o dist/worker.compat.js",
-    "build:worker:addpolyfill": "cat node_modules/promis/promise.js dist/worker.compat.js > dist/worker.compat.poly.js && mv dist/worker.compat.poly.js dist/worker.compat.js && sed -i 's/window/self/g' dist/worker.compat.js",
+    "build:worker:addpolyfill": "cat node_modules/promis/promise.js dist/worker.compat.js > dist/worker.compat.poly.js && mv dist/worker.compat.poly.js dist/worker.compat.js && sed -i.bak 's/window/self/g' dist/worker.compat.js && rm dist/worker.compat.js.bak",
     "build:worker:minify": "terser dist/worker.js -o dist/worker.min.js --config-file terser.json --ecma 2017 --toplevel && terser dist/worker.compat.js -o dist/worker.compat.min.js --config-file terser.json --safari10 --toplevel --wrap frcWorker",
     "build:widget": "npm run build:widget:ts && npm run build:widget:compat && npm run build:widget:minify && npm run build:widget:compat:polyfilled",
     "build:widget:ts": "rollup -c rollup.widget.config.ts",
@@ -63,6 +63,7 @@
     "rollup-plugin-typescript2": "^0.27.1",
     "selenium-server": "^3.141.59",
     "selenium-webdriver": "^4.0.0-alpha.7",
+    "terser": "^5.3.5",
     "ts-jest": "^26.0.0",
     "typescript": "^3.5.3"
   },

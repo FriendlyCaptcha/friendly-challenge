@@ -20,7 +20,7 @@ module.exports = {
         
         // Wait for done
         .waitForElementNotPresent(".frc-progress")
-        .assert.containsText('.frc-text', 'I\'m not a robot')
+        .assert.containsText('.frc-text', 'I am human')
         .getAttribute(".frc-text", "title", function(s){console.log(s.value);}) 
         .assert.elementPresent("#frc-captcha-done-callback-generated-element")
         .expect.element("input[name=frc-captcha-solution]").value.to.match(/[a-f0-9]{32}\.[a-zA-Z0-9/+=]*\.[a-zA-Z0-9/+=]*\.[a-zA-Z0-9/+=]{4}/);

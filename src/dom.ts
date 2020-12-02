@@ -57,7 +57,7 @@ export function getFetchingHTML() {
 export function getRunningHTML() {
     return getTemplate(
         loaderSVG,
-        "Verifying you are not a robot..",
+        "Verifying you are human...",
         ".UNFINISHED",
         undefined,
         true
@@ -68,7 +68,7 @@ export function getDoneHTML(solution: string, data: DoneMessage) {
     const timeData = `Completed: ${data.t.toFixed(0)}s (${(data.h/data.t*0.001).toFixed(0)}K/s)${data.solver === SOLVER_TYPE_JS ? " JS Fallback": ""}`;
     return getTemplate(
         `<title>${timeData}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"><animate attributeName="opacity" dur="1.0s" values="0;1"/></path>`,
-        "I'm not a robot",
+        "I am human",
         solution,
         undefined,
         false,

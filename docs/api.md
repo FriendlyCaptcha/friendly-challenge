@@ -96,8 +96,8 @@ To properly clean up the widget, you can use the `destroy()` function. It remove
 ### Full example in React (with React Hooks)
 The following example presents a way to embed the FriendlyCaptcha widget in a React component:
 ```javascript
-import { useEffect, useRef } from "react"
-import { WidgetInstance } from 'friendly-challenge'
+import { useEffect, useRef } from "react";
+import { WidgetInstance } from 'friendly-challenge';
 
 const FriendlyCaptcha = () => {
   const container = useRef();
@@ -115,13 +115,17 @@ const FriendlyCaptcha = () => {
 
   useEffect(() => {
     if (!widget.current && container.current) {
-      widget.current = new WidgetInstance(container.current, { startMode: "auto", doneCallback: doneCallback, errorCallback: errorCallback });
+      widget.current = new WidgetInstance(container.current, { 
+        startMode: "auto",
+        doneCallback: doneCallback,
+        errorCallback: errorCallback 
+      });
     }
 
     return () => {
       if (widget.current != undefined) widget.current.reset();
     }
-  }, [container])
+  }, [container]);
 
   return (
     <div ref={container} className="frc-captcha" data-sitekey="YOUR_SITE_KEY" />

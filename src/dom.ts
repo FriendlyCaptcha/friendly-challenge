@@ -94,12 +94,12 @@ export function getErrorHTML(errorDescription: string, recoverable = true) {
     )
 }
 
-export function findCaptchaElement() {
-    const el = document.querySelector(".frc-captcha");
-    if (!el) {
-        console.error("FriendlyCaptcha: No div was found with .frc-captcha class");
+export function findCaptchaElements() {
+    const elements = document.querySelectorAll(".frc-captcha");
+    if (elements.length === 0) {
+        console.warn("FriendlyCaptcha: No div was found with .frc-captcha class");
     }
-    return el;
+    return elements;
 }
 
 /**

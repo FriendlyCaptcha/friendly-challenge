@@ -1,13 +1,17 @@
-import { findCaptchaElement } from "./dom";
+import { findCaptchaElements } from "./dom";
 import { WidgetInstance } from "./captcha";
 
 const fc = (window as any).friendlyChallenge;
 let autoWidget = fc ? fc.autoWidget : null;
 
-const element = findCaptchaElement() as HTMLElement;
-if (element && !element.dataset["attached"]) {
-    autoWidget = new WidgetInstance(element);
-    element.dataset["attached"] = "1";
+const elements = findCaptchaElements();
+
+for (let element of elements) {
+    const hElement = element as HTMLElement;
+    if (hElement && !hElement.dataset["attached"]) {
+        autoWidget = new WidgetInstance(hElement);
+        hElement.dataset["attached"] = "1";
+    }
 }
 
 // @ts-ignore

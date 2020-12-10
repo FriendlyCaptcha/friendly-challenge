@@ -24,7 +24,7 @@
     "start": "rollup -c rollup.widget.config.ts -w",
     "test": "npm run build:tests && nightwatch",
     "test:prod": "npm run lint && npm run test",
-    "dist": "npm i && npm test && npm run build cd dist && npm publish --ignore-scripts",
+    "dist": "npm i && npm run build && cd dist && npm publish --ignore-scripts",
     "prepublishOnly": "echo \"Error: Don't run 'npm publish' in root. Use 'npm run dist' instead.\" && exit 1"
   },
   "types": "friendly-challenge.d.ts",

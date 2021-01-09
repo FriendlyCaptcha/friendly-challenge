@@ -93,5 +93,47 @@ friendlyChallenge.autoWidget.reset();
 ### Destroying the widget
 To properly clean up the widget, you can use the `destroy()` function. It removes any DOM element and terminates any background workers.
 
+### Full example in React (with React Hooks)
+The following example presents a way to embed the FriendlyCaptcha widget in a React component:
+```javascript
+import { useEffect, useRef } from "react";
+import { WidgetInstance } from 'friendly-challenge';
+
+const FriendlyCaptcha = () => {
+  const container = useRef();
+  const widget = useRef();
+
+  const doneCallback = (solution) => {
+    console.log('Captcha was solved. The form can be submitted.');
+    console.log(solution);
+  }
+
+  const errorCallback = (err) => {
+    console.log('There was an error when trying to solve the Captcha.');
+    console.log(err);
+  }
+
+  useEffect(() => {
+    if (!widget.current && container.current) {
+      widget.current = new WidgetInstance(container.current, { 
+        startMode: "auto",
+        doneCallback: doneCallback,
+        errorCallback: errorCallback 
+      });
+    }
+
+    return () => {
+      if (widget.current != undefined) widget.current.reset();
+    }
+  }, [container]);
+
+  return (
+    <div ref={container} className="frc-captcha" data-sitekey="YOUR_SITE_KEY" />
+  );
+}
+
+export default FriendlyCaptcha;
+```
+
 ## Questions or issues
 If you have any questions about the API or run into problems, the best place to get help is probably the *issues* page on the [github repository](https://github.com/gzuidhof/friendly-challenge/issues).

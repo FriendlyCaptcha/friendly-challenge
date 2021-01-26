@@ -19,7 +19,7 @@ function myCallback(solution) {
 
 The callback specified here should be defined in the global scope (i.e. on the `window` object). The callback will get called with one string argument: the `solution`  that should be sent to the server as proof that the CAPTCHA was completed. You can use this to enable a submit button on a form when the CAPTCHA is complete.
 
-> *Experimental:* There is also `data-callback-error`, which gets called in case there was an error completing the CAPTCHA. This is an experimental feature and should not be depended on for now. The most likely reason for an error here is a network error: either the user's connection has dropped or FriendlyCaptcha's servers are down (never say never). Note that a retry button is present for the user so it may be recoverable.
+> *Experimental:* There is also `data-callback-error`, which gets called in case there was an error completing the CAPTCHA. This is an experimental feature and should not be depended on for now. The most likely reason for an error here is a network error: either the user's connection has dropped or Friendly Captcha's servers are down. Note that a retry button is present for the user so it may be recoverable.
 
 ## data-start attribute
 
@@ -79,7 +79,7 @@ The options object takes the following fields, they are all optional:
 * **`doneCallback`**: function, called when the CAPTCHA has been completed. One argument will be passed: the solution string that should be sent to the server.
 * **`errorCallback`**: function, called when an internal error occurs. The error is passed as an object, the fields and values of this object are still to be documented and are changing frequently. Consider this experimental.
 
-* **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to FriendlyCaptcha's endpoint, you will only ever need to change this if you are creating your own puzzles.
+* **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles.
 * **`forceJSFallback`**: boolean, default `false`:  Forces the widget to use the Javascript solver, which is much slower than the WebAssembly solver. Note that it will fallback to the JS solver automatically anyway. Recommended to never set this to true, it does not increase security.
 
 ### Resetting the widget
@@ -94,7 +94,7 @@ friendlyChallenge.autoWidget.reset();
 To properly clean up the widget, you can use the `destroy()` function. It removes any DOM element and terminates any background workers.
 
 ### Full example in React (with React Hooks)
-The following example presents a way to embed the FriendlyCaptcha widget in a React component:
+The following example presents a way to embed the Friendly Captcha widget in a React component:
 ```javascript
 import { useEffect, useRef } from "react";
 import { WidgetInstance } from 'friendly-challenge';
@@ -136,4 +136,4 @@ export default FriendlyCaptcha;
 ```
 
 ## Questions or issues
-If you have any questions about the API or run into problems, the best place to get help is probably the *issues* page on the [github repository](https://github.com/gzuidhof/friendly-challenge/issues).
+If you have any questions about the API or run into problems, the best place to get help is probably the *issues* page on the [github repository](https://github.com/FriendlyCaptcha/friendly-challenge/issues).

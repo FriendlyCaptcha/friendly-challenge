@@ -1,15 +1,15 @@
 # Installation
 
-**There are three steps to adding FriendlyCaptcha to your website:**
+**There are three steps to adding Friendly Captcha to your website:**
 
-1. Create an account on the [**FriendlyCaptcha website**](https://friendlycaptcha.com) (it's free) and generate a `sitekey`.
-2. Add the FriendlyCaptcha widget to your website
+1. Create an account on the [**Friendly Captcha website**](https://friendlycaptcha.com) (it's free) and generate a `sitekey`.
+2. Add the Friendly Captcha widget to your website
 3. Change your server code to verify the CAPTCHA solutions
 
 Let's go!
 
 ## 1. Generating a sitekey
-Log in to your FriendlyCaptcha account and head to the [account page](https://friendlycaptcha.com/signup).
+Log in to your Friendly Captcha account and head to the [account page](https://friendlycaptcha.com/signup).
 
 Click the `Create Application` button and enter the necessary details. Once you have completed this, take note of the `sitekey` value in the *apps* table, we will need it in the next step.
 
@@ -57,7 +57,7 @@ import "friendly-challenge/widget";
 
 The friendly-challenge code you added won't do anything unless there is a special HTML element present that tells it where to create the widget. It will check for this widget once when it gets loaded, you can programmatically make it check for the element again.
 
-Where you want to add a FriendlyCaptcha widget, add
+Where you want to add a Friendly Captcha widget, add
 ```html
 <div class="frc-captcha" data-sitekey="<your sitekey>"></div>
 ```
@@ -69,17 +69,17 @@ A hidden input field with the CAPTCHA solution will be added automatically, this
 
 > The verification is almost the same as Google's ReCAPTCHA, so it should be easy to switch between the two (either direction).
 
-In the form data sent to the server, there will be an extra text field called `frc-captcha-solution`. We will send this string to the FriendlyCaptcha servers to verify that the CAPTCHA was completed successfully.
+In the form data sent to the server, there will be an extra text field called `frc-captcha-solution`. We will send this string to the Friendly Captcha servers to verify that the CAPTCHA was completed successfully.
 
 ### Creating a verification request
-You will need an API key to prove it's you, you can create one on the [**FriendlyCaptcha account page**](https://friendlycaptcha.com/account).
+You will need an API key to prove it's you, you can create one on the [**Friendly Captcha account page**](https://friendlycaptcha.com/account).
 
 To verify the CAPTCHA solution, make a POST request to `https://friendlycaptcha.com/api/v1/siteverify` with the following parameters:
 
 | POST Parameter | Description                                         |
 |----------------|-----------------------------------------------------|
 | `solution`       | The solution value that the user submitted in the `frc-captcha-solution` field         |
-| `secret`         | An API key that proves it's you, create one on the FriendlyCaptcha website |
+| `secret`         | An API key that proves it's you, create one on the Friendly Captcha website |
 | `sitekey`        | **Optional:** the sitekey that you want to make sure the puzzle was generated from. |
 
 You can pass these parameters in a JSON body, or as formdata.
@@ -115,9 +115,9 @@ A solution can be invalid for a number of reasons, perhaps the user submitted be
 ### Verification Best practices
 If you receive a response code other than 200 in production, you should probably accept the user's form despite not having been able to verify the CAPTCHA solution.
 
-Maybe your server is misconfigured or the FriendlyCaptcha servers are down. While we try to make sure that never happens, it is a good idea to assume one day disaster will strike.
+Maybe your server is misconfigured or the Friendly Captcha servers are down. While we try to make sure that never happens, it is a good idea to assume one day disaster will strike.
 
-An example: you are using FriendlyCaptcha for a sign up form and you can't verify the solution, it is better to trust the user and let them sign up anyway, because otherwise no signup will be possible at all. Do send an alert to yourself!
+An example: you are using Friendly Captcha for a sign up form and you can't verify the solution, it is better to trust the user and let them sign up anyway, because otherwise no signup will be possible at all. Do send an alert to yourself!
 
 
 

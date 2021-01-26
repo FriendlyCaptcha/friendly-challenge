@@ -26,7 +26,7 @@ Or you can include the polyfills manually:
 ```
 
 
-If you find any compatability issues please create a [**Github issue**](https://github.com/gzuidhof/friendly-challenge/issues).
+If you find any compatability issues please create a [**Github issue**](https://github.com/FriendlyCaptcha/friendly-challenge/issues).
 
 ## Compatability mode for the library
 

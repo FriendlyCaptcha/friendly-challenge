@@ -1,6 +1,6 @@
 # Browser Support
 
-All modern browsers are supported, on both mobile and desktop, all releases up to at least 8 years old. That includes Safari, Edge, Chrome, Firefox, and Opera. Internet Explorer 11 also works, with some sidenotes (see the section below). See the targeted [**browserlist compatible browsers**](https://browserl.ist/?q=%22since+2013%22%2C+%22not+dead%22%2C+%22not+ie+%3C%3D+11%22%2C+%22not+ie_mob+%3C%3D+11%22).
+All modern browsers are supported, on both mobile and desktop, all releases up to at least 8 years old. That includes Safari, Edge, Chrome, Firefox, and Opera. Internet Explorer 11 also works, with some sidenotes (see the section below). See the targeted [**browserlist compatible browsers**](https://browserslist.dev/?q=c2luY2UgMjAxMywgbm90IGRlYWQsIG5vdCBpZSA8PTExLCBub3QgaWVfbW9iIDw9IDEx).
 
 ## Polyfills
 

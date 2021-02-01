@@ -10,5 +10,3 @@ FriendlyCaptcha is a proof-of-work based CAPTCHA alternative that respects the u
 
 ## Getting started
 Read the [**documentation**](https://docs.friendlycaptcha.com).
-
-The widget uses artifacts from [**friendly-pow**](https://github.com/gzuidhof/friendly-pow) under the hood, see that repository for more details about the proof of work algorithm used in FriendlyCaptcha.

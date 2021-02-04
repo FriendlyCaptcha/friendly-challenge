@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.1
+* Added support for custom solution form field name. You can now specify the `data-solution-field-name` attribute to override the default name, which is `frc-captcha-solution`.
+
 ## 0.7.0
 No breaking changes in this release.
 

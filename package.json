@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "license": "MIT",
   "repository": "https://github.com/FriendlyCaptcha/friendly-challenge",

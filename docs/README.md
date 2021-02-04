@@ -13,5 +13,5 @@ This documentation will show you how to integrate Friendly Captcha into your web
 
 ## Next steps
 * The [**installation guide**](/installation) shows you how to add Friendly Captcha to your website in 3 steps.
-* The [**Javascript API**](/api) allows you to customize the integration with your website.
+* The [**Javascript API**](/widget_api) allows you to customize the integration with your website.
 

@@ -2,6 +2,7 @@
 import css from "./styles.css";
 import { ProgressMessage, DoneMessage } from "./types";
 import { SOLVER_TYPE_JS } from "friendly-pow/constants";
+import { Localization } from "./localization";
 
 const loaderSVG = `<circle cx="12" cy="12" r="8" stroke-width="3" stroke-dasharray="15 10" fill="none" stroke-linecap="round" transform="rotate(0 12 12)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.9s" values="0 12 12;360 12 12"/></circle>`;
 const errorSVG = `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>`;
@@ -26,12 +27,12 @@ function getTemplate(svgContent: string, textContent: string, solutionString: st
 /**
  * Used when the widget is ready to start solving.
  */
-export function getReadyHTML() {
+export function getReadyHTML(l: Localization) {
     return getTemplate(
         `<path d="M17,11c0.34,0,0.67,0.04,1,0.09V6.27L10.5,3L3,6.27v4.91c0,4.54,3.2,8.79,7.5,9.82c0.55-0.13,1.08-0.32,1.6-0.55 C11.41,19.47,11,18.28,11,17C11,13.69,13.69,11,17,11z"/><path d="M17,13c-2.21,0-4,1.79-4,4c0,2.21,1.79,4,4,4s4-1.79,4-4C21,14.79,19.21,13,17,13z M17,14.38"/>`,
-        "Anti-Robot Verification",
+        l.text_ready,
         ".UNSTARTED",
-        "Press to Start",
+        l.button_start,
         false
     )
 }
@@ -40,10 +41,10 @@ export function getReadyHTML() {
 /**
  * Used when the widget is retrieving a puzzle
  */
-export function getFetchingHTML() {
+export function getFetchingHTML(l: Localization) {
     return getTemplate(
         loaderSVG,
-        "Fetching challenge..",
+        l.text_fetching,
         ".FETCHING",
         undefined,
         true
@@ -54,21 +55,21 @@ export function getFetchingHTML() {
 /**
  * Used when the solver is running, displays a progress bar.
  */
-export function getRunningHTML() {
+export function getRunningHTML(l: Localization) {
     return getTemplate(
         loaderSVG,
-        "Verifying you are human...",
+        l.text_solving,
         ".UNFINISHED",
         undefined,
         true
     )
 }
 
-export function getDoneHTML(solution: string, data: DoneMessage) {
+export function getDoneHTML(l: Localization, solution: string, data: DoneMessage) {
     const timeData = `Completed: ${data.t.toFixed(0)}s (${(data.h/data.t*0.001).toFixed(0)}K/s)${data.solver === SOLVER_TYPE_JS ? " JS Fallback": ""}`;
     return getTemplate(
         `<title>${timeData}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"><animate attributeName="opacity" dur="1.0s" values="0;1"/></path>`,
-        "I am human",
+        l.text_completed,
         solution,
         undefined,
         false,
@@ -76,21 +77,21 @@ export function getDoneHTML(solution: string, data: DoneMessage) {
     )
 }
 
-export function getExpiredHTML() {
+export function getExpiredHTML(l: Localization) {
     return getTemplate(
         errorSVG,
-        "Anti-Robot verification expired",
+        l.text_expired,
         ".EXPIRED",
-        "Restart"
+        l.button_restart
     )
 }
 
-export function getErrorHTML(errorDescription: string, recoverable = true) {
+export function getErrorHTML(l: Localization, errorDescription: string, recoverable = true) {
     return getTemplate(
         errorSVG,
-        "Verification failed: " + errorDescription,
+        l.text_error + " " + errorDescription,
         ".ERROR",
-        recoverable ? "Retry": undefined,
+        recoverable ? l.button_retry: undefined,
     )
 }
 

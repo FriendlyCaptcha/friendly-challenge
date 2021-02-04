@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FriendlyCaptcha</title>
+
+    <div id="mount-point"></div>
+
+    <script type="module" defer async>
+        import {WidgetInstance} from "./index.js";
+
+        const el = document.querySelector("#mount-point");
+        const myLanguage = {
+            text_init: "text_init",
+
+            text_ready: "text_ready",
+            button_start: "button_start",
+
+            text_fetching: "text_fetching",
+
+            text_solving: "text_solving",
+            text_completed: "text_completed",
+
+            text_expired: "text_expired",
+            button_restart: "button_restart",
+
+            text_error: "text_error",
+            button_retry: "button_retry",
+        }
+        window.frc = new WidgetInstance(el, {language: myLanguage});
+    </script>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  </head>
+  <body>
+    
+  </body>
+</html>

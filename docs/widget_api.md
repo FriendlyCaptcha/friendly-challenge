@@ -33,6 +33,20 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-start="auto"></div>
 ```
 
+## data-lang attribute 🇺🇸🇬🇧🇩🇪🇳🇱
+
+FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"de"` and `"nl"` for English, German and Dutch respectively.
+
+> Are you a native speaker and want to add your language?
+> Please make an issue [here](https://github.com/FriendlyCaptcha/friendly-challenge/issues).  
+> The translations we need are detailed [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts), there's only a dozen values or so. A French translation would be especially appreciated!
+
+Example:
+```html
+<!-- This will create a widget with German text -->
+<div class="frc-captcha" data-sitekey="<my sitekey>" data-lang="de"></div>
+```
+
 ## Javascript API
 For more advanced integrations you can use the **friendly-challenge** Javascript API.
 
@@ -78,6 +92,7 @@ The options object takes the following fields, they are all optional:
 * **`startedCallback`**: function, called when the solver has started.
 * **`doneCallback`**: function, called when the CAPTCHA has been completed. One argument will be passed: the solution string that should be sent to the server.
 * **`errorCallback`**: function, called when an internal error occurs. The error is passed as an object, the fields and values of this object are still to be documented and are changing frequently. Consider this experimental.
+* **`language`**: string or object, the same values as the `data-lang` attribute can be provided, or a custom translation object for your language. See [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts) for what this object should look like.
 
 * **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles.
 * **`forceJSFallback`**: boolean, default `false`:  Forces the widget to use the Javascript solver, which is much slower than the WebAssembly solver. Note that it will fallback to the JS solver automatically anyway. Recommended to never set this to true, it does not increase security.

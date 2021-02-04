@@ -1,6 +1,7 @@
 * [Introduction](/)
 * [Installation](/installation.md)
-* [API](/api.md)
+* [Widget API](/widget_api.md)
+* [Verification API](/verification_api.md)
 * **Advanced**
   * [Browser Support](/browser_support.md)
   * [Themes & Dark mode](/theme.md)

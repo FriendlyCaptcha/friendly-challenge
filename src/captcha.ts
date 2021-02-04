@@ -5,6 +5,7 @@ import { getRunningHTML, getReadyHTML, getDoneHTML, updateProgressBar, findParen
 import workerString from '../dist/worker.min.js';
 import { DoneMessage, ProgressMessage } from './types';
 import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
+import { Localization, localizations } from './localization';
 
 const PUZZLE_ENDPOINT_URL = "https://friendlycaptcha.com/api/v1/puzzle";
 const URL = window.URL || window.webkitURL;
@@ -13,6 +14,7 @@ export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
     startMode: "auto" | "focus" | "none";
     puzzleEndpoint: string;
+    language: "en" | "de" | "nl" | Localization;
 
     readyCallback: () => any;
     startedCallback: () => any;
@@ -49,6 +51,8 @@ export class WidgetInstance {
 
     private hasBeenDestroyed = false;
 
+    private lang: Localization;
+
     constructor(element: HTMLElement, options: Partial<WidgetInstanceOptions> = {}) {
         this.opts = Object.assign({
             forceJSFallback: false,
@@ -58,9 +62,25 @@ export class WidgetInstance {
             readyCallback: () => 0,
             doneCallback: () => 0,
             errorCallback: () => 0,
+            language: element.dataset["lang"] || "en",
         }, options);
         this.e = element;
-        element.innerText = "FriendlyCaptcha initializing..";
+        
+        // Load language
+        if (typeof this.opts.language === "string") {
+            let l = (localizations as any)[this.opts.language.toLowerCase()];
+            if (l === undefined) {
+                console.error("FriendlyCaptcha: language \""+this.opts.language+"\"not found.");
+                // Fall back to English
+                l = localizations.en;
+            }
+            this.lang = l;
+        } else {
+            // We assign to a copy of the English language localization, so that any missing values will be English
+            this.lang = Object.assign(Object.assign({}, localizations.en), this.opts.language)
+        }
+
+        element.innerText = this.lang.text_init;
         injectStyle();
         this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");
     }
@@ -120,7 +140,7 @@ export class WidgetInstance {
 
     private onWorkerError(e: any) {
         this.needsReInit = true;
-        this.e.innerHTML = getErrorHTML("Background worker error " + e.message);
+        this.e.innerHTML = getErrorHTML(this.lang, "Background worker error " + e.message);
         this.makeButtonStart();
 
         // Just out of precaution
@@ -142,11 +162,11 @@ export class WidgetInstance {
             if (data.type === "progress") {
                 updateProgressBar(this.e, data as ProgressMessage);
             } else if (data.type === "ready") {
-                this.e.innerHTML = getReadyHTML();
+                this.e.innerHTML = getReadyHTML(this.lang);
                 this.makeButtonStart();
                 this.opts.readyCallback();
             } else if (data.type === "started") {
-                this.e.innerHTML = getRunningHTML();
+                this.e.innerHTML = getRunningHTML(this.lang);
                 this.opts.startedCallback();
             } else if (data.type === "done") {
                 const solutionPayload = this.handleDone(data);
@@ -162,7 +182,7 @@ export class WidgetInstance {
     }
 
     private expire() {
-        this.e.innerHTML = getExpiredHTML();
+        this.e.innerHTML = getExpiredHTML(this.lang);
         this.makeButtonStart();
     }
 
@@ -176,7 +196,7 @@ export class WidgetInstance {
         const sitekey = this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
-            this.e.innerHTML = getErrorHTML("Website problem: sitekey not set", false);
+            this.e.innerHTML = getErrorHTML(this.lang, "Website problem: sitekey not set", false);
             return;
         }
 
@@ -187,11 +207,11 @@ export class WidgetInstance {
         }
 
         try {
-            this.e.innerHTML = getFetchingHTML();
+            this.e.innerHTML = getFetchingHTML(this.lang);
             this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
             setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
         } catch(e) {
-            this.e.innerHTML = getErrorHTML(e.toString());
+            this.e.innerHTML = getErrorHTML(this.lang, e.toString());
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 
@@ -213,7 +233,7 @@ export class WidgetInstance {
     private handleDone(data: DoneMessage) {
         this.valid = true;
         const puzzleSolutionMessage = `${this.puzzle!.signature}.${this.puzzle!.base64}.${encode(data.solution)}.${encode(data.diagnostics)}`;
-        this.e.innerHTML = getDoneHTML(puzzleSolutionMessage, data);
+        this.e.innerHTML = getDoneHTML(this.lang, puzzleSolutionMessage, data);
         if (this.worker) this.worker.terminate();
         // this.worker = null; // This literally crashes very old browsers..
         this.needsReInit = true;

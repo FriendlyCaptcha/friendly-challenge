@@ -43,7 +43,7 @@
     white-space: nowrap;
     display: flex;
     flex-direction: column;
-    margin: 4px 6px 0 0;
+    margin: 2px 6px 0 0;
     overflow-x: auto;
     flex-grow: 1;
 }

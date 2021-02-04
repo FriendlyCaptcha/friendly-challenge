@@ -1,9 +1,9 @@
 {
   "name": "friendly-challenge",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
   "license": "MIT",
-  "repository": "https://github.com/gzuidhof/friendly-challenge",
+  "repository": "https://github.com/FriendlyCaptcha/friendly-challenge",
   "scripts": {
     "prebuild": "rimraf dist",
     "lint": "eslint src/**/*.ts test/**/*.ts",
@@ -29,7 +29,7 @@
   },
   "types": "friendly-challenge.d.ts",
   "module": "index.js",
-  "author": "Guido Zuidhof <me@guido.io>",
+  "author": "Friendly Captcha GmbH <hello@friendlycaptcha.com>",
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
@@ -49,7 +49,7 @@
     "babel-plugin-transform-es2015-block-scoped-functions": "^6.22.0",
     "babel-plugin-transform-hoist-nested-functions": "^1.2.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "chromedriver": "^83.0.0",
+    "chromedriver": "^88.0.0",
     "clean-css": "^4.2.3",
     "eslint": "^6.8.0",
     "fast-async": "^7.0.6",

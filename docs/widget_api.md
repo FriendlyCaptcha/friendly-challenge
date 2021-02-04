@@ -47,6 +47,14 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-lang="de"></div>
 ```
 
+## data-solution-field-name
+By default a hidden form field with name `frc-captcha-solution` is created. You can change the name of this field by setting this attribute, which can be useful for integrations with certain frameworks and content management systems.
+
+Example:
+```html
+<div class="frc-captcha" data-sitekey="<my sitekey>" data-solution-field-name="my-captcha-solution-field"></div>
+```
+
 ## Javascript API
 For more advanced integrations you can use the **friendly-challenge** Javascript API.
 
@@ -93,6 +101,7 @@ The options object takes the following fields, they are all optional:
 * **`doneCallback`**: function, called when the CAPTCHA has been completed. One argument will be passed: the solution string that should be sent to the server.
 * **`errorCallback`**: function, called when an internal error occurs. The error is passed as an object, the fields and values of this object are still to be documented and are changing frequently. Consider this experimental.
 * **`language`**: string or object, the same values as the `data-lang` attribute can be provided, or a custom translation object for your language. See [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts) for what this object should look like.
+* **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name.
 
 * **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles.
 * **`forceJSFallback`**: boolean, default `false`:  Forces the widget to use the Javascript solver, which is much slower than the WebAssembly solver. Note that it will fallback to the JS solver automatically anyway. Recommended to never set this to true, it does not increase security.

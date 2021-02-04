@@ -15,6 +15,7 @@ export interface WidgetInstanceOptions {
     startMode: "auto" | "focus" | "none";
     puzzleEndpoint: string;
     language: "en" | "de" | "nl" | Localization;
+    solutionFieldName: "frc-captcha-solution";
 
     readyCallback: () => any;
     startedCallback: () => any;
@@ -63,6 +64,7 @@ export class WidgetInstance {
             doneCallback: () => 0,
             errorCallback: () => 0,
             language: element.dataset["lang"] || "en",
+            solutionFieldName: element.dataset["solutionFieldName"] || "frc-captcha-solution"
         }, options);
         this.e = element;
         
@@ -140,7 +142,7 @@ export class WidgetInstance {
 
     private onWorkerError(e: any) {
         this.needsReInit = true;
-        this.e.innerHTML = getErrorHTML(this.lang, "Background worker error " + e.message);
+        this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Background worker error " + e.message);
         this.makeButtonStart();
 
         // Just out of precaution
@@ -162,11 +164,11 @@ export class WidgetInstance {
             if (data.type === "progress") {
                 updateProgressBar(this.e, data as ProgressMessage);
             } else if (data.type === "ready") {
-                this.e.innerHTML = getReadyHTML(this.lang);
+                this.e.innerHTML = getReadyHTML(this.opts.solutionFieldName, this.lang);
                 this.makeButtonStart();
                 this.opts.readyCallback();
             } else if (data.type === "started") {
-                this.e.innerHTML = getRunningHTML(this.lang);
+                this.e.innerHTML = getRunningHTML(this.opts.solutionFieldName, this.lang);
                 this.opts.startedCallback();
             } else if (data.type === "done") {
                 const solutionPayload = this.handleDone(data);
@@ -182,7 +184,7 @@ export class WidgetInstance {
     }
 
     private expire() {
-        this.e.innerHTML = getExpiredHTML(this.lang);
+        this.e.innerHTML = getExpiredHTML(this.opts.solutionFieldName, this.lang);
         this.makeButtonStart();
     }
 
@@ -196,7 +198,7 @@ export class WidgetInstance {
         const sitekey = this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
-            this.e.innerHTML = getErrorHTML(this.lang, "Website problem: sitekey not set", false);
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Website problem: sitekey not set", false);
             return;
         }
 
@@ -207,11 +209,11 @@ export class WidgetInstance {
         }
 
         try {
-            this.e.innerHTML = getFetchingHTML(this.lang);
+            this.e.innerHTML = getFetchingHTML(this.opts.solutionFieldName, this.lang);
             this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
             setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
         } catch(e) {
-            this.e.innerHTML = getErrorHTML(this.lang, e.toString());
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.toString());
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 
@@ -233,7 +235,7 @@ export class WidgetInstance {
     private handleDone(data: DoneMessage) {
         this.valid = true;
         const puzzleSolutionMessage = `${this.puzzle!.signature}.${this.puzzle!.base64}.${encode(data.solution)}.${encode(data.diagnostics)}`;
-        this.e.innerHTML = getDoneHTML(this.lang, puzzleSolutionMessage, data);
+        this.e.innerHTML = getDoneHTML(this.opts.solutionFieldName, this.lang, puzzleSolutionMessage, data);
         if (this.worker) this.worker.terminate();
         // this.worker = null; // This literally crashes very old browsers..
         this.needsReInit = true;

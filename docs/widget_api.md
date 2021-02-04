@@ -33,13 +33,13 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-start="auto"></div>
 ```
 
-## data-lang attribute 🇺🇸🇬🇧🇩🇪🇳🇱
+## data-lang attribute
 
 FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"de"` and `"nl"` for English, German and Dutch respectively.
 
 > Are you a native speaker and want to add your language?
 > Please make an issue [here](https://github.com/FriendlyCaptcha/friendly-challenge/issues).  
-> The translations we need are detailed [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts), there's only a dozen values or so. A French translation would be especially appreciated!
+> The translations we need are detailed [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts), there's only a dozen values or so. A French translation would be especially appreciated.
 
 Example:
 ```html
@@ -109,6 +109,7 @@ friendlyChallenge.autoWidget.reset();
 To properly clean up the widget, you can use the `destroy()` function. It removes any DOM element and terminates any background workers.
 
 ### Full example in React (with React Hooks)
+*Contributed by @S-u-m-u-n, thank you!*  
 The following example presents a way to embed the Friendly Captcha widget in a React component:
 ```javascript
 import { useEffect, useRef } from "react";
@@ -151,4 +152,4 @@ export default FriendlyCaptcha;
 ```
 
 ## Questions or issues
-If you have any questions about the API or run into problems, the best place to get help is probably the *issues* page on the [github repository](https://github.com/FriendlyCaptcha/friendly-challenge/issues).
+If you have any questions about the API or run into problems, the best place to get help is the *issues* page on the [github repository](https://github.com/FriendlyCaptcha/friendly-challenge/issues).

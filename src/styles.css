@@ -96,6 +96,7 @@
     border: 1px solid transparent;
     text-align: center;
     font-weight: 600;
+    text-transform: none;
 }
 .frc-button:focus{
     border: 1px solid #333;

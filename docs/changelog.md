@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.3
+* Added `text-transform: none` to the widget button's class (`.frc-button`). The default Wordpress style makes the button uppercase otherwise.
+
 ## 0.7.2
 * Added support for French text in the widget. You can use it by specifying `data-lang="fr"` on the widget mount point.
 

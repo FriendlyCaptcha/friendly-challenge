@@ -49,12 +49,12 @@ const LANG_EN: Localization = {
 const LANG_FR: Localization = {
     text_init: "Chargement..",
 
-    text_ready: "Verification Anti-Robot ",
+    text_ready: "Verification Anti-Robot",
     button_start: "Cliquez ici pour vérifier",
 
     text_fetching: "Chargement du challenge",
 
-    text_solving: "Vérification que vous êtes humain.",
+    text_solving: "Vérification que vous êtes humain..",
     text_completed: "Je suis humain",
 
     text_expired: "Verification échue",
@@ -106,4 +106,5 @@ export const localizations = {
     en: LANG_EN,
     de: LANG_DE,
     nl: LANG_NL,
+    fr: LANG_FR,
 }

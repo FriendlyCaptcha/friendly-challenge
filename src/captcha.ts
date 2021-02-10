@@ -58,7 +58,7 @@ export class WidgetInstance {
         this.opts = Object.assign({
             forceJSFallback: false,
             startMode: "focus",
-            puzzleEndpoint: PUZZLE_ENDPOINT_URL,
+            puzzleEndpoint: element.dataset["puzzleEndpoint"] || PUZZLE_ENDPOINT_URL,
             startedCallback: () => 0,
             readyCallback: () => 0,
             doneCallback: () => 0,

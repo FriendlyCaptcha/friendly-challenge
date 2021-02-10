@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.4
+* Added `data-puzzle-endpoint` support, which can be used to talk to a custom endpoint for puzzle generation, which is useful for testing.
+
 ## 0.7.3
 * Added `text-transform: none` to the widget button's class (`.frc-button`). The default Wordpress style makes the button uppercase otherwise.
 

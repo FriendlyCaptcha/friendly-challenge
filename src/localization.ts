@@ -45,6 +45,25 @@ const LANG_EN: Localization = {
     button_retry: "Retry",
 }
 
+// French
+const LANG_FR: Localization = {
+    text_init: "Chargement..",
+
+    text_ready: "Verification Anti-Robot ",
+    button_start: "Cliquez ici pour vérifier",
+
+    text_fetching: "Chargement du challenge",
+
+    text_solving: "Vérification que vous êtes humain.",
+    text_completed: "Je suis humain",
+
+    text_expired: "Verification échue",
+    button_restart: "Recommencer",
+
+    text_error: "Echec de verification:",
+    button_retry: "Recommencer",
+}
+
 // German
 const LANG_DE: Localization = {
     text_init: "Initialisierung..",

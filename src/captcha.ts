@@ -3,6 +3,7 @@ import { decode, encode } from 'friendly-pow/base64';
 import { getRunningHTML, getReadyHTML, getDoneHTML, updateProgressBar, findParentFormElement, executeOnceOnFocusInEvent, getErrorHTML, getFetchingHTML, injectStyle, getExpiredHTML } from './dom';
 // @ts-ignore
 import workerString from '../dist/worker.min.js';
+import { isHeadless } from "./headless";
 import { DoneMessage, ProgressMessage } from './types';
 import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 import { Localization, localizations } from './localization';
@@ -14,7 +15,7 @@ export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
     startMode: "auto" | "focus" | "none";
     puzzleEndpoint: string;
-    language: "en" | "de" | "nl" | Localization;
+    language: "en" | "de" | "nl" | "fr" | Localization;
     solutionFieldName: "frc-captcha-solution";
 
     readyCallback: () => any;
@@ -72,7 +73,7 @@ export class WidgetInstance {
         if (typeof this.opts.language === "string") {
             let l = (localizations as any)[this.opts.language.toLowerCase()];
             if (l === undefined) {
-                console.error("FriendlyCaptcha: language \""+this.opts.language+"\"not found.");
+                console.error("FriendlyCaptcha: language \""+this.opts.language+"\" not found.");
                 // Fall back to English
                 l = localizations.en;
             }
@@ -199,6 +200,11 @@ export class WidgetInstance {
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
             this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Website problem: sitekey not set", false);
+            return;
+        }
+
+        if (isHeadless()) {
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Browser check failed, try a different browser", false);
             return;
         }
 

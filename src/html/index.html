@@ -11,6 +11,16 @@
   </head>
   <body>
     <!-- This index.html is used for e2e testing -->
+    <h3>Localization tests</h3>
+    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="fr"></div>
+    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="de"></div>
+    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="nl"></div>
+    <h4>This one has an invalid data-lang, it should fall back to English.</h4>
+    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="ww"></div>
+    <h3>Custom field name</h3>
+    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-solution-field-name="my-field-name"></div>
+
+    <hr>
     <form>
       <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback"></div>
     </form>
@@ -22,6 +32,7 @@
       function doneCallback() {
         const doneEl = document.createElement("div")
         doneEl.id = "frc-captcha-done-callback-generated-element";
+        doneEl.innerHTML = "Captcha done " + new Date().toISOString();
         document.body.appendChild(doneEl);
       }
 
@@ -41,15 +52,5 @@
         document.querySelector(".frc-captcha").classList.toggle("dark");
       });
     </script>
-
-    <hr>
-    <h3>Localization tests</h3>
-    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback" data-lang="fr"></div>
-    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback" data-lang="de"></div>
-    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback" data-lang="nl"></div>
-    <h4>This one has an invalid data-lang, it should fall back to English.</h4>
-    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback" data-lang="ww"></div>
-    <h3>Custom field name</h3>
-    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-callback="doneCallback" data-solution-field-name="my-field-name"></div>
   </body>
 </html>

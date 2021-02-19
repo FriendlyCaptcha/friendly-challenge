@@ -1,7 +1,15 @@
 {
   "name": "friendly-challenge",
-  "version": "0.7.4",
-  "description": "The client code used for FriendlyCaptcha (widget html, styling and webworker solver)",
+  "version": "0.8.0",
+  "description": "The client code used for FriendlyCaptcha (widget script, html, styling and webworker solver)",
+  "keywords": [
+    "captcha",
+    "anti-bot",
+    "widget",
+    "friendlycaptcha",
+    "privacy",
+    "friendly"
+  ],
   "license": "MIT",
   "repository": "https://github.com/FriendlyCaptcha/friendly-challenge",
   "scripts": {

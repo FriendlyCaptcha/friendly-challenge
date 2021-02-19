@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0
+* Added basic headless browser detection into the widget, this will filter basic automated attacks.
+* Style changes:
+  * Changed the width of the widget from `280px` to `312px` by default (note it can still be styled to whichever size you wish using plain CSS).
+  * Changed the default border color from `#ddd` to `#f4f4f4`. In dark mode it is now `#333` (it was unset before).
+* Minor: Fix typo in console error message when an unknown language is specified.
+
 ## 0.7.3
 * Added `text-transform: none` to the widget button's class (`.frc-button`). The default Wordpress style makes the button uppercase otherwise.
 

@@ -3,7 +3,7 @@
 	padding: 0;
 	border: 0;
     text-align: initial;
-    border-radius: 4px;
+    border-radius: px;
     filter: none !important;
     transition: none !important;
     font-weight: normal;
@@ -16,8 +16,8 @@
 
 .frc-captcha {
     position: relative;
-    width: 280px;
-    border: 1px solid #ddd;
+    width: 312px;
+    border: 1px solid #f4f4f4;
     padding-bottom: 12px;
     background-color: #fff;
 }
@@ -109,6 +109,7 @@
 .dark.frc-captcha{
     color: #fff;
     background-color: #222;
+    border-color: #333;
 }
 
 .dark.frc-captcha * {

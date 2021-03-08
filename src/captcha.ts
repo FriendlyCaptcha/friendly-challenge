@@ -176,7 +176,7 @@ export class WidgetInstance {
                 this.opts.doneCallback(solutionPayload);
                 const callback = this.e.dataset["callback"];
                 if (callback) {
-                    (window as any)[callback](this);
+                    (window as any)[callback](solutionPayload);
                 }
             } else if (data.type === "error") {
                 this.onWorkerError(data);

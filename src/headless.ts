@@ -20,7 +20,7 @@ export function isHeadless() {
         || ua.indexOf("crawl") !== -1 // Only IE5 has two distributions that has this on windows NT.. so yeah.
         || nav.webdriver === true
         || !nav.language
-        || !nav.languages.length
+        || (nav.languages !== undefined && !nav.languages.length) // IE 11 does not support NavigatorLanguage.languages https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages
         || !correctPrototypes
      );
 }

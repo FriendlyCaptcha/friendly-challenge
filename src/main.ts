@@ -6,14 +6,12 @@ let autoWidget = fc ? fc.autoWidget : null;
 
 const elements = findCaptchaElements();
 
-for (var index in elements) {
-    if (elements[index] !== undefined) {
-        const hElement = elements[index] as HTMLElement;
+for (var index = 0; index < elements.length; index++) {
+    const hElement = elements[index] as HTMLElement;
 
-        if (hElement && !hElement.dataset["attached"]) {
-            autoWidget = new WidgetInstance(hElement);
-            hElement.dataset["attached"] = "1";
-        }
+    if (hElement && !hElement.dataset["attached"]) {
+        autoWidget = new WidgetInstance(hElement);
+        hElement.dataset["attached"] = "1";
     }
 }
 

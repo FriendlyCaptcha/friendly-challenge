@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.2
+* No functional changes, only a fix to the example page in which polyfills are used.
+
+## 0.8.1
+* Fixed the callback defined using `data-callback` receiving the wrong value as argument.
+
 ## 0.8.0
 * Added basic headless browser detection into the widget, this will filter basic automated attacks.
 * Style changes:

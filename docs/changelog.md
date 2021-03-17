@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.3
+* Fix for Internet Explorer 11 compatibility (thank you @Sevyls!)
+
 ## 0.8.2
 * No functional changes, only a fix to the example page in which polyfills are used.
 

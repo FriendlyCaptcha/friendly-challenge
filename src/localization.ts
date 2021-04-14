@@ -102,9 +102,29 @@ const LANG_NL: Localization = {
     button_retry: "Opnieuw proberen",   
 }
 
+// Italian
+const LANG_IT: Localization = {
+    text_init: "Inizializzazione...",
+
+    text_ready: "Verifica Anti-Robot",
+    button_start: "Clicca per iniziare",
+
+    text_fetching: "Caricamento...",
+
+    text_solving: "Verificando che sei umano...",
+    text_completed: "Non sono un robot",
+
+    text_expired: "Verifica Anti-Robot scaduta",
+    button_restart: "Ricomincia",
+
+    text_error: "Verifica fallita:",
+    button_retry: "Riprova",
+}
+
 export const localizations = {
     en: LANG_EN,
     de: LANG_DE,
     nl: LANG_NL,
     fr: LANG_FR,
+    it: LANG_IT,
 }

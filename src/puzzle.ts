@@ -26,13 +26,31 @@ export function decodeBase64Puzzle(base64Puzzle: string): Puzzle {
 }
 
 export async function getPuzzle(url: string, siteKey: string): Promise<string> {
-    const response = await fetchAndRetryWithBackoff(url + "?sitekey=" + siteKey, {headers: [["x-frc-client", "js-0.8.3"]], mode: 'cors'}, 2);
-    if (response.ok) {
-        const json = await response.json();
-        return json.data.puzzle;
-    } else {
-        throw Error(`Failure in getting puzzle: ${response.status} ${response.statusText}`);
+    const urls = url.split(",");
+    for (let i = 0; i < urls.length; i++) {
+        const response = await fetchAndRetryWithBackoff(url + "?sitekey=" + siteKey, {headers: [["x-frc-client", "js-0.8.4"]], mode: 'cors'}, 2);
+        if (response.ok) {
+            const json = await response.json();
+            return json.data.puzzle;
+        } else {
+            let json;
+            try {
+                json = await response.json();
+            } catch(e) {
+                /* Do nothing */
+            }
+
+            if (json && json.errors && json.errors[0] === "endpoint_not_enabled") {
+                throw Error(`Endpoint not allowed (${response.status})`);
+            }
+            
+            if (i === urls.length-1) {
+                throw Error(`Failure in getting puzzle: ${response.status} ${response.statusText}`);
+            }
+        }
     }
+    // This code should never be reached.
+    throw Error(`Internal error`);
 }
 
 /**

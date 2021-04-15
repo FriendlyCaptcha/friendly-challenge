@@ -1,7 +1,12 @@
 # Changelog
 
+## 0.8.4
+* Added Italian localization (thank you @LucaDiba!).
+* You can now pass the sitekey in the options object when using the programmatic API.
+* Added support for specifying multiple puzzle endpoints separated with a comma, they will be tried in order.
+
 ## 0.8.3
-* Fix for Internet Explorer 11 compatibility (thank you @Sevyls!)
+* Fix for Internet Explorer 11 compatibility (thank you @Sevyls!).
 
 ## 0.8.2
 * No functional changes, only a fix to the example page in which polyfills are used.

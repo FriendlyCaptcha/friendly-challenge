@@ -4,7 +4,9 @@ You can listen to events from the widget, or even create your own widgets progra
 
 > The widget code is all open source which should help with debugging, you can find the **WidgetInstance** class definition [here](https://github.com/gzuidhof/friendly-challenge/blob/master/src/captcha.ts).
 
-## data-callback attribute
+## Attribute API (html tags)
+
+### data-callback attribute
 For simple integrations you can specify callbacks directly on the widget HTML element.
 
 ```html
@@ -19,9 +21,7 @@ function myCallback(solution) {
 
 The callback specified here should be defined in the global scope (i.e. on the `window` object). The callback will get called with one string argument: the `solution`  that should be sent to the server as proof that the CAPTCHA was completed. You can use this to enable a submit button on a form when the CAPTCHA is complete.
 
-> *Experimental:* There is also `data-callback-error`, which gets called in case there was an error completing the CAPTCHA. This is an experimental feature and should not be depended on for now. The most likely reason for an error here is a network error: either the user's connection has dropped or Friendly Captcha's servers are down. Note that a retry button is present for the user so it may be recoverable.
-
-## data-start attribute
+### data-start attribute
 
 You can specify when the widget should start solving a puzzle, you can specify the `data-start` attribute with one of the following values:
    * `auto`: the solver will start as soon as possible. This is recommended if the user will definitely be submitting the CAPTCHA solution (e.g. there is only one form on the page), this has the best user experience.
@@ -33,9 +33,9 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-start="auto"></div>
 ```
 
-## data-lang attribute
+### data-lang attribute
 
-FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"fr"`, `"de"` and `"nl"` for English, French, German and Dutch respectively.
+FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"fr"`, `"de"` `"it"` and `"nl"` for English, French, German, Italian, and Dutch respectively.
 
 > Are you a native speaker and want to add your language?
 > Please make an issue [here](https://github.com/FriendlyCaptcha/friendly-challenge/issues).  
@@ -47,12 +47,22 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-lang="de"></div>
 ```
 
-## data-solution-field-name
+### data-solution-field-name
 By default a hidden form field with name `frc-captcha-solution` is created. You can change the name of this field by setting this attribute, which can be useful for integrations with certain frameworks and content management systems.
 
 Example:
 ```html
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-solution-field-name="my-captcha-solution-field"></div>
+```
+
+### data-puzzle-endpoint
+*Only relevant if you are using our [dedicated EU endpoint service](/#/eu_endpoint)*.
+By default the widget fetches puzzles from `https://api.friendlycaptcha.com/api/v1/puzzle`, which serves puzzles globally from over 200 data centers. As a premium service we offer an alternative endpoint that serves requests from datacenters in Germany only.
+
+Example:
+```html
+<!-- Use the dedicated EU endpoint -->
+<div class="frc-captcha" data-sitekey="<my sitekey>" data-puzzle-endpoint="https://eu-api.friendlycaptcha.eu/api/v1/puzzle"></div>
 ```
 
 ## Javascript API
@@ -87,8 +97,9 @@ function doneCallback(solution) {
 const element = document.querySelector("#my-widget");
 const options = {
     doneCallback: doneCallback;
+    sitekey: "<my sitekey>",
 }
-const widget = new friendlyChallenge.WidgetInstance(element, options);
+const widget = new WidgetInstance(element, options);
 
 // this makes the widget fetch a puzzle and start solving it.
 widget.start()
@@ -96,6 +107,7 @@ widget.start()
 
 The options object takes the following fields, they are all optional:
 * **`startMode`**: string, default `"focus"`. Can be `"auto"`, `"focus"` or `"none"`. See documentation above (start mode) for the meaning of these.
+* **`sitekey`**: string. Your sitekey.
 * **`readyCallback`**: function, called when the solver is done initializing and is ready to start.
 * **`startedCallback`**: function, called when the solver has started.
 * **`doneCallback`**: function, called when the CAPTCHA has been completed. One argument will be passed: the solution string that should be sent to the server.
@@ -103,7 +115,7 @@ The options object takes the following fields, they are all optional:
 * **`language`**: string or object, the same values as the `data-lang` attribute can be provided, or a custom translation object for your language. See [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts) for what this object should look like.
 * **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name.
 
-* **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles.
+* **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles or are using our dedicated EU endpoint service.
 * **`forceJSFallback`**: boolean, default `false`:  Forces the widget to use the Javascript solver, which is much slower than the WebAssembly solver. Note that it will fallback to the JS solver automatically anyway. Recommended to never set this to true, it does not increase security.
 
 ### Resetting the widget

@@ -8,15 +8,17 @@ import { DoneMessage, ProgressMessage } from './types';
 import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 import { Localization, localizations } from './localization';
 
-const PUZZLE_ENDPOINT_URL = "https://friendlycaptcha.com/api/v1/puzzle";
+const PUZZLE_ENDPOINT_URL = "https://api.friendlycaptcha.com/api/v1/puzzle";
 const URL = window.URL || window.webkitURL;
 
 export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
     startMode: "auto" | "focus" | "none";
     puzzleEndpoint: string;
-    language: "en" | "de" | "nl" | "fr" | Localization;
+    language: "en" | "de" | "nl" | "fr" | "it" | Localization;
     solutionFieldName: "frc-captcha-solution";
+
+    sitekey: string,
 
     readyCallback: () => any;
     startedCallback: () => any;
@@ -64,6 +66,7 @@ export class WidgetInstance {
             readyCallback: () => 0,
             doneCallback: () => 0,
             errorCallback: () => 0,
+            sitekey: element.dataset["sitekey"] || "",
             language: element.dataset["lang"] || "en",
             solutionFieldName: element.dataset["solutionFieldName"] || "frc-captcha-solution"
         }, options);
@@ -196,7 +199,7 @@ export class WidgetInstance {
         }
 
         this.hasBeenStarted = true;
-        const sitekey = this.e.dataset["sitekey"];
+        const sitekey = this.opts.sitekey || this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
             this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Website problem: sitekey not set", false);

@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "The client code used for FriendlyCaptcha (widget script, html, styling and webworker solver)",
   "keywords": [
     "captcha",
@@ -62,7 +62,7 @@
     "eslint": "^6.8.0",
     "fast-async": "^7.0.6",
     "jest": "^26.0.1",
-    "nightwatch": "^1.3.6",
+    "nightwatch": "^1.6.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.16.1",
     "rollup-plugin-dts": "^1.4.7",

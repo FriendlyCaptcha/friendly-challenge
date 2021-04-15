@@ -9,12 +9,12 @@ If you want to support browsers over 4 years old, you will need some polyfills (
 You can use the build that includes the polyfills:
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.8.3/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.8.3/widget.polyfilled.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.8.4/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.8.4/widget.polyfilled.min.js" async defer></script>
 
 <!-- OR from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.3/dist/widget.module.min.js" async defer></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.3/dist/widget.polyfilled.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.4/dist/widget.module.min.js" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.4/dist/widget.polyfilled.min.js" async defer></script>
 ```
 
 Or you can include the polyfills manually:
@@ -45,13 +45,12 @@ The Javascript engine in old browsers is generally slower than modern ones, the 
 
 
 ## NoScript
-Users need to have Javascript enabled to solve the CAPTCHA. I recommend you add a note for those users that have Javascript disabled by default:
+Users need to have Javascript enabled to solve the CAPTCHA. We recommend you add a note for users that have Javascript disabled by default:
 ```html
 <noscript>You need Javascript for CAPTCHA verification to submit this form.</noscript>
 ```
 
 This will only be visible to users without Javascript enabled.
-
 
 ## Internet Explorer
 Internet Explorer 11 is supported out of the box, but take note that **the Javascript engine is very slow in Internet Explorer leading to a poor user experience**: the CAPTCHA will likely take more than a minute to solve.
@@ -62,7 +61,7 @@ Consider displaying a message to IE users that they should use a different brows
 if (!!document.documentMode) { // Only true in Internet Explorer
     Array.prototype.slice.call(document.querySelectorAll(".frc-captcha")).forEach( function(element) {
         var messageElement = document.createElement("p");
-        messageElement.innerHTML = "The anti-robot check works better and faster in modern browsers such as Edge, Firefox, or Chrome, please consider updating your browser";
+        messageElement.innerHTML = "The anti-robot check works better and faster in modern browsers such as Edge, Firefox, or Chrome. Please consider updating your browser";
         element.parentNode.insertBefore(messageElement, element.nextSibling);
     });
 }

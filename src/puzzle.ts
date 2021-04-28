@@ -28,7 +28,7 @@ export function decodeBase64Puzzle(base64Puzzle: string): Puzzle {
 export async function getPuzzle(url: string, siteKey: string): Promise<string> {
     const urls = url.split(",");
     for (let i = 0; i < urls.length; i++) {
-        const response = await fetchAndRetryWithBackoff(url + "?sitekey=" + siteKey, {headers: [["x-frc-client", "js-0.8.4"]], mode: 'cors'}, 2);
+        const response = await fetchAndRetryWithBackoff(url + "?sitekey=" + siteKey, {headers: [["x-frc-client", "js-0.8.5"]], mode: 'cors'}, 2);
         if (response.ok) {
             const json = await response.json();
             return json.data.puzzle;

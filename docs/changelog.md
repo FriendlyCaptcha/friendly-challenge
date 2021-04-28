@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.5
+* Added check to make sure that the widget code gets executed after the DOM has been loaded. See #20.
+
 ## 0.8.4
 * Added Italian localization (thank you @LucaDiba!).
 * You can now pass the sitekey in the options object when using the programmatic API.

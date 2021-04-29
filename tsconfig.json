@@ -8,6 +8,7 @@
       "moduleResolution": "node",
       "sourceMap": true,
       "esModuleInterop": true,
+      "lib": ["dom"],
     },
     "include": [
       // "./src/**/*.ts",
@@ -15,4 +16,3 @@
     ],
     "exclude": ["node_modules/", "dist/"]
   }
-  

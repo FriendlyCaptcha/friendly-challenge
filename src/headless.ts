@@ -1,5 +1,9 @@
-const nav = navigator;
-const ua = nav.userAgent.toLowerCase();
+let nav: any;
+let ua: any;
+if (!(typeof navigator === 'undefined')) {
+    nav = navigator;
+    ua = nav.userAgent.toLowerCase();
+}
 
 /**
  * Headless browser detection on the clientside is imperfect. One can modify any clientside code to disable or change this check,

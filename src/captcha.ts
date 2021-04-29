@@ -9,7 +9,10 @@ import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 import { Localization, localizations } from './localization';
 
 const PUZZLE_ENDPOINT_URL = "https://api.friendlycaptcha.com/api/v1/puzzle";
-const URL = window.URL || window.webkitURL;
+let URL: any;
+if (!(typeof window === 'undefined')) {
+    URL = window.URL || window.webkitURL;
+}
 
 export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
@@ -18,7 +21,7 @@ export interface WidgetInstanceOptions {
     language: "en" | "de" | "nl" | "fr" | "it" | Localization;
     solutionFieldName: "frc-captcha-solution";
 
-    sitekey: string,
+    sitekey: string;
 
     readyCallback: () => any;
     startedCallback: () => any;
@@ -71,7 +74,7 @@ export class WidgetInstance {
             solutionFieldName: element.dataset["solutionFieldName"] || "frc-captcha-solution"
         }, options);
         this.e = element;
-        
+
         // Load language
         if (typeof this.opts.language === "string") {
             let l = (localizations as any)[this.opts.language.toLowerCase()];
@@ -83,7 +86,7 @@ export class WidgetInstance {
             this.lang = l;
         } else {
             // We assign to a copy of the English language localization, so that any missing values will be English
-            this.lang = Object.assign(Object.assign({}, localizations.en), this.opts.language)
+            this.lang = Object.assign(Object.assign({}, localizations.en), this.opts.language);
         }
 
         element.innerText = this.lang.text_init;
@@ -116,7 +119,7 @@ export class WidgetInstance {
     }
 
     /**
-     * Compile the WASM and send the compiled module to the webworker. 
+     * Compile the WASM and send the compiled module to the webworker.
      * If WASM support is not present, it tells the webworker to initialize the JS solver instead.
      */
     private async setupSolver() {
@@ -194,7 +197,7 @@ export class WidgetInstance {
 
     public async start() {
         if (this.hasBeenDestroyed) {
-            console.error("Can not start FriendlyCaptcha widget which has been destroyed")
+            console.error("Can not start FriendlyCaptcha widget which has been destroyed");
             return;
         }
 
@@ -206,7 +209,7 @@ export class WidgetInstance {
             return;
         }
 
-        if (isHeadless()) {
+        if (URL && isHeadless()) {
             this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Browser check failed, try a different browser", false);
             return;
         }
@@ -248,7 +251,7 @@ export class WidgetInstance {
         if (this.worker) this.worker.terminate();
         // this.worker = null; // This literally crashes very old browsers..
         this.needsReInit = true;
-        
+
         return puzzleSolutionMessage;
     }
 

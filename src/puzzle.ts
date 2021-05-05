@@ -67,7 +67,7 @@ export async function getPuzzle(url: string, siteKey: string, lang: Localization
  * @param n Number of times to attempt before giving up.
  */
 export async function fetchAndRetryWithBackoff(url: RequestInfo, opts: RequestInit, n: number): Promise<Response> {
-    let time = 800;
+    let time = 1000;
     return fetch(url, opts).catch(async (error) => {
         if (n === 0) throw error;
         await new Promise(r => setTimeout(r, time));

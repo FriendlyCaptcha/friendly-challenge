@@ -7,6 +7,7 @@
   * In case of connection error a clickable link is added.
   * The error message now spans two lines, the line height was slightly reduced.
 * Browser APIs used outside of functions are now guarded by a `typeof window !== 'undefined'`, this makes using FriendlyCaptcha easier in Gatsby and Next.js projects. Thank you @fdeberle!
+* A small change to the retry behavior (in case of network failure): it now retries twice: after 1 second and after 4 seconds. After that the user can click the button to try again.
 
 ## 0.8.5
 * Added check to make sure that the widget code gets executed after the DOM has been loaded. See #20.

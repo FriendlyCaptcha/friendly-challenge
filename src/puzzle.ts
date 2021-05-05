@@ -61,7 +61,7 @@ export async function getPuzzle(url: string, siteKey: string, lang: Localization
 }
 
 /**
- * Retries given request with exponential backoff (starting with 500ms delay, multiplying by 4 every time)
+ * Retries given request with exponential backoff (starting with 1000ms delay, multiplying by 4 every time)
  * @param url Request (can be string url) to fetch
  * @param opts Options for fetch
  * @param n Number of times to attempt before giving up.

@@ -207,12 +207,12 @@ export class WidgetInstance {
         const sitekey = this.opts.sitekey || this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
-            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "website problem: sitekey not set", false);
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Website problem: sitekey not set", false);
             return;
         }
 
         if (isHeadless()) {
-            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "browser check failed, try a different browser", false);
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Browser check failed, try a different browser", false);
             return;
         }
 

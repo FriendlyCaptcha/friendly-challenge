@@ -24,7 +24,7 @@ export interface Localization {
     // Error
     text_error: string;
     button_retry: string;
-    // This error message is followed by the URL, a space is added. It is not the start of a sentence
+    // This error message is followed by the URL, a space is added.
     text_fetch_error: string; 
 }
 

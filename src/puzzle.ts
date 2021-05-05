@@ -69,7 +69,7 @@ export async function getPuzzle(url: string, siteKey: string, lang: Localization
 export async function fetchAndRetryWithBackoff(url: RequestInfo, opts: RequestInit, n: number): Promise<Response> {
     let time = 500;
     return fetch(url, opts).catch(async (error) => {
-        if (n === 1) throw error;
+        if (n === 0) throw error;
         await new Promise(r => setTimeout(r, time));
         time *= 4;
         return fetchAndRetryWithBackoff(url, opts, n - 1);

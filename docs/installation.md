@@ -51,7 +51,7 @@ You can then import it into your app:
 import "friendly-challenge/widget";
 ```
 
-> It is also possible to create and interact with the widget using the Javascript API. In this tutorial we will consider the simple case in which you want to secure a simple HTML form. If you are making a single page application (using e.g. React) you will probably want to use the API instead. See the [API documentation page]("/api).
+> It is also possible to create and interact with the widget using the Javascript API. In this tutorial we will consider the simple case in which you want to secure a simple HTML form. If you are making a single page application (using e.g. React) you will probably want to use the API instead. See the [API documentation page]("/widget_api).
 
 ### Adding the widget itself
 

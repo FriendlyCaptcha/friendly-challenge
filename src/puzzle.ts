@@ -1,6 +1,7 @@
 import { decode } from "friendly-pow/base64";
 import { difficultyToThreshold } from "friendly-pow/encoding";
 import { NUMBER_OF_PUZZLES_OFFSET, PUZZLE_DIFFICULTY_OFFSET, PUZZLE_EXPIRY_OFFSET } from "friendly-pow/puzzle";
+import { Localization } from "./localization";
 
 export interface Puzzle {
     signature: string;
@@ -25,28 +26,34 @@ export function decodeBase64Puzzle(base64Puzzle: string): Puzzle {
     }
 }
 
-export async function getPuzzle(url: string, siteKey: string): Promise<string> {
+export async function getPuzzle(url: string, siteKey: string, lang: Localization): Promise<string> {
     const urls = url.split(",");
     for (let i = 0; i < urls.length; i++) {
-        const response = await fetchAndRetryWithBackoff(url + "?sitekey=" + siteKey, {headers: [["x-frc-client", "js-0.8.5"]], mode: 'cors'}, 2);
-        if (response.ok) {
-            const json = await response.json();
-            return json.data.puzzle;
-        } else {
-            let json;
-            try {
-                json = await response.json();
-            } catch(e) {
-                /* Do nothing */
-            }
+        try {
+            const response = await fetchAndRetryWithBackoff(url + "?sitekey=" + siteKey, {headers: [["x-frc-client", "js-0.8.6"]], mode: 'cors'}, 2);
+            if (response.ok) {
+                const json = await response.json();
+                return json.data.puzzle;
+            } else {
+                let json;
+                try {
+                    json = await response.json();
+                } catch(e) {
+                    /* Do nothing */
+                }
 
-            if (json && json.errors && json.errors[0] === "endpoint_not_enabled") {
-                throw Error(`Endpoint not allowed (${response.status})`);
+                if (json && json.errors && json.errors[0] === "endpoint_not_enabled") {
+                    throw Error(`Endpoint not allowed (${response.status})`);
+                }
+                
+                if (i === urls.length-1) {
+                    throw Error(`Response status ${response.status} ${response.statusText}`)
+                }
             }
-            
-            if (i === urls.length-1) {
-                throw Error(`Failure in getting puzzle: ${response.status} ${response.statusText}`);
-            }
+        }
+        catch(e) {
+            console.error("[FriendlyCaptcha]:", e)
+            throw Error(`${lang.text_fetch_error} <a style="text-decoration: underline; font-size: 0.9em;" href="${url}">${url}</a>`);
         }
     }
     // This code should never be reached.
@@ -54,7 +61,7 @@ export async function getPuzzle(url: string, siteKey: string): Promise<string> {
 }
 
 /**
- * Retries given request with exponential backoff (starting with 100ms delay, multiplying by 4 every time)
+ * Retries given request with exponential backoff (starting with 500ms delay, multiplying by 4 every time)
  * @param url Request (can be string url) to fetch
  * @param opts Options for fetch
  * @param n Number of times to attempt before giving up.

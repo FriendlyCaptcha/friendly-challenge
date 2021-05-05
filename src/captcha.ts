@@ -9,7 +9,12 @@ import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 import { Localization, localizations } from './localization';
 
 const PUZZLE_ENDPOINT_URL = "https://api.friendlycaptcha.com/api/v1/puzzle";
-const URL = window.URL || window.webkitURL;
+
+// Defensive init to make it easier to integrate with Gatsby and friends.
+let URL: any;
+if (typeof window !== 'undefined') {
+    URL = window.URL || window.webkitURL;
+}
 
 export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
@@ -146,7 +151,7 @@ export class WidgetInstance {
 
     private onWorkerError(e: any) {
         this.needsReInit = true;
-        this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Background worker error " + e.message);
+        this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "background worker error " + e.message);
         this.makeButtonStart();
 
         // Just out of precaution
@@ -202,12 +207,12 @@ export class WidgetInstance {
         const sitekey = this.opts.sitekey || this.e.dataset["sitekey"];
         if (!sitekey) {
             console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
-            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Website problem: sitekey not set", false);
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "website problem: sitekey not set", false);
             return;
         }
 
         if (isHeadless()) {
-            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Browser check failed, try a different browser", false);
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "browser check failed, try a different browser", false);
             return;
         }
 
@@ -219,10 +224,10 @@ export class WidgetInstance {
 
         try {
             this.e.innerHTML = getFetchingHTML(this.opts.solutionFieldName, this.lang);
-            this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
+            this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey, this.lang));
             setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
         } catch(e) {
-            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.toString());
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 

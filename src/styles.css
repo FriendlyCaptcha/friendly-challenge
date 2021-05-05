@@ -8,7 +8,7 @@
     transition: none !important;
     font-weight: normal;
     font-size: 14px;
-    line-height: 1.35;
+    line-height: 1.2;
     text-decoration: none;
     background-color: initial;
     color: #222;
@@ -21,6 +21,11 @@
     padding-bottom: 12px;
     background-color: #fff;
 }
+
+.frc-captcha b {
+    font-weight: bold;
+}
+
 
 .frc-container {
     display: flex;
@@ -58,10 +63,6 @@
 .frc-banner * {
     font-size: 10px;
     opacity: 0.8;
-}
-
-.frc-banner b {
-    font-weight: bold;
 }
 
 .frc-progress {

@@ -94,7 +94,7 @@ export function getErrorHTML(fieldName: string, l: Localization, errorDescriptio
     return getTemplate(
         fieldName,
         errorSVG,
-        l.text_error + " " + errorDescription,
+        `<b>${l.text_error}</b><br>${errorDescription}`,
         ".ERROR",
         recoverable ? l.button_retry: undefined,
     )

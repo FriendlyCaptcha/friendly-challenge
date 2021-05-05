@@ -151,7 +151,7 @@ export class WidgetInstance {
 
     private onWorkerError(e: any) {
         this.needsReInit = true;
-        this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "background worker error " + e.message);
+        this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Background worker error " + e.message);
         this.makeButtonStart();
 
         // Just out of precaution

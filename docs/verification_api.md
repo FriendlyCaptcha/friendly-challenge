@@ -19,21 +19,21 @@ The response will tell you whether the CAPTCHA solution is valid and hasn't been
 ```JSON
 {
   "success": true|false,
-  "errorCodes": [...] // optional
+  "errors": [...] // optional
 }
 ```
 
-If `success` is false, `errorCodes` will be a list containing at least one of the following error codes below. **If you are seeing status code 400 or 401 your server code is probably not configured correctly.**
+If `success` is false, `errors` will be a list containing at least one of the following error codes below. **If you are seeing status code 400 or 401 your server code is probably not configured correctly.**
 
 
 | Error code   | Status |Description |
 |----------------|----------|-------------------------------------------|
-| `missing_secret`       | 400 | You forgot to add the secret (=API key) parameter. |
-| `invalid_secret`       | 401 | The API key you provided was invalid. |
-| `missing_solution` | 400 | You forgot to add the solution parameter. |
+| `secret_missing`       | 400 | You forgot to add the secret (=API key) parameter. |
+| `secret_invalid`       | 401 | The API key you provided was invalid. |
+| `solution_missing` | 400 | You forgot to add the solution parameter. |
 | `bad_request` | 400 | Something else is wrong with your request, e.g. your request body is empty. |
-| `invalid_solution` | 200 | The solution you provided was invalid (perhaps the user tried to tamper with the puzzle). |
-| `timeout_or_duplicate` | 200 | The puzzle that the solution was for has expired or has already been used. |
+| `solution_invalid` | 200 | The solution you provided was invalid (perhaps the user tried to tamper with the puzzle). |
+| `solution_timeout_or_duplicate` | 200 | The puzzle that the solution was for has expired or has already been used. |
 
 
 > ⚠️ Status code 200 does not mean the solution was valid, it just means the verification was performed succesfully. Use the `success` field.

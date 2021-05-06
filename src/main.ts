@@ -15,16 +15,15 @@ function setup() {
   let autoWidget = window.friendlyChallenge.autoWidget;
   
   const elements = findCaptchaElements();
-  for (var index = 0; index < elements.length; index++) {
+  for (let index = 0; index < elements.length; index++) {
       const hElement = elements[index] as HTMLElement;
       if (hElement && !hElement.dataset["attached"]) {
           autoWidget = new WidgetInstance(hElement);
           hElement.dataset["attached"] = "1";
       }
   }
-  
   window.friendlyChallenge.autoWidget = autoWidget;
-}
+};
 
 
 if(document.readyState !== "loading") {

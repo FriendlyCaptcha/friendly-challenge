@@ -22,8 +22,10 @@ export interface Localization {
     button_restart: string;
 
     // Error
-    text_error: string; // Should end with a colon (:), the error is shown after it.
+    text_error: string;
     button_retry: string;
+    // This error message is followed by the URL, a space is added.
+    text_fetch_error: string; 
 }
 
 // English
@@ -41,8 +43,9 @@ const LANG_EN: Localization = {
     text_expired: "Anti-Robot verification expired",
     button_restart: "Restart",
 
-    text_error: "Verification failed:",
+    text_error: "Verification failed",
     button_retry: "Retry",
+    text_fetch_error: "Failed to connect to",
 }
 
 // French
@@ -60,8 +63,9 @@ const LANG_FR: Localization = {
     text_expired: "Verification échue",
     button_restart: "Recommencer",
 
-    text_error: "Echec de verification:",
+    text_error: "Echec de verification",
     button_retry: "Recommencer",
+    text_fetch_error: "Problème de connexion avec", // TODO: verify by native speaker
 }
 
 // German
@@ -79,8 +83,9 @@ const LANG_DE: Localization = {
     text_expired: "Verifizierung abgelaufen",
     button_restart: "Erneut starten",
 
-    text_error: "Verifizierung fehlgeschlagen:",
+    text_error: "Verifizierung fehlgeschlagen",
     button_retry: "Erneut versuchen",   
+    text_fetch_error: "Verbindungsproblem mit", // TODO: verify by native speaker
 }
 
 // Dutch
@@ -98,8 +103,9 @@ const LANG_NL: Localization = {
     text_expired: "Verificatie verlopen",
     button_restart: "Opnieuw starten",
 
-    text_error: "Verificatie mislukt:",
-    button_retry: "Opnieuw proberen",   
+    text_error: "Verificatie mislukt",
+    button_retry: "Opnieuw proberen",
+    text_fetch_error: "Verbinding mislukt met"
 }
 
 // Italian
@@ -117,8 +123,9 @@ const LANG_IT: Localization = {
     text_expired: "Verifica Anti-Robot scaduta",
     button_restart: "Ricomincia",
 
-    text_error: "Verifica fallita:",
+    text_error: "Verifica fallita",
     button_retry: "Riprova",
+    text_fetch_error: "Problema di connessione con" // TODO: verify by native speaker
 }
 
 export const localizations = {

@@ -9,7 +9,12 @@ import { Puzzle, decodeBase64Puzzle, getPuzzle } from './puzzle';
 import { Localization, localizations } from './localization';
 
 const PUZZLE_ENDPOINT_URL = "https://api.friendlycaptcha.com/api/v1/puzzle";
-const URL = window.URL || window.webkitURL;
+
+// Defensive init to make it easier to integrate with Gatsby and friends.
+let URL: any;
+if (typeof window !== 'undefined') {
+    URL = window.URL || window.webkitURL;
+}
 
 export interface WidgetInstanceOptions {
     forceJSFallback: boolean;
@@ -219,10 +224,10 @@ export class WidgetInstance {
 
         try {
             this.e.innerHTML = getFetchingHTML(this.opts.solutionFieldName, this.lang);
-            this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey));
+            this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey, this.lang));
             setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
         } catch(e) {
-            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.toString());
+            this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);
             this.makeButtonStart();
             const code = "error_getting_puzzle";
 

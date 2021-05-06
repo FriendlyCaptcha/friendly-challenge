@@ -94,6 +94,7 @@ function doneCallback(solution) {
     // ... Do something with the solution, maybe use it in a request
 }
 
+// This element should contain the `frc-captcha` class for correct styling
 const element = document.querySelector("#my-widget");
 const options = {
     doneCallback: doneCallback;

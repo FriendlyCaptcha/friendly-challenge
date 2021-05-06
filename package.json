@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "The client code used for FriendlyCaptcha (widget script, html, styling and webworker solver)",
   "keywords": [
     "captcha",

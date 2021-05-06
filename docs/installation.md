@@ -26,15 +26,15 @@ The **friendly-challenge** library contains the code for CAPTCHA widget. You hav
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.8.5/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.8.5/widget.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.8.6/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.8.6/widget.min.js" async defer></script>
 
 <!-- OR from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.5/widget.module.min.js" async defer></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.5/widget.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.6/widget.module.min.js" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.6/widget.min.js" async defer></script>
 ```
 
-> Make sure to always import a specific version (e.g. `friendly-challenge@0.8.5`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
+> Make sure to always import a specific version (e.g. `friendly-challenge@0.8.6`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
 
 It is recommended that you include the `async` and `defer` attributes like in the examples above, they make sure that the browser does not wait to load these scripts to show your website. The size of the scripts is 18KB (8.5KB compressed) for modern browsers, and 24KB (10KB compressed) for old browsers.
 
@@ -51,7 +51,7 @@ You can then import it into your app:
 import "friendly-challenge/widget";
 ```
 
-> It is also possible to create and interact with the widget using the Javascript API. In this tutorial we will consider the simple case in which you want to secure a simple HTML form. If you are making a single page application (using e.g. React) you will probably want to use the API instead. See the [API documentation page]("/api).
+> It is also possible to create and interact with the widget using the Javascript API. In this tutorial we will consider the simple case in which you want to secure a simple HTML form. If you are making a single page application (using e.g. React) you will probably want to use the API instead. See the [API documentation page]("/widget_api).
 
 ### Adding the widget itself
 
@@ -91,22 +91,21 @@ The response will tell you whether the CAPTCHA solution is valid and hasn't been
 ```JSON
 {
   "success": true|false,
-  "errorCodes": [...] // optional
+  "errors": [...] // optional
 }
 ```
 
-If `success` is false, `errorCodes` will be a list containing at least one of the following error codes below. **If you are seeing status code 400 or 401 your server code is probably not configured correctly.**
+If `success` is false, `errors` will be a list containing at least one of the following error codes below. **If you are seeing status code 400 or 401 your server code is probably not configured correctly.**
 
 
 | Error code   | Status |Description |
 |----------------|----------|-------------------------------------------|
-| `missing_secret`       | 400 | You forgot to add the secret (=API key) parameter. |
-| `invalid_secret`       | 401 | The API key you provided was invalid. |
-| `missing_solution` | 400 | You forgot to add the solution parameter. |
+| `secret_missing`       | 400 | You forgot to add the secret (=API key) parameter. |
+| `secret_invalid`       | 401 | The API key you provided was invalid. |
+| `solution_missing` | 400 | You forgot to add the solution parameter. |
 | `bad_request` | 400 | Something else is wrong with your request, e.g. your request body is empty. |
-| `invalid_solution` | 200 | The solution you provided was invalid (perhaps the user tried to tamper with the puzzle). |
-| `timeout_or_duplicate` | 200 | The puzzle that the solution was for has expired or has already been used. |
-
+| `solution_invalid` | 200 | The solution you provided was invalid (perhaps the user tried to tamper with the puzzle). |
+| `solution_timeout_or_duplicate` | 200 | The puzzle that the solution was for has expired or has already been used. |
 
 > ⚠️ Status code 200 does not mean the solution was valid, it just means the verification was performed succesfully. Use the `success` field.
 

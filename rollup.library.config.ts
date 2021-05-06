@@ -68,7 +68,7 @@ export default [
  },
 {
   input: `src/index.ts`,
-  output: [{file: "dist/friendly-captcha.d.ts", format: "es"}],
+  output: [{file: "dist/friendly-challenge.d.ts", format: "es"}],
   plugins: [dts()],
 }
 ];

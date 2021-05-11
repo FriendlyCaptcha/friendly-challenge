@@ -1,7 +1,8 @@
-.frc-captcha * { /* Mostly a CSS reset so existing website styles don't clash */
-	margin: 0;
-	padding: 0;
-	border: 0;
+.frc-captcha * {
+    /* Mostly a CSS reset so existing website styles don't clash */
+    margin: 0;
+    padding: 0;
+    border: 0;
     text-align: initial;
     border-radius: px;
     filter: none !important;
@@ -25,7 +26,6 @@
 .frc-captcha b {
     font-weight: bold;
 }
-
 
 .frc-container {
     display: flex;
@@ -99,15 +99,18 @@
     font-weight: 600;
     text-transform: none;
 }
-.frc-button:focus{
+
+.frc-button:focus {
     border: 1px solid #333;
 }
-.frc-button:hover{
+
+.frc-button:hover {
     background-color: #ddd;
 }
 
 /* Dark theme */
-.dark.frc-captcha{
+
+.dark.frc-captcha {
     color: #fff;
     background-color: #222;
     border-color: #333;

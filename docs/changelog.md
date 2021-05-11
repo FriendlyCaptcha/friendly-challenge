@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.7
+**No functional changes to the widget**
+
+* Fixed the filename of the Typescript typings file, no functional changes to the library or widget. Thank you @aks-!
+* We now use Prettier to format the library source files.
+
 ## 0.8.6
 * Improved the error message when a puzzle could not be fetched.
   * The error is localized.

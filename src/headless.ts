@@ -14,15 +14,16 @@ if (typeof navigator !== "undefined") {
 export function isHeadless() {
   let correctPrototypes = true;
   try {
-    correctPrototypes =
-      PluginArray.prototype === (nav.plugins as any).__proto__;
+    correctPrototypes = PluginArray.prototype === (nav.plugins as any).__proto__;
     if (nav.plugins.length > 0) {
-      correctPrototypes = correctPrototypes &&
-        Plugin.prototype === (nav.plugins as any)[0].__proto__;
+      correctPrototypes = correctPrototypes && Plugin.prototype === (nav.plugins as any)[0].__proto__;
     }
-  } catch (e) { /* Do nothing, this browser misbehaves in mysterious ways */ }
+  } catch (e) {
+    /* Do nothing, this browser misbehaves in mysterious ways */
+  }
 
-  return ( //tell-tale bot signs
+  return (
+    //tell-tale bot signs
     ua.indexOf("headless") !== -1 ||
     nav.appVersion.indexOf("Headless") !== -1 ||
     ua.indexOf("bot") !== -1 || // http://www.useragentstring.com/pages/useragentstring.php?typ=Browser

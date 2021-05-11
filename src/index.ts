@@ -1,1 +1,1 @@
-export {WidgetInstance} from "./captcha";
+export { WidgetInstance } from "./captcha";

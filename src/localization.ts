@@ -128,10 +128,31 @@ const LANG_IT: Localization = {
   text_fetch_error: "Problema di connessione con", // TODO: verify by native speaker
 };
 
+// Portuguese
+const LANG_PT: Localization = {
+  text_init: "Inicializando..",
+
+  text_ready: "Verificação Anti-Robô",
+  button_start: "Clique para iniciar verificação",
+
+  text_fetching: "Carregando..",
+
+  text_solving: "Verificando se você é humano..",
+  text_completed: "Eu sou humano",
+
+  text_expired: "Verificação Anti-Robô expirada",
+  button_restart: "Reiniciar",
+
+  text_error: "Verificação falhou",
+  button_retry: "Tentar novamente",
+  text_fetch_error: "Falha de conexão com",
+};
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
   nl: LANG_NL,
   fr: LANG_FR,
   it: LANG_IT,
+  pt: LANG_PT,
 };

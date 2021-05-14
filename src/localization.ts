@@ -154,5 +154,5 @@ export const localizations = {
   nl: LANG_NL,
   fr: LANG_FR,
   it: LANG_IT,
-  pt: LANG_PT
+  pt: LANG_PT,
 };

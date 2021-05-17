@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.8
+**No functional changes to the widget**
+
+* Added Portuguese localization (thank you @andrebonna!).
+
 ## 0.8.7
 **No functional changes to the widget**
 

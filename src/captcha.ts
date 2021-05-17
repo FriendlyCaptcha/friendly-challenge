@@ -31,7 +31,7 @@ export interface WidgetInstanceOptions {
   forceJSFallback: boolean;
   startMode: "auto" | "focus" | "none";
   puzzleEndpoint: string;
-  language: "en" | "de" | "nl" | "fr" | "it" | "nl" | "pt" | Localization;
+  language: "en" | "de" | "nl" | "fr" | "it" | "pt" | Localization;
   solutionFieldName: "frc-captcha-solution";
 
   sitekey: string;

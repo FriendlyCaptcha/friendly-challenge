@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.9 (unreleased)
+
+* Added missing `"pt"` value for Portuguese localization in Typescript typings.
+
+## 0.8.8
+
+* Added Portuguese localization (thank you @andrebonna!).
+
 ## 0.8.7
 **No functional changes to the widget**
 

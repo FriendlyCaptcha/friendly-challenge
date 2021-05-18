@@ -9,5 +9,5 @@
   * [🇪🇺 EU-only Endpoint](/eu_endpoint.md)
 * **Links**
     * [ 📘 Friendly Captcha website](https://friendlycaptcha.com)
-    * [ 🗂️ Github repository](https://github.com/gzuidhof/friendly-challenge)
+    * [ 🗂️ Github repository](https://github.com/friendlycaptcha/friendly-challenge)
     * [ 📦 NPM package](https://www.npmjs.com/package/friendly-challenge)

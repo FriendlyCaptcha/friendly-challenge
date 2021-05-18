@@ -1,7 +1,5 @@
 # Friendly Captcha Documentation
 
-
-
 Friendly Captcha is a system for preventing spam on your website.  You can add the **Friendly Captcha widget** to your web app to fight spam, with little impact to the user experience.
 
 Friendly Captcha sends the user a cryptographic puzzle that takes the user's device a few seconds to solve, the user doesn't have to do anything.

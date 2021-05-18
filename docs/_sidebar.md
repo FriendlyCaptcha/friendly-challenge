@@ -5,7 +5,7 @@
 * **Advanced**
   * [Browser Support](/browser_support.md)
   * [Themes & Dark mode](/theme.md)
-  * [Use in Flutter](/flutter.md)
+  * [📱 Use in Flutter](/flutter.md)
   * [🇪🇺 EU-only Endpoint](/eu_endpoint.md)
 * **Links**
     * [ 📘 Friendly Captcha website](https://friendlycaptcha.com)

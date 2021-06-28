@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "The client code used for FriendlyCaptcha (widget script, html, styling and webworker solver)",
   "keywords": [
     "captcha",
@@ -39,7 +39,7 @@
   "module": "index.js",
   "author": "Friendly Captcha GmbH <hello@friendlycaptcha.com>",
   "devDependencies": {
-    "@babel/cli": "^7.10.4",
+    "@babel/cli": "^7.14.5",
     "@babel/core": "^7.10.4",
     "@babel/plugin-transform-block-scoped-functions": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.10.4",

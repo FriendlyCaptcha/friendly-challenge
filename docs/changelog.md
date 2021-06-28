@@ -1,8 +1,9 @@
 # Changelog
 
-## 0.8.9 (unreleased)
+## 0.8.9
 
 * Added missing `"pt"` value for Portuguese localization in Typescript typings.
+* Fixed a bug which caused multiple endpoints separated by commas not to work.
 
 ## 0.8.8
 

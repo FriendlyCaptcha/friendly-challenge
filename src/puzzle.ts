@@ -26,13 +26,13 @@ export function decodeBase64Puzzle(base64Puzzle: string): Puzzle {
   };
 }
 
-export async function getPuzzle(url: string, siteKey: string, lang: Localization): Promise<string> {
-  const urls = url.split(",");
+export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, lang: Localization): Promise<string> {
+  const urls = urlsSeparatedByComma.split(",");
   for (let i = 0; i < urls.length; i++) {
     try {
       const response = await fetchAndRetryWithBackoff(
-        url + "?sitekey=" + siteKey,
-        { headers: [["x-frc-client", "js-0.8.8"]], mode: "cors" },
+        urls[i] + "?sitekey=" + siteKey,
+        { headers: [["x-frc-client", "js-0.8.9"]], mode: "cors" },
         2
       );
       if (response.ok) {
@@ -57,7 +57,7 @@ export async function getPuzzle(url: string, siteKey: string, lang: Localization
     } catch (e) {
       console.error("[FriendlyCaptcha]:", e);
       throw Error(
-        `${lang.text_fetch_error} <a style="text-decoration: underline; font-size: 0.9em;" href="${url}">${url}</a>`
+        `${lang.text_fetch_error} <a style="text-decoration: underline; font-size: 0.9em;" href="${urls[i]}">${urls[i]}</a>`
       );
     }
   }

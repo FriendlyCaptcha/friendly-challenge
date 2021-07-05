@@ -8,3 +8,5 @@ tests_output
 .DS_Store?
 Thumbs.db
 *.log
+
+src/html/csp.html

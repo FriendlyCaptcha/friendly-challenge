@@ -7,6 +7,7 @@
   * [Themes & Dark mode](/theme.md)
   * [📱 Use in Flutter](/flutter.md)
   * [🇪🇺 EU-only Endpoint](/eu_endpoint.md)
+  * [Changelog](/changelog.md)
 * **Links**
     * [ 📘 Friendly Captcha website](https://friendlycaptcha.com)
     * [ 🗂️ Github repository](https://github.com/friendlycaptcha/friendly-challenge)

@@ -148,6 +148,46 @@ const LANG_PT: Localization = {
   text_fetch_error: "Falha de conexão com",
 };
 
+// Spanish
+const LANG_ES: Localization = {
+  text_init: "Inicializando..",
+
+  text_ready: "Verificación Anti-Robot",
+  button_start: "Haga clic para iniciar la verificación",
+
+  text_fetching: "Cargando desafío",
+
+  text_solving: "Verificando que eres humano..",
+  text_completed: "Soy humano",
+
+  text_expired: "Verificación Anti-Robot expirada",
+  button_restart: "Reiniciar",
+
+  text_error: "Ha fallado la verificación",
+  button_retry: "Intentar de nuevo",
+  text_fetch_error: "Error al conectarse a",
+};
+
+// Catalan
+const LANG_CA: Localization = {
+  text_init: "Inicialitzant...",
+
+  text_ready: "Verificació Anti-Robot",
+  button_start: "Fes clic per començar la verificació",
+
+  text_fetching: "Carregant repte",
+
+  text_solving: "Verificant que ets humà..",
+  text_completed: "Soc humà",
+
+  text_expired: "La verificació Anti-Robot ha expirat",
+  button_restart: "Reiniciar",
+
+  text_error: "Ha fallat la verificació",
+  button_retry: "Tornar a provar",
+  text_fetch_error: "Error connectant a",
+};
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -155,4 +195,6 @@ export const localizations = {
   fr: LANG_FR,
   it: LANG_IT,
   pt: LANG_PT,
+  es: LANG_ES,
+  ca: LANG_CA,
 };

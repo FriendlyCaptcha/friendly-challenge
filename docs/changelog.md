@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.10
+* Added Spanish (`"es"`) and Catalan (`"ca"`) localizations (thank you @aniolpages!).
+
 ## 0.8.9
 
 * Added missing `"pt"` value for Portuguese localization in Typescript typings.

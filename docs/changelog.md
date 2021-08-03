@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.11
+* Moved stray inline styles to the default stylesheet. This makes customizing the style easier, and helps with CSP policies that forbid inline styles.
+
 ## 0.8.10
 * Added Spanish (`"es"`) and Catalan (`"ca"`) localizations (thank you @aniolpages!).
 

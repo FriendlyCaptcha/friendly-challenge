@@ -26,15 +26,15 @@ The **friendly-challenge** library contains the code for CAPTCHA widget. You hav
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.8.10/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.8.10/widget.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.8.11/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.8.11/widget.min.js" async defer></script>
 
 <!-- OR from jsdelivr -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.10/widget.module.min.js" async defer></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.10/widget.min.js" async defer></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.11/widget.module.min.js" async defer></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.8.11/widget.min.js" async defer></script>
 ```
 
-> Make sure to always import a specific version (e.g. `friendly-challenge@0.8.10`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
+> Make sure to always import a specific version (e.g. `friendly-challenge@0.8.11`), then you can be sure that the script you import and integrate with your website doesn't change unexpectedly.
 
 It is recommended that you include the `async` and `defer` attributes like in the examples above, they make sure that the browser does not wait to load these scripts to show your website. The size of the scripts is 18KB (8.5KB compressed) for modern browsers, and 24KB (10KB compressed) for old browsers.
 

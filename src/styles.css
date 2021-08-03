@@ -63,6 +63,7 @@
 .frc-banner * {
     font-size: 10px;
     opacity: 0.8;
+    text-decoration: none;
 }
 
 .frc-progress {
@@ -106,6 +107,10 @@
 
 .frc-button:hover {
     background-color: #ddd;
+}
+
+.frc-captcha-solution {
+    display: none;
 }
 
 /* Dark theme */

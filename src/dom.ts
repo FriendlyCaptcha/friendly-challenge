@@ -18,9 +18,10 @@ function getTemplate(
   solutionString: string,
   buttonText?: string,
   progress = false,
-  debugData?: string
+  debugData?: string,
+  additionalContainerClasses?: string
 ) {
-  return `<div class="frc-container">
+  return `<div class="frc-container${additionalContainerClasses ? " " + additionalContainerClasses : ""}">
 <svg class="frc-icon" role="img" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 24 24">${svgContent}</svg>
 <div class="frc-content">
     <span class="frc-text" ${debugData ? `title="${debugData}"` : ``}>${textContent}</span>
@@ -65,12 +66,13 @@ export function getDoneHTML(fieldName: string, l: Localization, solution: string
   }`;
   return getTemplate(
     fieldName,
-    `<title>${timeData}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"><animate attributeName="opacity" dur="1.0s" values="0;1"/></path>`,
+    `<title>${timeData}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>`,
     l.text_completed,
     solution,
     undefined,
     false,
-    timeData
+    timeData,
+    "frc-success"
   );
 }
 

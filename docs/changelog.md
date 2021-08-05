@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.12
+* Added Japanese localization (thank you @junsato1992!)
+* Removed last remaining inline style tag and replaced with class.
+* Removed `<animate>` tag from SVG and replaced with a CSS class, this prevents CSP issues in Firefox. (thank you @papegaaij!)
+
 ## 0.8.11
 * Moved stray inline styles to the default stylesheet. This makes customizing the style easier, and helps with CSP policies that forbid inline styles.
 

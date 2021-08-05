@@ -32,7 +32,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
     try {
       const response = await fetchAndRetryWithBackoff(
         urls[i] + "?sitekey=" + siteKey,
-        { headers: [["x-frc-client", "js-0.8.11"]], mode: "cors" },
+        { headers: [["x-frc-client", "js-0.8.12"]], mode: "cors" },
         2
       );
       if (response.ok) {
@@ -56,9 +56,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
       }
     } catch (e) {
       console.error("[FriendlyCaptcha]:", e);
-      throw Error(
-        `${lang.text_fetch_error} <a style="text-decoration: underline; font-size: 0.9em;" href="${urls[i]}">${urls[i]}</a>`
-      );
+      throw Error(`${lang.text_fetch_error} <a class="frc-err-url" href="${urls[i]}">${urls[i]}</a>`);
     }
   }
   // This code should never be reached.

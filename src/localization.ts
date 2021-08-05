@@ -188,6 +188,27 @@ const LANG_CA: Localization = {
   text_fetch_error: "Error connectant a",
 };
 
+// Japanese
+const LANG_JA: Localization = {
+  text_init: "開始しています...",
+
+  text_ready: "アンチロボット認証",
+  button_start: "クリックして認証を開始",
+
+  text_fetching: "ロードしています",
+
+  text_solving: "認証中...",
+
+  text_completed: "私はロボットではありません",
+
+  text_expired: "認証の期限が切れています",
+  button_restart: "再度認証を行う",
+
+  text_error: "認証にエラーが発生しました",
+  button_retry: "再度認証を行う",
+  text_fetch_error: "接続ができませんでした",
+};
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -197,4 +218,5 @@ export const localizations = {
   pt: LANG_PT,
   es: LANG_ES,
   ca: LANG_CA,
+  ja: LANG_JA,
 };

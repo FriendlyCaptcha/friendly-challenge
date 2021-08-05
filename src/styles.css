@@ -44,6 +44,10 @@
     fill: #C00;
 }
 
+.frc-success .frc-icon {
+    animation: frc-fade-in 1s both ease-in;
+}
+
 .frc-content {
     white-space: nowrap;
     display: flex;
@@ -113,6 +117,11 @@
     display: none;
 }
 
+.frc-err-url {
+    text-decoration: underline;
+    font-size: 0.9em;
+}
+
 /* Dark theme */
 
 .dark.frc-captcha {
@@ -148,4 +157,13 @@
 
 .dark .frc-progress::-moz-progress-bar {
     background: #ddd;
+}
+
+@keyframes frc-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

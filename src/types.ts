@@ -1,35 +1,37 @@
 export type Solver = (puzzleBuffer: Uint8Array, threshold: number, n?: number) => Uint8Array[];
 
-export type InitMessage = WasmInitMessage | JSInitMessage;
-
-export interface WasmInitMessage {
-  type: "module";
-  module: WebAssembly.Module;
-}
-
-export interface JSInitMessage {
-  type: "js";
-  module: WebAssembly.Module;
+export interface ReadyMessage {
+  type: "ready",
+  solver: 1|2
 }
 
 export interface StartMessage {
   type: "start";
-  buffer: Uint8Array;
+  puzzleSolverInputs: Uint8Array[];
   threshold: number;
   /**
    * Number of puzzles to be solved.
    */
   n: number;
+  numWorkers: number;
+  startIndex: number;
+}
+
+export interface ProgressPartMessage {
+  type: "progress";
+  /**
+   * Number of hashes it took to find this solution
+   */
+  h: number;
 }
 
 export interface ProgressMessage {
-  type: "progress";
   /**
    * Number of solutions to be found in total
    */
   n: number;
   /**
-   * Number of hashes it took to find this solution
+   * Number of all hashes calculated
    */
   h: number;
   /**
@@ -42,8 +44,13 @@ export interface ProgressMessage {
   i: number;
 }
 
-export interface DoneMessage {
+export interface DonePartMessage {
   type: "done";
+  solution: Uint8Array;
+  startIndex: number;
+}
+
+export interface DoneMessage {
   solution: Uint8Array;
   /**
    * Total number of hashes that were required

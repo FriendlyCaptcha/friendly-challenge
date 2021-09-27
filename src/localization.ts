@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 // Tip: keep the messages short, there isn't a lot of space in the widget
 export interface Localization {
   // While the widget is starting: usually not visible as it initializes instantly.

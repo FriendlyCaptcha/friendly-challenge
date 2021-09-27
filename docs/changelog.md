@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.0
+* The widget now solves in multiple threads at the same time. This means that for the same computational cost a user has to wait shorter.
+* Webassembly now gets compiled inside the webworker, which should remove the need for `unsafe-eval` in CSP rules.
+* Added `d.ts` file (Typescript declarations) for the compat library build.
+* Added Danish localization (thank you @SimonJ)
+* The client-side headless detection now sets the value `.HEADLESS_ERROR` instead of `.ERROR` as the stub solution value.
+
 ## 0.8.12
 * Added Japanese localization (thank you @junsato1992!)
 * Removed last remaining inline style tag and replaced with class.

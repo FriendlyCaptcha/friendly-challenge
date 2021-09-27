@@ -80,12 +80,12 @@ export function getExpiredHTML(fieldName: string, l: Localization) {
   return getTemplate(fieldName, errorSVG, l.text_expired, ".EXPIRED", l.button_restart);
 }
 
-export function getErrorHTML(fieldName: string, l: Localization, errorDescription: string, recoverable = true) {
+export function getErrorHTML(fieldName: string, l: Localization, errorDescription: string, recoverable = true, headless = false) {
   return getTemplate(
     fieldName,
     errorSVG,
     `<b>${l.text_error}</b><br>${errorDescription}`,
-    ".ERROR",
+    headless ? ".HEADLESS_ERROR" : ".ERROR",
     recoverable ? l.button_retry : undefined
   );
 }
@@ -105,7 +105,6 @@ export function findCaptchaElements() {
 export function injectStyle() {
   if (!document.querySelector("#frc-style")) {
     const styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
     styleSheet.id = "frc-style";
     styleSheet.innerHTML = css;
     document.head.appendChild(styleSheet);

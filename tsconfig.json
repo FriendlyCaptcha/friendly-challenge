@@ -1,18 +1,22 @@
 {
-    "compilerOptions": {
-      "module": "ESNext",
-      "target": "es2017",
-      "types": ["jest", "node"],
-      "strict": true,
-      "preserveConstEnums": false,
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "esModuleInterop": true,
-    },
-    "include": [
-      // "./src/**/*.ts",
-      "./test/**/*.ts",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "es2017",
+    "types": [
+      "jest",
+      "node"
     ],
-    "exclude": ["node_modules/", "dist/"]
-  }
-  
+    "strict": true,
+    "preserveConstEnums": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "./src/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules/",
+    "dist/"
+  ]
+}

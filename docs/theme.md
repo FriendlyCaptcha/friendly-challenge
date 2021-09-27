@@ -18,7 +18,7 @@ Friendly Captcha ships with two built-in themes, by adding the `dark` class to y
 
 
 ## Using your own stylesheet
-You can create your own stylesheet for the Friendly Captcha widget. The [existing css file](https://github.com/gzuidhof/friendly-challenge/blob/master/src/styles.css) is probably a good start.
+You can create your own stylesheet for the Friendly Captcha widget. The [existing css file](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/styles.css) is probably a good start.
 
 If any HTML element with id `frc-style` is present on the HTML document, the original styles will not be injected. So to use your own custom theme you could add the following:
 

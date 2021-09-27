@@ -3,7 +3,7 @@ import { base64 } from "friendly-pow/wasm/optimized.wrap";
 import { getWasmSolver } from "friendly-pow/api/wasm";
 import { getJSSolver } from "friendly-pow/api/js";
 import { SOLVER_TYPE_JS, SOLVER_TYPE_WASM } from "friendly-pow/constants";
-import { Solver, StartMessage, DonePartMessage, ProgressPartMessage } from "./types";
+import { Solver, DonePartMessage, ProgressPartMessage, MessageToWorker } from "./types";
 
 if (!Uint8Array.prototype.slice) {
   Object.defineProperty(Uint8Array.prototype, "slice", {
@@ -14,8 +14,9 @@ if (!Uint8Array.prototype.slice) {
 }
 
 // Not technically correct, but it makes TS happy..
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-declare var self: Worker;
+declare let self: Worker;
 
 (self as any).ASC_TARGET = 0;
 
@@ -24,7 +25,7 @@ let solverType: 1 | 2;
 
 // Puzzle consisting of zeroes
 let setSolver: (s: Solver) => void;
-let solver: Promise<Solver> = new Promise((resolve) => (setSolver = resolve));
+const solver: Promise<Solver> = new Promise((resolve) => (setSolver = resolve));
 let hasStarted = false;
 
 self.onerror = (evt: any) => {
@@ -35,15 +36,14 @@ self.onerror = (evt: any) => {
 };
 
 self.onmessage = async (evt: any) => {
-  const data = evt.data;
-  const type = data.type;
+  const data: MessageToWorker = evt.data;
   try {
 
     /**
      * Compile the WASM and setup the solver.
      * If WASM support is not present, it uses the JS version instead.
      */
-    if (type === "solver") {
+    if (data.type === "solver") {
       if (data.forceJS) {
         solverType = SOLVER_TYPE_JS;
         const s = await getJSSolver();
@@ -67,7 +67,7 @@ self.onmessage = async (evt: any) => {
         type: "ready",
         solver: solverType,
       });
-    } else if (type === "start") {
+    } else if (data.type === "start") {
       if (hasStarted) {
         return;
       }
@@ -77,21 +77,27 @@ self.onmessage = async (evt: any) => {
       self.postMessage({
         type: "started",
       });
+
       let totalH = 0;
-      const starts = (data as StartMessage).puzzleSolverInputs;
-      const solutionBuffer = new Uint8Array(8 * (data as StartMessage).n);
-      // Note: var instead of const for IE11 compat
-      for (var i = (data as StartMessage).startIndex; i < starts.length; i+=(data as StartMessage).numWorkers) {
+      const starts = data.puzzleSolverInputs;
+      const solutionBuffer = new Uint8Array(8 * data.n);
+
+      // In the case of 4 workers, the first worker will solve puzzle
+      // 0, 4, 8, 12 etc
+      for (let puzNum = data.startIndex; puzNum < starts.length; puzNum+=data.numWorkers) {
+
         let solution!: Uint8Array;
-        for (var b = 0; b < 256; b++) {
-          // In the very unlikely case no solution is found we should try again
-          starts[i][123] = b;
-          const [s, hash] = solve(starts[i], (data as StartMessage).threshold);
+
+        // We loop over a uint32 to find as solution, it is technically possible (but extremely unlikely - only possible with very high difficulty) that
+        // there is no solution, here we loop over one byte further up too in case that happens.
+        for (let b = 0; b < 256; b++) {
+          starts[puzNum][123] = b;
+          const [s, hash] = solve(starts[puzNum], data.threshold);
           if (hash.length === 0) {
-            // This should be very small in probability unless you set the difficulty much too high.
-            // Also this means 2^32 puzzles were evaluated, which takes a while in a browser!
+            // This means 2^32 puzzles were evaluated, which takes a while in a browser!
             // As we try 256 times, this is not fatal
             console.warn("FC: Internal error or no solution found");
+            totalH += Math.pow(2, 32) - 1;
             continue;
           }
           solution = s;
@@ -101,16 +107,18 @@ self.onmessage = async (evt: any) => {
         const h = view.getUint32(0, true);
         totalH += h;
 
-        solutionBuffer.set(solution.slice(-8), i * 8); // The last 8 bytes are the solution nonce
+        solutionBuffer.set(solution.slice(-8), puzNum * 8); // The last 8 bytes are the solution nonce
         self.postMessage({
           type: "progress",
           h: h
         } as ProgressPartMessage);
       }
+
       const doneMessage: DonePartMessage = {
         type: "done",
         solution: solutionBuffer,
-        startIndex: (data as StartMessage).startIndex,
+        totalH: totalH,
+        startIndex: data.startIndex,
       };
 
       self.postMessage(doneMessage);

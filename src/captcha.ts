@@ -19,17 +19,15 @@ import { WorkerGroup } from "./workergroup";
 
 const PUZZLE_ENDPOINT_URL = "https://api.friendlycaptcha.com/api/v1/puzzle";
 
-// Defensive init to make it easier to integrate with Gatsby and friends.
-let URL: any;
-if (typeof window !== "undefined") {
-  URL = window.URL || window.webkitURL;
-}
-
 export interface WidgetInstanceOptions {
+  /**
+   * Don't set this to true unless you want to see what the experience is like for people using very old browsers.
+   * This does not increase security.
+   */
   forceJSFallback: boolean;
   startMode: "auto" | "focus" | "none";
   puzzleEndpoint: string;
-  language: "en" | "de" | "nl" | "fr" | "it" | "pt" | Localization;
+  language: keyof (typeof localizations) | Localization;
   solutionFieldName: "frc-captcha-solution";
 
   sitekey: string;
@@ -41,7 +39,6 @@ export interface WidgetInstanceOptions {
 }
 
 export class WidgetInstance {
-  private workers: Worker[] | null = null;
   private puzzle?: Puzzle;
 
   private workerGroup: WorkerGroup = new WorkerGroup();
@@ -168,7 +165,7 @@ export class WidgetInstance {
     this.workerGroup.startedCallback = () => {
       this.e.innerHTML = getRunningHTML(this.opts.solutionFieldName, this.lang);
       this.opts.startedCallback();
-    }
+    };
     this.workerGroup.doneCallback = (data) => {
       const solutionPayload = this.handleDone(data);
       this.opts.doneCallback(solutionPayload);
@@ -176,10 +173,10 @@ export class WidgetInstance {
       if (callback) {
         (window as any)[callback](solutionPayload);
       }
-    }
+    };
     this.workerGroup.errorCallback = (e) => {
       this.onWorkerError(e);
-    }
+    };
 
     this.workerGroup.init();
     this.workerGroup.setupSolver(this.opts.forceJSFallback);
@@ -214,7 +211,8 @@ export class WidgetInstance {
         this.opts.solutionFieldName,
         this.lang,
         "Browser check failed, try a different browser",
-        false
+        false,
+        true
       );
       return;
     }
@@ -242,7 +240,7 @@ export class WidgetInstance {
       return;
     }
 
-    this.workerGroup.start(this.puzzle!);
+    this.workerGroup.start(this.puzzle);
   }
 
   /**
@@ -272,6 +270,8 @@ export class WidgetInstance {
     this.hasBeenStarted = false;
     if (this.e) {
       this.e.remove();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       delete this.e;
     }
     this.hasBeenDestroyed = true;

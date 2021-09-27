@@ -10,3 +10,9 @@ Friendly Captcha is a proof-of-work based CAPTCHA alternative that respects the 
 
 ## Getting started
 Read the [**documentation**](https://docs.friendlycaptcha.com).
+
+## Changelog
+Check the [**changelog**](https://docs.friendlycaptcha.com/#/changelog).
+
+## License
+[**MIT**](./LICENSE.md)

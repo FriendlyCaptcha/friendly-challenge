@@ -1,5 +1,4 @@
-import { base64 } from "friendly-pow/wasm/optimized.wrap";
-import { decode, encode } from "friendly-pow/base64";
+import { encode } from "friendly-pow/base64";
 import {
   getRunningHTML,
   getReadyHTML,
@@ -12,26 +11,23 @@ import {
   injectStyle,
   getExpiredHTML,
 } from "./dom";
-// @ts-ignore
-import workerString from "../dist/worker.min.js";
 import { isHeadless } from "./headless";
-import { DoneMessage, ProgressMessage } from "./types";
+import { DoneMessage } from "./types";
 import { Puzzle, decodeBase64Puzzle, getPuzzle } from "./puzzle";
 import { Localization, localizations } from "./localization";
+import { WorkerGroup } from "./workergroup";
 
 const PUZZLE_ENDPOINT_URL = "https://api.friendlycaptcha.com/api/v1/puzzle";
 
-// Defensive init to make it easier to integrate with Gatsby and friends.
-let URL: any;
-if (typeof window !== "undefined") {
-  URL = window.URL || window.webkitURL;
-}
-
 export interface WidgetInstanceOptions {
+  /**
+   * Don't set this to true unless you want to see what the experience is like for people using very old browsers.
+   * This does not increase security.
+   */
   forceJSFallback: boolean;
   startMode: "auto" | "focus" | "none";
   puzzleEndpoint: string;
-  language: "en" | "de" | "nl" | "fr" | "it" | "pt" | Localization;
+  language: keyof (typeof localizations) | Localization;
   solutionFieldName: "frc-captcha-solution";
 
   sitekey: string;
@@ -43,8 +39,9 @@ export interface WidgetInstanceOptions {
 }
 
 export class WidgetInstance {
-  private worker: Worker | null = null;
   private puzzle?: Puzzle;
+
+  private workerGroup: WorkerGroup = new WorkerGroup();
 
   /**
    * The root element of this widget instance.
@@ -115,8 +112,7 @@ export class WidgetInstance {
       console.error("FriendlyCaptcha widget has been destroyed using destroy(), it can not be used anymore.");
       return;
     }
-    this.initWorker();
-    this.setupSolver();
+    this.initWorkerGroup();
 
     if (forceStart) {
       this.start();
@@ -134,26 +130,6 @@ export class WidgetInstance {
       } else {
         console.log("FriendlyCaptcha div seems not to be contained in a form, autostart will not work");
       }
-    }
-  }
-
-  /**
-   * Compile the WASM and send the compiled module to the webworker.
-   * If WASM support is not present, it tells the webworker to initialize the JS solver instead.
-   */
-  private async setupSolver() {
-    if (this.opts.forceJSFallback) {
-      this.worker!.postMessage({ type: "js" });
-      return;
-    }
-    try {
-      const module = WebAssembly.compile(decode(base64));
-      this.worker!.postMessage({ type: "module", module: await module });
-    } catch (e) {
-      console.log(
-        "FriendlyCaptcha failed to initialize WebAssembly, falling back to Javascript solver: " + e.toString()
-      );
-      this.worker!.postMessage({ type: "js" });
     }
   }
 
@@ -177,38 +153,33 @@ export class WidgetInstance {
     this.opts.forceJSFallback = true;
   }
 
-  private initWorker() {
-    if (this.worker) this.worker.terminate();
-
-    const workerBlob = new Blob([workerString] as any, { type: "text/javascript" });
-    this.worker = new Worker(URL.createObjectURL(workerBlob));
-    this.worker.onerror = (e: ErrorEvent) => this.onWorkerError(e);
-
-    this.worker.onmessage = (e: any) => {
-      if (this.hasBeenDestroyed) return;
-
-      const data = e.data;
-      if (!data) return;
-      if (data.type === "progress") {
-        updateProgressBar(this.e, data as ProgressMessage);
-      } else if (data.type === "ready") {
-        this.e.innerHTML = getReadyHTML(this.opts.solutionFieldName, this.lang);
-        this.makeButtonStart();
-        this.opts.readyCallback();
-      } else if (data.type === "started") {
-        this.e.innerHTML = getRunningHTML(this.opts.solutionFieldName, this.lang);
-        this.opts.startedCallback();
-      } else if (data.type === "done") {
-        const solutionPayload = this.handleDone(data);
-        this.opts.doneCallback(solutionPayload);
-        const callback = this.e.dataset["callback"];
-        if (callback) {
-          (window as any)[callback](solutionPayload);
-        }
-      } else if (data.type === "error") {
-        this.onWorkerError(data);
+  private initWorkerGroup() {
+    this.workerGroup.progressCallback = (progress) => {
+      updateProgressBar(this.e, progress);
+    };
+    this.workerGroup.readyCallback = () => {
+      this.e.innerHTML = getReadyHTML(this.opts.solutionFieldName, this.lang);
+      this.makeButtonStart();
+      this.opts.readyCallback();
+    };
+    this.workerGroup.startedCallback = () => {
+      this.e.innerHTML = getRunningHTML(this.opts.solutionFieldName, this.lang);
+      this.opts.startedCallback();
+    };
+    this.workerGroup.doneCallback = (data) => {
+      const solutionPayload = this.handleDone(data);
+      this.opts.doneCallback(solutionPayload);
+      const callback = this.e.dataset["callback"];
+      if (callback) {
+        (window as any)[callback](solutionPayload);
       }
     };
+    this.workerGroup.errorCallback = (e) => {
+      this.onWorkerError(e);
+    };
+
+    this.workerGroup.init();
+    this.workerGroup.setupSolver(this.opts.forceJSFallback);
   }
 
   private expire() {
@@ -240,7 +211,8 @@ export class WidgetInstance {
         this.opts.solutionFieldName,
         this.lang,
         "Browser check failed, try a different browser",
-        false
+        false,
+        true
       );
       return;
     }
@@ -267,12 +239,8 @@ export class WidgetInstance {
       }
       return;
     }
-    this.worker!.postMessage({
-      type: "start",
-      buffer: this.puzzle!.buffer,
-      n: this.puzzle!.n,
-      threshold: this.puzzle!.threshold,
-    });
+
+    this.workerGroup.start(this.puzzle);
   }
 
   /**
@@ -286,7 +254,6 @@ export class WidgetInstance {
       data.diagnostics
     )}`;
     this.e.innerHTML = getDoneHTML(this.opts.solutionFieldName, this.lang, puzzleSolutionMessage, data);
-    if (this.worker) this.worker.terminate();
     // this.worker = null; // This literally crashes very old browsers..
     this.needsReInit = true;
 
@@ -298,12 +265,13 @@ export class WidgetInstance {
    * After it is destroyed it can no longer be used for any purpose.
    */
   public destroy() {
-    if (this.worker) this.worker.terminate();
-    this.worker = null;
+    this.workerGroup.terminateWorkers();
     this.needsReInit = false;
     this.hasBeenStarted = false;
     if (this.e) {
       this.e.remove();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       delete this.e;
     }
     this.hasBeenDestroyed = true;
@@ -319,8 +287,7 @@ export class WidgetInstance {
       return;
     }
 
-    if (this.worker) this.worker.terminate();
-    this.worker = null;
+    this.workerGroup.terminateWorkers();
     this.needsReInit = false;
     this.hasBeenStarted = false;
     this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");

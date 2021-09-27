@@ -2,7 +2,7 @@
 
 You can listen to events from the widget, or even create your own widgets programatically. Below is some documentation on how to do either.
 
-> The widget code is all open source which should help with debugging, you can find the **WidgetInstance** class definition [here](https://github.com/gzuidhof/friendly-challenge/blob/master/src/captcha.ts).
+> The widget code is all open source which should help with debugging, you can find the **WidgetInstance** class definition [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/captcha.ts).
 
 ## Attribute API (html tags)
 
@@ -35,7 +35,7 @@ Example:
 
 ### data-lang attribute
 
-FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"fr"`, `"de"`, `"it"`, `"nl"`, `"pt"`, `"es"`, `"ca"`, `"ja"` for English, French, German, Italian, Dutch, Portuguese, Spanish, Catalan and Japanese respectively.
+FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"fr"`, `"de"`, `"it"`, `"nl"`, `"pt"`, `"es"`, `"ca"`, `"da"`, `"ja"` for English, French, German, Italian, Dutch, Portuguese, Spanish, Catalan, Danish and Japanese respectively.
 
 > Are you a native speaker and want to add your language?
 > Please make an issue [here](https://github.com/FriendlyCaptcha/friendly-challenge/issues).  
@@ -117,7 +117,6 @@ The options object takes the following fields, they are all optional:
 * **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name.
 
 * **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles or are using our dedicated EU endpoint service.
-* **`forceJSFallback`**: boolean, default `false`:  Forces the widget to use the Javascript solver, which is much slower than the WebAssembly solver. Note that it will fallback to the JS solver automatically anyway. Recommended to never set this to true, it does not increase security.
 
 ### Resetting the widget
 If you are building a single page application (SPA), chances are the page will not refresh after the captcha is submitted. As a solved captcha can only be used once, you will have to reset the widget yourself (e.g. on submission). You can call the `reset()` function on the widget instance to achieve this.

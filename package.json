@@ -71,7 +71,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.10.4",
     "core-js": "^3.6.5",
-    "friendly-pow": "0.2.0",
+    "friendly-pow": "0.2.1",
     "object-assign-polyfill": "^0.1.0",
     "promis": "^1.1.4",
     "url-polyfill": "^1.1.10",

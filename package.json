@@ -47,7 +47,6 @@
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-replace": "^2.3.3",
-    "@types/jest": "^25.2.3",
     "@types/nightwatch": "^1.1.6",
     "@types/node": "^14.0.9",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
@@ -58,7 +57,7 @@
     "babel-plugin-transform-hoist-nested-functions": "^1.2.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "clean-css": "^4.2.3",
-    "eslint": "^6.8.0",
+    "eslint": "^7.25.0",
     "fast-async": "^7.0.6",
     "rimraf": "^3.0.2",
     "rollup": "^2.16.1",
@@ -67,12 +66,12 @@
     "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "terser": "^5.3.5",
-    "typescript": "^3.5.3"
+    "typescript": "^4.4.4"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.10.4",
     "core-js": "^3.6.5",
-    "friendly-pow": "0.1.2",
+    "friendly-pow": "0.2.0",
     "object-assign-polyfill": "^0.1.0",
     "promis": "^1.1.4",
     "url-polyfill": "^1.1.10",

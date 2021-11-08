@@ -3,7 +3,6 @@ export type Solver = (puzzleBuffer: Uint8Array, threshold: number, n?: number) =
 export type MessageFromWorker = ReadyMessage | StartedMessage | ProgressPartMessage | DonePartMessage | ErrorMessage;
 export type MessageToWorker = StartMessage | SolverMessage;
 
-
 export interface StartMessage {
   type: "start";
   puzzleSolverInputs: Uint8Array[];
@@ -21,14 +20,10 @@ export interface SolverMessage {
   forceJS: boolean;
 }
 
-
-
 export interface ReadyMessage {
   type: "ready";
-  solver: 1|2;
+  solver: 1 | 2;
 }
-
-
 
 export interface StartedMessage {
   type: "started";

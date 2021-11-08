@@ -38,7 +38,6 @@ self.onerror = (evt: any) => {
 self.onmessage = async (evt: any) => {
   const data: MessageToWorker = evt.data;
   try {
-
     /**
      * Compile the WASM and setup the solver.
      * If WASM support is not present, it uses the JS version instead.
@@ -54,7 +53,7 @@ self.onmessage = async (evt: any) => {
           const module = WebAssembly.compile(decode(base64));
           const s = await getWasmSolver(await module);
           setSolver(s);
-        } catch (e) {
+        } catch (e: any) {
           console.log(
             "FriendlyCaptcha failed to initialize WebAssembly, falling back to Javascript solver: " + e.toString()
           );
@@ -84,8 +83,7 @@ self.onmessage = async (evt: any) => {
 
       // In the case of 4 workers, the first worker will solve puzzle
       // 0, 4, 8, 12 etc
-      for (let puzNum = data.startIndex; puzNum < starts.length; puzNum+=data.numWorkers) {
-
+      for (let puzNum = data.startIndex; puzNum < starts.length; puzNum += data.numWorkers) {
         let solution!: Uint8Array;
 
         // We loop over a uint32 to find as solution, it is technically possible (but extremely unlikely - only possible with very high difficulty) that
@@ -110,7 +108,7 @@ self.onmessage = async (evt: any) => {
         solutionBuffer.set(solution.slice(-8), puzNum * 8); // The last 8 bytes are the solution nonce
         self.postMessage({
           type: "progress",
-          h: h
+          h: h,
         } as ProgressPartMessage);
       }
 

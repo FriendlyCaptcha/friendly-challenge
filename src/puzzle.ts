@@ -43,7 +43,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
         try {
           json = await response.json();
         } catch (e) {
-          /* Do nothing */
+          /* Do nothing, the error is not valid JSON */
         }
 
         if (json && json.errors && json.errors[0] === "endpoint_not_enabled") {
@@ -51,7 +51,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
         }
 
         if (i === urls.length - 1) {
-          throw Error(`Response status ${response.status} ${response.statusText}`);
+          throw Error(`Response status ${response.status} ${response.statusText} ${json ? json.errors : ""}`);
         }
       }
     } catch (e) {

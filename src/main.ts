@@ -19,6 +19,7 @@ function setup() {
     const hElement = elements[index] as HTMLElement;
     if (hElement && !hElement.dataset["attached"]) {
       autoWidget = new WidgetInstance(hElement);
+      // We set the "data-attached" attribute so we don't attach to the same element twice.
       hElement.dataset["attached"] = "1";
     }
   }

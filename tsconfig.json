@@ -3,7 +3,6 @@
     "module": "ESNext",
     "target": "es2017",
     "types": [
-      "jest",
       "node"
     ],
     "strict": true,

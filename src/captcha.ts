@@ -27,7 +27,7 @@ export interface WidgetInstanceOptions {
   forceJSFallback: boolean;
   startMode: "auto" | "focus" | "none";
   puzzleEndpoint: string;
-  language: keyof (typeof localizations) | Localization;
+  language: keyof typeof localizations | Localization;
   solutionFieldName: "frc-captcha-solution";
 
   sitekey: string;
@@ -227,7 +227,7 @@ export class WidgetInstance {
       this.e.innerHTML = getFetchingHTML(this.opts.solutionFieldName, this.lang);
       this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey, this.lang));
       setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
-    } catch (e) {
+    } catch (e: any) {
       this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);
       this.makeButtonStart();
       const code = "error_getting_puzzle";

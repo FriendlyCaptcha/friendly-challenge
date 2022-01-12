@@ -219,8 +219,8 @@ const LANG_DA: Localization = {
 
   text_fetching: "Henter udfordring",
 
-  text_solving: "Bekræfter, at du er menneske..",
-  text_completed: "Jeg er menneske",
+  text_solving: "Bekræfter, at du er et menneske..",
+  text_completed: "Jeg er et menneske",
 
   text_expired: "Anti-Robot-verifikation er udløbet",
   button_restart: "Genstart",

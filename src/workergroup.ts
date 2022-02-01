@@ -13,20 +13,21 @@ if (typeof window !== "undefined") {
 
 export class WorkerGroup {
   private workers: Worker[] = [];
-  // workers that are ready to solve a puzzle
-  private readyWorkers: Worker[] = [];
 
   private numPuzzles = 0;
+  private threshold = 0;
   private startTime = 0;
   private progress = 0;
   private totalHashes = 0;
+  private puzzleSolverInputs: Uint8Array[] = [];
+  // The index of the next puzzle
+  private puzzleIndex = 0;
   private solutionBuffer: Uint8Array = new Uint8Array(0);
   // initialize some value, so ts is happy
   private solverType: 1 | 2 = 1;
 
+  private readyCount = 0;
   private startCount = 0;
-
-  private resolveNextReady: () => any = () => 0;
 
   public progressCallback: (p: ProgressMessage) => any = () => 0;
   public readyCallback: () => any = () => 0;
@@ -44,11 +45,11 @@ export class WorkerGroup {
     this.progress = 0;
     this.totalHashes = 0;
 
+    this.readyCount = 0;
     this.startCount = 0;
 
     // Setup four workers for now - later we could calculate this depending on the device
     this.workers = new Array(4);
-    this.readyWorkers = [];
     const workerBlob = new Blob([workerString] as any, { type: "text/javascript" });
 
     for (let i = 0; i < this.workers.length; i++) {
@@ -59,14 +60,10 @@ export class WorkerGroup {
         const data: MessageFromWorker = e.data;
         if (!data) return;
         if (data.type === "ready") {
-          if (!this.readyWorkers.includes(this.workers[i])) {
-            this.readyWorkers.push(this.workers[i]);
-            this.resolveNextReady();
-          }
-
+          this.readyCount++;
           this.solverType = data.solver;
           // We are ready, when all workers are ready
-          if (this.readyWorkers.length == this.workers.length) {
+          if (this.readyCount == this.workers.length) {
             this.readyCallback();
           }
         } else if (data.type === "started") {
@@ -77,8 +74,15 @@ export class WorkerGroup {
             this.startedCallback();
           }
         } else if (data.type === "done") {
-          this.readyWorkers.push(this.workers[i]);
-          this.resolveNextReady();
+          if (this.puzzleIndex < this.puzzleSolverInputs.length) {
+            this.workers[i].postMessage({
+              type: "start",
+              puzzleSolverInput: this.puzzleSolverInputs[this.puzzleIndex],
+              threshold: this.threshold,
+              puzzleIndex: this.puzzleIndex,
+            } as StartMessage);
+            this.puzzleIndex++;
+          }
 
           this.progress++;
           this.totalHashes += data.h;
@@ -90,7 +94,7 @@ export class WorkerGroup {
             i: this.progress,
           });
 
-          this.solutionBuffer.set(data.solution, data.puzIndex * 8);
+          this.solutionBuffer.set(data.solution, data.puzzleIndex * 8);
           // We are done, when all puzzles have been solved
           if (this.progress == this.numPuzzles) {
             const totalTime = (Date.now() - this.startTime) / 1000;
@@ -116,26 +120,23 @@ export class WorkerGroup {
     }
   }
 
-  private async getReadyWorker(): Promise<Worker> {
-    while (!this.readyWorkers.length) {
-      await new Promise<void>((resolve) => (this.resolveNextReady = resolve));
-    }
-    return this.readyWorkers.pop()!;
-  }
-
-  public async start(puzzle: Puzzle) {
-    const puzzleSolverInputs = getPuzzleSolverInputs(puzzle.buffer, puzzle.n);
+  start(puzzle: Puzzle) {
+    this.puzzleSolverInputs = getPuzzleSolverInputs(puzzle.buffer, puzzle.n);
     this.solutionBuffer = new Uint8Array(8 * puzzle.n);
     this.numPuzzles = puzzle.n;
+    this.threshold = puzzle.threshold;
+    this.puzzleIndex = 0;
 
-    for (let puzIndex = 0; puzIndex < puzzleSolverInputs.length; puzIndex++) {
-      const worker = await this.getReadyWorker();
-      worker.postMessage({
+    for (let i = 0; i < this.workers.length; i++) {
+      if (this.puzzleIndex === this.puzzleSolverInputs.length) break;
+
+      this.workers[i].postMessage({
         type: "start",
-        puzzleSolverInput: puzzleSolverInputs[puzIndex],
-        threshold: puzzle.threshold,
-        puzIndex,
+        puzzleSolverInput: this.puzzleSolverInputs[i],
+        threshold: this.threshold,
+        puzzleIndex: this.puzzleIndex,
       } as StartMessage);
+      this.puzzleIndex++;
     }
   }
 

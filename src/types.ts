@@ -1,18 +1,13 @@
 export type Solver = (puzzleBuffer: Uint8Array, threshold: number, n?: number) => Uint8Array[];
 
-export type MessageFromWorker = ReadyMessage | StartedMessage | ProgressPartMessage | DonePartMessage | ErrorMessage;
+export type MessageFromWorker = ReadyMessage | StartedMessage | DonePartMessage | ErrorMessage;
 export type MessageToWorker = StartMessage | SolverMessage;
 
 export interface StartMessage {
   type: "start";
-  puzzleSolverInputs: Uint8Array[];
+  puzzleSolverInput: Uint8Array;
   threshold: number;
-  /**
-   * Number of puzzles to be solved.
-   */
-  n: number;
-  numWorkers: number;
-  startIndex: number;
+  puzIndex: number;
 }
 
 export interface SolverMessage {
@@ -32,14 +27,6 @@ export interface StartedMessage {
 export interface ErrorMessage {
   type: "error";
   message: string;
-}
-
-export interface ProgressPartMessage {
-  type: "progress";
-  /**
-   * Number of hashes it took to find this solution
-   */
-  h: number;
 }
 
 export interface ProgressMessage {
@@ -64,11 +51,11 @@ export interface ProgressMessage {
 export interface DonePartMessage {
   type: "done";
   solution: Uint8Array;
-  startIndex: number;
+  puzIndex: number;
   /**
    * Hashes attempted for this solution
    */
-  totalH: number;
+  h: number;
 }
 
 export interface DoneMessage {

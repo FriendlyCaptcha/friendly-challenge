@@ -172,5 +172,46 @@ const FriendlyCaptcha = () => {
 export default FriendlyCaptcha;
 ```
 
+### Full example in Vue (with Composition API)
+The following example presents a way to embed the Friendly Captcha widget in a Vue component:
+```html
+<template>
+  <div ref="container"></div>
+</template>
+
+<script lang="ts" setup>
+import { WidgetInstance } from "friendly-challenge";
+import { ref, watch } from "vue";
+
+const container = ref();
+const widget = ref();
+
+const doneCallback = (solution) => {
+  console.log('Captcha was solved. The form can be submitted.');
+  console.log(solution);
+}
+
+const errorCallback = (err) => {
+  console.log('There was an error when trying to solve the Captcha.');
+  console.log(err);
+}
+
+watch(container, () => {
+  // reset the widget instance when the container changes
+  if (widget.value) {
+    widget.value.reset();
+  }
+
+  if (!widget.value && container.value) {
+    widget.value = new WidgetInstance(container.value, {
+      startMode: "auto",
+      doneCallback: doneCallback,
+      errorCallback: errorCallback 
+    });
+  }
+});
+</script>
+```
+
 ## Questions or issues
 If you have any questions about the API or run into problems, the best place to get help is the *issues* page on the [github repository](https://github.com/FriendlyCaptcha/friendly-challenge/issues).

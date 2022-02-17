@@ -47,7 +47,7 @@ export class WidgetInstance {
    * The root element of this widget instance.
    * Warning: it is undefined after `destroy()` has been called.
    */
-  private e!: HTMLElement;
+  private e!: HTMLElement & { friendlyChallengeWidget?: WidgetInstance };
 
   /**
    * The captcha has been succesfully solved.
@@ -87,6 +87,7 @@ export class WidgetInstance {
       options
     );
     this.e = element;
+    this.e.friendlyChallengeWidget = this;
 
     // Load language
     if (typeof this.opts.language === "string") {

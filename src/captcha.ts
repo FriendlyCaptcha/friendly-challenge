@@ -87,6 +87,7 @@ export class WidgetInstance {
       options
     );
     this.e = element;
+    this.e.friendlyChallengeWidget = this;
 
     // Load language
     if (typeof this.opts.language === "string") {

@@ -36,11 +36,7 @@ export class WorkerGroup {
   public errorCallback: (e: any) => any = () => 0;
 
   public init() {
-    if (this.workers.length > 0) {
-      for (let i = 0; i < this.workers.length; i++) {
-        this.workers[i].terminate();
-      }
-    }
+    this.terminateWorkers();
 
     this.progress = 0;
     this.totalHashes = 0;

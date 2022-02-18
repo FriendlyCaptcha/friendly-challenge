@@ -1,9 +1,10 @@
 # Changelog
 
-## (unreleased)
+## 0.9.1
 
 - Updated dependencies, no functional changed to the widget.
-- Improved error logging in the console a small bit.
+- Added Swedish (`"sv"`) localization (thank you @astonsson!).
+- Minor improvements to error logging in the console.
 
 ## 0.9.0
 

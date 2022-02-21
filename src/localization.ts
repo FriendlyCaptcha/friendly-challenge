@@ -249,6 +249,26 @@ const LANG_RU: Localization = {
   button_retry: "Повторить ещё раз",
   text_fetch_error: "Ошибка подключения",
 };
+  
+// Swedish
+const LANG_SV: Localization = {
+  text_init: "Laddar...",
+
+  text_ready: "Anti-robot-verifiering",
+  button_start: "Klicka för att starta verifieringen",
+
+  text_fetching: "Hämtar utmaning",
+
+  text_solving: "Verifierar att du är en människa..",
+  text_completed: "Jag är en människa",
+
+  text_expired: "Anti-robot-verifieringen har löpt ut",
+  button_restart: "Börja om",
+
+  text_error: "Verifieringen misslyckades",
+  button_retry: "Försök igen",
+  text_fetch_error: "Lyckades inte ansluta till",
+};
 
 export const localizations = {
   en: LANG_EN,
@@ -262,4 +282,5 @@ export const localizations = {
   ja: LANG_JA,
   da: LANG_DA,
   ru: LANG_RU,
+  sv: LANG_SV,
 };

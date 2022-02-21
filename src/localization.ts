@@ -234,15 +234,15 @@ const LANG_DA: Localization = {
 const LANG_RU: Localization = {
   text_init: "Инициализация..",
 
-  text_ready: "Антибот проверка",
-  button_start: "Нажмитке чтобы начать проверку",
+  text_ready: "АнтиРобот проверка",
+  button_start: "Нажмите, чтобы начать проверку",
 
-  text_fetching: "Нажмите для проверки",
+  text_fetching: "Получаю задачу",
 
-  text_solving: "Подтверждение того что вы человек",
+  text_solving: "Проверяю, что вы человек..",
   text_completed: "Я человек",
 
-  text_expired: "Спрок проверки антибот истёк",
+  text_expired: "Срок АнтиРоботной проверки истёк",
   button_restart: "Начать заново",
 
   text_error: "Ошибка проверки",

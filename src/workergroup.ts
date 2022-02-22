@@ -14,6 +14,8 @@ if (typeof window !== "undefined") {
 export class WorkerGroup {
   private workers: Worker[] = [];
 
+  private puzzleNumber = 0;
+
   private numPuzzles = 0;
   private threshold = 0;
   private startTime = 0;
@@ -70,12 +72,15 @@ export class WorkerGroup {
             this.startedCallback();
           }
         } else if (data.type === "done") {
+          if (data.puzzleNumber !== this.puzzleNumber) return; // solution belongs to a previous puzzle
+
           if (this.puzzleIndex < this.puzzleSolverInputs.length) {
             this.workers[i].postMessage({
               type: "start",
               puzzleSolverInput: this.puzzleSolverInputs[this.puzzleIndex],
               threshold: this.threshold,
               puzzleIndex: this.puzzleIndex,
+              puzzleNumber: this.puzzleNumber,
             } as StartMessage);
             this.puzzleIndex++;
           }
@@ -122,6 +127,7 @@ export class WorkerGroup {
     this.numPuzzles = puzzle.n;
     this.threshold = puzzle.threshold;
     this.puzzleIndex = 0;
+    this.puzzleNumber++;
 
     for (let i = 0; i < this.workers.length; i++) {
       if (this.puzzleIndex === this.puzzleSolverInputs.length) break;
@@ -131,6 +137,7 @@ export class WorkerGroup {
         puzzleSolverInput: this.puzzleSolverInputs[i],
         threshold: this.threshold,
         puzzleIndex: this.puzzleIndex,
+        puzzleNumber: this.puzzleNumber,
       } as StartMessage);
       this.puzzleIndex++;
     }

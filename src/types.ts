@@ -8,6 +8,7 @@ export interface StartMessage {
   puzzleSolverInput: Uint8Array;
   threshold: number;
   puzzleIndex: number;
+  puzzleNumber: number;
 }
 
 export interface SolverMessage {
@@ -52,6 +53,7 @@ export interface DonePartMessage {
   type: "done";
   solution: Uint8Array;
   puzzleIndex: number;
+  puzzleNumber: number;
   /**
    * Hashes attempted for this solution
    */

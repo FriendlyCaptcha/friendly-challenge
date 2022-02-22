@@ -99,6 +99,7 @@ self.onmessage = async (evt: any) => {
         solution: solution.slice(-8), // The last 8 bytes are the solution nonce
         h: totalH,
         puzzleIndex: data.puzzleIndex,
+        puzzleNumber: data.puzzleNumber,
       } as DonePartMessage);
     }
   } catch (e) {

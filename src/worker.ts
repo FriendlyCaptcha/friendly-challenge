@@ -75,13 +75,11 @@ self.onmessage = async (evt: any) => {
       let totalH = 0;
       let solution!: Uint8Array;
 
-      const input = new Uint8Array(data.puzzleSolverInput);
-
       // We loop over a uint32 to find as solution, it is technically possible (but extremely unlikely - only possible with very high difficulty) that
       // there is no solution, here we loop over one byte further up too in case that happens.
       for (let b = 0; b < 256; b++) {
-        input[123] = b;
-        const [s, hash] = solve(input, data.threshold);
+        data.puzzleSolverInput[123] = b;
+        const [s, hash] = solve(data.puzzleSolverInput, data.threshold);
         if (hash.length === 0) {
           // This means 2^32 puzzles were evaluated, which takes a while in a browser!
           // As we try 256 times, this is not fatal
@@ -98,9 +96,9 @@ self.onmessage = async (evt: any) => {
 
       self.postMessage({
         type: "done",
-        puzzleSolverInput: data.puzzleSolverInput,
         solution: solution.slice(-8), // The last 8 bytes are the solution nonce
         h: totalH,
+        puzzleIndex: data.puzzleIndex,
       } as DonePartMessage);
     }
   } catch (e) {

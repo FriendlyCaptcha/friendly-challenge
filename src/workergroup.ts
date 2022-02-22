@@ -70,9 +70,6 @@ export class WorkerGroup {
             this.startedCallback();
           }
         } else if (data.type === "done") {
-          const puzzleIndex = this.puzzleSolverInputs.indexOf(data.puzzleSolverInput);
-          if (puzzleIndex === -1) return; // the solution belongs to a different puzzle (should usually not happen)
-
           if (this.puzzleIndex < this.puzzleSolverInputs.length) {
             this.workers[i].postMessage({
               type: "start",
@@ -93,8 +90,7 @@ export class WorkerGroup {
             i: this.progress,
           });
 
-          this.solutionBuffer.set(data.solution, puzzleIndex * 8);
-
+          this.solutionBuffer.set(data.solution, data.puzzleIndex * 8);
           // We are done, when all puzzles have been solved
           if (this.progress == this.numPuzzles) {
             const totalTime = (Date.now() - this.startTime) / 1000;
@@ -134,6 +130,7 @@ export class WorkerGroup {
         type: "start",
         puzzleSolverInput: this.puzzleSolverInputs[i],
         threshold: this.threshold,
+        puzzleIndex: this.puzzleIndex,
       } as StartMessage);
       this.puzzleIndex++;
     }

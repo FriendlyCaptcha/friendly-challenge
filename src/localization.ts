@@ -230,6 +230,26 @@ const LANG_DA: Localization = {
   text_fetch_error: "Det lykkedes ikke at oprette forbindelse til",
 };
 
+// Russian
+const LANG_RU: Localization = {
+  text_init: "Инициализация..",
+
+  text_ready: "АнтиРобот проверка",
+  button_start: "Нажмите, чтобы начать проверку",
+
+  text_fetching: "Получаю задачу",
+
+  text_solving: "Проверяю, что вы человек..",
+  text_completed: "Я человек",
+
+  text_expired: "Срок АнтиРоботной проверки истёк",
+  button_restart: "Начать заново",
+
+  text_error: "Ошибка проверки",
+  button_retry: "Повторить ещё раз",
+  text_fetch_error: "Ошибка подключения",
+};
+  
 // Swedish
 const LANG_SV: Localization = {
   text_init: "Laddar...",
@@ -261,5 +281,6 @@ export const localizations = {
   ca: LANG_CA,
   ja: LANG_JA,
   da: LANG_DA,
+  ru: LANG_RU,
   sv: LANG_SV,
 };

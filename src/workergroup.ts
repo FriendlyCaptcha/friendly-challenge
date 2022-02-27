@@ -1,7 +1,7 @@
 import { Puzzle } from "./puzzle";
 import { getPuzzleSolverInputs } from "friendly-pow/puzzle";
 import { createDiagnosticsBuffer } from "friendly-pow/diagnostics";
-import { DoneMessage, ProgressMessage, MessageFromWorker, SolverMessage } from "./types";
+import { DoneMessage, ProgressMessage, MessageFromWorker, SolverMessage, StartMessage } from "./types";
 // @ts-ignore
 import workerString from "../dist/worker.min.js";
 
@@ -12,20 +12,24 @@ if (typeof window !== "undefined") {
 }
 
 export class WorkerGroup {
-
   private workers: Worker[] = [];
+
+  private puzzleNumber = 0;
+
   private numPuzzles = 0;
+  private threshold = 0;
   private startTime = 0;
   private progress = 0;
   private totalHashes = 0;
   private puzzleSolverInputs: Uint8Array[] = [];
+  // The index of the next puzzle
+  private puzzleIndex = 0;
   private solutionBuffer: Uint8Array = new Uint8Array(0);
   // initialize some value, so ts is happy
   private solverType: 1 | 2 = 1;
 
   private readyCount = 0;
   private startCount = 0;
-  private doneCount = 0;
 
   public progressCallback: (p: ProgressMessage) => any = () => 0;
   public readyCallback: () => any = () => 0;
@@ -34,40 +38,26 @@ export class WorkerGroup {
   public errorCallback: (e: any) => any = () => 0;
 
   public init() {
-    if (this.workers.length > 0) {
-      for (let i=0; i < this.workers.length; i++) {
-        this.workers[i].terminate();
-      }
-    }
+    this.terminateWorkers();
 
     this.progress = 0;
     this.totalHashes = 0;
-    
+
     this.readyCount = 0;
     this.startCount = 0;
-    this.doneCount = 0;
 
     // Setup four workers for now - later we could calculate this depending on the device
     this.workers = new Array(4);
     const workerBlob = new Blob([workerString] as any, { type: "text/javascript" });
 
-    for (let i=0; i<this.workers.length; i++) {
+    for (let i = 0; i < this.workers.length; i++) {
       this.workers[i] = new Worker(URL.createObjectURL(workerBlob));
       this.workers[i].onerror = (e: ErrorEvent) => this.errorCallback(e);
 
       this.workers[i].onmessage = (e: any) => {
         const data: MessageFromWorker = e.data;
         if (!data) return;
-        if (data.type === "progress") {
-          this.progress++;
-          this.totalHashes += data.h;
-          this.progressCallback({
-            n: this.numPuzzles,
-            h: this.totalHashes,
-            t: (Date.now() - this.startTime) / 1000,
-            i: this.progress,
-          });
-        } else if (data.type === "ready") {
+        if (data.type === "ready") {
           this.readyCount++;
           this.solverType = data.solver;
           // We are ready, when all workers are ready
@@ -82,19 +72,39 @@ export class WorkerGroup {
             this.startedCallback();
           }
         } else if (data.type === "done") {
-          this.doneCount++;
-          for (let i=data.startIndex; i<this.puzzleSolverInputs.length; i+=this.workers.length) {
-            this.solutionBuffer.set(data.solution.subarray(i*8, i*8+8), i*8);
+          if (data.puzzleNumber !== this.puzzleNumber) return; // solution belongs to a previous puzzle
+
+          if (this.puzzleIndex < this.puzzleSolverInputs.length) {
+            this.workers[i].postMessage({
+              type: "start",
+              puzzleSolverInput: this.puzzleSolverInputs[this.puzzleIndex],
+              threshold: this.threshold,
+              puzzleIndex: this.puzzleIndex,
+              puzzleNumber: this.puzzleNumber,
+            } as StartMessage);
+            this.puzzleIndex++;
           }
-          // We are done, when all workers are done
-          if (this.doneCount == this.workers.length) {
+
+          this.progress++;
+          this.totalHashes += data.h;
+
+          this.progressCallback({
+            n: this.numPuzzles,
+            h: this.totalHashes,
+            t: (Date.now() - this.startTime) / 1000,
+            i: this.progress,
+          });
+
+          this.solutionBuffer.set(data.solution, data.puzzleIndex * 8);
+          // We are done, when all puzzles have been solved
+          if (this.progress == this.numPuzzles) {
             const totalTime = (Date.now() - this.startTime) / 1000;
             this.doneCallback({
               solution: this.solutionBuffer,
               h: this.totalHashes,
               t: totalTime,
               diagnostics: createDiagnosticsBuffer(this.solverType, totalTime),
-              solver: this.solverType
+              solver: this.solverType,
             });
           }
         } else if (data.type === "error") {
@@ -106,34 +116,38 @@ export class WorkerGroup {
 
   public setupSolver(forceJS = false) {
     const msg: SolverMessage = { type: "solver", forceJS: forceJS };
-    for (let i=0; i<this.workers.length; i++) {
+    for (let i = 0; i < this.workers.length; i++) {
       this.workers[i].postMessage(msg);
     }
   }
 
-  public start(puzzle: Puzzle) {
+  start(puzzle: Puzzle) {
     this.puzzleSolverInputs = getPuzzleSolverInputs(puzzle.buffer, puzzle.n);
     this.solutionBuffer = new Uint8Array(8 * puzzle.n);
     this.numPuzzles = puzzle.n;
+    this.threshold = puzzle.threshold;
+    this.puzzleIndex = 0;
+    this.puzzleNumber++;
 
-    for (let i=0; i<this.workers.length; i++) {
+    for (let i = 0; i < this.workers.length; i++) {
+      if (this.puzzleIndex === this.puzzleSolverInputs.length) break;
+
       this.workers[i].postMessage({
         type: "start",
-        puzzleSolverInputs: this.puzzleSolverInputs,
-        threshold: puzzle.threshold,
-        n: puzzle.n,
-        numWorkers: this.workers.length,
-        startIndex: i,
-      });
+        puzzleSolverInput: this.puzzleSolverInputs[i],
+        threshold: this.threshold,
+        puzzleIndex: this.puzzleIndex,
+        puzzleNumber: this.puzzleNumber,
+      } as StartMessage);
+      this.puzzleIndex++;
     }
   }
 
   public terminateWorkers() {
     if (this.workers.length == 0) return;
-    for (let i=0; i<this.workers.length; i++) {
+    for (let i = 0; i < this.workers.length; i++) {
       this.workers[i].terminate();
     }
     this.workers = [];
   }
-
 }

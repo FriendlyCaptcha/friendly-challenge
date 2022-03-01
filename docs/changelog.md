@@ -2,11 +2,11 @@
 
 ## 0.9.1
 
-- Updated dependencies, no functional changed to the widget.
 - Added Swedish (`"sv"`) and Russian (`"ru"`) localization (thank you @astonsson and @YerzhanU!).
 - Added a `min-width` and `max-width` rule to the widget which should help with small screens and containers.
 - Balancing of the work across multiple cores is now performed more efficiently, this makes the time to solve more stable and predictable.
 - Minor improvements to error logging in the console.
+- Updated dependencies.
 
 ## 0.9.0
 

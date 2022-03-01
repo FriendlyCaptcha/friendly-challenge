@@ -6,6 +6,7 @@
 - Added Swedish (`"sv"`) and Russian (`"ru"`) localization (thank you @astonsson and @YerzhanU!).
 - Added a `min-width` and `max-width` rule to the widget which should help with small screens and containers.
 - Balancing of the work across multiple cores is now performed more efficiently, this makes the time to solve more stable and predictable.
+- HTML elements that have a widget attached now have their instance available under `element.friendlyChallengeWidget`, this helps with situations where you have multiple auto-attached widgets that you want to interact with using the JS API.
 - Minor improvements to error logging in the console.
 
 ## 0.9.0

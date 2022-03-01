@@ -3,7 +3,7 @@ import { base64 } from "friendly-pow/wasm/optimized.wrap";
 import { getWasmSolver } from "friendly-pow/api/wasm";
 import { getJSSolver } from "friendly-pow/api/js";
 import { SOLVER_TYPE_JS, SOLVER_TYPE_WASM } from "friendly-pow/constants";
-import { Solver, DonePartMessage, ProgressPartMessage, MessageToWorker } from "./types";
+import { Solver, DonePartMessage, MessageToWorker } from "./types";
 
 if (!Uint8Array.prototype.slice) {
   Object.defineProperty(Uint8Array.prototype, "slice", {
@@ -26,7 +26,6 @@ let solverType: 1 | 2;
 // Puzzle consisting of zeroes
 let setSolver: (s: Solver) => void;
 const solver: Promise<Solver> = new Promise((resolve) => (setSolver = resolve));
-let hasStarted = false;
 
 self.onerror = (evt: any) => {
   self.postMessage({
@@ -67,10 +66,6 @@ self.onmessage = async (evt: any) => {
         solver: solverType,
       });
     } else if (data.type === "start") {
-      if (hasStarted) {
-        return;
-      }
-      hasStarted = true;
       const solve = await solver;
 
       self.postMessage({
@@ -78,48 +73,34 @@ self.onmessage = async (evt: any) => {
       });
 
       let totalH = 0;
-      const starts = data.puzzleSolverInputs;
-      const solutionBuffer = new Uint8Array(8 * data.n);
+      let solution!: Uint8Array;
 
-      // In the case of 4 workers, the first worker will solve puzzle
-      // 0, 4, 8, 12 etc
-      for (let puzNum = data.startIndex; puzNum < starts.length; puzNum += data.numWorkers) {
-        let solution!: Uint8Array;
-
-        // We loop over a uint32 to find as solution, it is technically possible (but extremely unlikely - only possible with very high difficulty) that
-        // there is no solution, here we loop over one byte further up too in case that happens.
-        for (let b = 0; b < 256; b++) {
-          starts[puzNum][123] = b;
-          const [s, hash] = solve(starts[puzNum], data.threshold);
-          if (hash.length === 0) {
-            // This means 2^32 puzzles were evaluated, which takes a while in a browser!
-            // As we try 256 times, this is not fatal
-            console.warn("FC: Internal error or no solution found");
-            totalH += Math.pow(2, 32) - 1;
-            continue;
-          }
-          solution = s;
-          break;
+      // We loop over a uint32 to find as solution, it is technically possible (but extremely unlikely - only possible with very high difficulty) that
+      // there is no solution, here we loop over one byte further up too in case that happens.
+      for (let b = 0; b < 256; b++) {
+        data.puzzleSolverInput[123] = b;
+        const [s, hash] = solve(data.puzzleSolverInput, data.threshold);
+        if (hash.length === 0) {
+          // This means 2^32 puzzles were evaluated, which takes a while in a browser!
+          // As we try 256 times, this is not fatal
+          console.warn("FC: Internal error or no solution found");
+          totalH += Math.pow(2, 32) - 1;
+          continue;
         }
-        const view = new DataView(solution.slice(-4).buffer);
-        const h = view.getUint32(0, true);
-        totalH += h;
-
-        solutionBuffer.set(solution.slice(-8), puzNum * 8); // The last 8 bytes are the solution nonce
-        self.postMessage({
-          type: "progress",
-          h: h,
-        } as ProgressPartMessage);
+        solution = s;
+        break;
       }
 
-      const doneMessage: DonePartMessage = {
-        type: "done",
-        solution: solutionBuffer,
-        totalH: totalH,
-        startIndex: data.startIndex,
-      };
+      const view = new DataView(solution.slice(-4).buffer);
+      totalH += view.getUint32(0, true);
 
-      self.postMessage(doneMessage);
+      self.postMessage({
+        type: "done",
+        solution: solution.slice(-8), // The last 8 bytes are the solution nonce
+        h: totalH,
+        puzzleIndex: data.puzzleIndex,
+        puzzleNumber: data.puzzleNumber,
+      } as DonePartMessage);
     }
   } catch (e) {
     setTimeout(() => {

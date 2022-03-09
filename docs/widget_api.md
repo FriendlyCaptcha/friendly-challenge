@@ -160,7 +160,7 @@ const FriendlyCaptcha = () => {
     }
 
     return () => {
-      if (widget.current != undefined) widget.current.reset();
+      if (widget.current != undefined) widget.current.destroy();
     }
   }, [container]);
 

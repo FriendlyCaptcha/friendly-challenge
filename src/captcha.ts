@@ -191,7 +191,7 @@ export class WidgetInstance {
     }
 
     if (this.hasBeenStarted) {
-      console.error("Can not start FriendlyCaptcha widget which has already been started");
+      console.warn("Can not start FriendlyCaptcha widget which has already been started");
       return;
     }
 

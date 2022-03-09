@@ -123,11 +123,7 @@ export class WidgetInstance {
     ) {
       const form = findParentFormElement(this.e);
       if (form) {
-        executeOnceOnFocusInEvent(form, () => {
-          if (!this.hasBeenStarted) {
-            this.start();
-          }
-        });
+        executeOnceOnFocusInEvent(form, () => this.start());
       } else {
         console.log("FriendlyCaptcha div seems not to be contained in a form, autostart will not work");
       }
@@ -191,6 +187,11 @@ export class WidgetInstance {
   public async start() {
     if (this.hasBeenDestroyed) {
       console.error("Can not start FriendlyCaptcha widget which has been destroyed");
+      return;
+    }
+
+    if (this.hasBeenStarted) {
+      console.error("Can not start FriendlyCaptcha widget which has already been started");
       return;
     }
 

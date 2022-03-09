@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed a bug which allowed for starting the same widget more than once
+
 ## 0.9.1
 
 - Added Swedish (`"sv"`) and Russian (`"ru"`) localization (thank you @astonsson and @YerzhanU!).

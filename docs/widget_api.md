@@ -160,7 +160,7 @@ const FriendlyCaptcha = () => {
     }
 
     return () => {
-      if (widget.current != undefined) widget.current.reset();
+      if (widget.current != undefined) widget.current.destroy();
     }
   }, [container]);
 
@@ -199,10 +199,10 @@ const errorCallback = (err) => {
 watch(container, () => {
   // reset the widget instance when the container changes
   if (widget.value) {
-    widget.value.reset();
+    widget.value.destroy();
   }
 
-  if (!widget.value && container.value) {
+  if (container.value) {
     widget.value = new WidgetInstance(container.value, {
       startMode: "auto",
       doneCallback: doneCallback,

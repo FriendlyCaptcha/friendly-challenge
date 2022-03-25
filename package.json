@@ -12,6 +12,7 @@
   ],
   "license": "MIT",
   "repository": "https://github.com/FriendlyCaptcha/friendly-challenge",
+  "type": "module",
   "scripts": {
     "prebuild": "rimraf dist",
     "lint": "eslint src/**/*.ts test/**/*.ts",

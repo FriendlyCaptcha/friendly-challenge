@@ -4,7 +4,7 @@ By default the FriendlyCaptcha widget talks to our global service served from al
 
 As a premium feature we offer a dedicated forwarding endpoint hosted in Germany as an additional guarantee that the personal information (i.e. visitor IP addresses) never leave the EU.
 
-> Note: Using this service requires a Friendly Captcha Business or Enterprise plan.
+> Note: Using this service requires a Friendly Captcha Advanced or Enterprise plan.
 
 ## Enabling the EU endpoint
 Open your [account page](https://app.friendlycaptcha.com/account") and click **Manage** on the app you want to enable the EU endpoint for.

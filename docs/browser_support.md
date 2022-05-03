@@ -37,9 +37,9 @@ Or you can include the polyfills manually:
 <script src="https://cdn.jsdelivr.net/npm/object-assign-polyfill@0.1.0"></script>
 ```
 
-If you find any compatability issues please create a [**Github issue**](https://github.com/FriendlyCaptcha/friendly-challenge/issues).
+If you find any compatibility issues please create a [**Github issue**](https://github.com/FriendlyCaptcha/friendly-challenge/issues).
 
-## Compatability mode for the library
+## Compatibility mode for the library
 
 If you are importing _friendly-challenge_ into your own bundle and want to support old browsers (those that don't support ES2017) you should change your imports to be from `friendly-challenge/compat`. For example:
 

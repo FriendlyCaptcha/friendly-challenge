@@ -28,7 +28,7 @@ function getTemplate(
     ${buttonText ? `<button type="button" class="frc-button">${buttonText}</button>` : ""}
     ${progress ? `<progress class="frc-progress" value="0">0%</progress>` : ""}
 </div>
-</div><span class="frc-banner"><a href="https://friendlycaptcha.com/" rel="noopener" target="_blank"><b>Friendly</b>Captcha ⇗</a></span>
+</div><span class="frc-banner"><a lang="en" href="https://friendlycaptcha.com/" rel="noopener" target="_blank"><b>Friendly</b>Captcha ⇗</a></span>
 <input name="${fieldName}" class="frc-captcha-solution" type="hidden" value="${solutionString}">`;
 }
 
@@ -61,12 +61,12 @@ export function getRunningHTML(fieldName: string, l: Localization) {
 }
 
 export function getDoneHTML(fieldName: string, l: Localization, solution: string, data: DoneMessage) {
-  const timeData = `Completed: ${data.t.toFixed(0)}s (${((data.h / data.t) * 0.001).toFixed(0)}K/s)${
+  const timeData = `${data.t.toFixed(0)}s (${((data.h / data.t) * 0.001).toFixed(0)}K/s)${
     data.solver === SOLVER_TYPE_JS ? " JS Fallback" : ""
   }`;
   return getTemplate(
     fieldName,
-    `<title>${timeData}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>`,
+    `<title>${l.text_completed_sr}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>`,
     l.text_completed,
     solution,
     undefined,

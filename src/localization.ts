@@ -17,6 +17,8 @@ export interface Localization {
 
   // Completed
   text_completed: string;
+  // Additional text shown in label. Especially useful for screen readers used by blind users.
+  text_completed_sr: string;
 
   // Expired (the puzzle was solved, but then waited say a day without submitting)
   text_expired: string;
@@ -40,6 +42,7 @@ const LANG_EN: Localization = {
 
   text_solving: "Verifying you are human..",
   text_completed: "I am human",
+  text_completed_sr: "Automatic spam check completed",
 
   text_expired: "Anti-Robot verification expired",
   button_restart: "Restart",
@@ -60,13 +63,14 @@ const LANG_FR: Localization = {
 
   text_solving: "Vérification que vous êtes humain..",
   text_completed: "Je suis humain",
+  text_completed_sr: "Vérification automatique des spams terminée", // TODO: verify by native speaker
 
   text_expired: "Verification échue",
   button_restart: "Recommencer",
 
   text_error: "Echec de verification",
   button_retry: "Recommencer",
-  text_fetch_error: "Problème de connexion avec", // TODO: verify by native speaker
+  text_fetch_error: "Problème de connexion avec",
 };
 
 // German
@@ -80,13 +84,14 @@ const LANG_DE: Localization = {
 
   text_solving: "Verifizierung, dass Sie ein Mensch sind..",
   text_completed: "Ich bin ein Mensch",
+  text_completed_sr: "Automatische Spamprüfung abgeschlossen",
 
   text_expired: "Verifizierung abgelaufen",
   button_restart: "Erneut starten",
 
   text_error: "Verifizierung fehlgeschlagen",
   button_retry: "Erneut versuchen",
-  text_fetch_error: "Verbindungsproblem mit", // TODO: verify by native speaker
+  text_fetch_error: "Verbindungsproblem mit",
 };
 
 // Dutch
@@ -100,6 +105,7 @@ const LANG_NL: Localization = {
 
   text_solving: "Anti-robotverificatie bezig..",
   text_completed: "Ik ben een mens",
+  text_completed_sr: "Automatische anti-spamcheck voltooid",
 
   text_expired: "Verificatie verlopen",
   button_restart: "Opnieuw starten",
@@ -120,13 +126,14 @@ const LANG_IT: Localization = {
 
   text_solving: "Verificando che sei umano...",
   text_completed: "Non sono un robot",
+  text_completed_sr: "Controllo automatico dello spam completato", // TODO: verify by native speaker
 
   text_expired: "Verifica Anti-Robot scaduta",
   button_restart: "Ricomincia",
 
   text_error: "Verifica fallita",
   button_retry: "Riprova",
-  text_fetch_error: "Problema di connessione con", // TODO: verify by native speaker
+  text_fetch_error: "Problema di connessione con",
 };
 
 // Portuguese
@@ -140,6 +147,7 @@ const LANG_PT: Localization = {
 
   text_solving: "Verificando se você é humano..",
   text_completed: "Eu sou humano",
+  text_completed_sr: "Verificação automática de spam concluída", // TODO: verify by native speaker
 
   text_expired: "Verificação Anti-Robô expirada",
   button_restart: "Reiniciar",
@@ -160,6 +168,7 @@ const LANG_ES: Localization = {
 
   text_solving: "Verificando que eres humano..",
   text_completed: "Soy humano",
+  text_completed_sr: "Verificación automática de spam completada", // TODO: verify by native speaker
 
   text_expired: "Verificación Anti-Robot expirada",
   button_restart: "Reiniciar",
@@ -180,6 +189,7 @@ const LANG_CA: Localization = {
 
   text_solving: "Verificant que ets humà..",
   text_completed: "Soc humà",
+  text_completed_sr: "Verificació automàtica de correu brossa completada", // TODO: verify by native speaker
 
   text_expired: "La verificació Anti-Robot ha expirat",
   button_restart: "Reiniciar",
@@ -199,8 +209,8 @@ const LANG_JA: Localization = {
   text_fetching: "ロードしています",
 
   text_solving: "認証中...",
-
   text_completed: "私はロボットではありません",
+  text_completed_sr: "自動スパムチェックが完了しました", // TODO: verify by native speaker
 
   text_expired: "認証の期限が切れています",
   button_restart: "再度認証を行う",
@@ -221,6 +231,7 @@ const LANG_DA: Localization = {
 
   text_solving: "Bekræfter, at du er et menneske..",
   text_completed: "Jeg er et menneske",
+  text_completed_sr: "Automatisk spamkontrol gennemført", // TODO: verify by native speaker
 
   text_expired: "Anti-Robot-verifikation er udløbet",
   button_restart: "Genstart",
@@ -241,6 +252,7 @@ const LANG_RU: Localization = {
 
   text_solving: "Проверяю, что вы человек..",
   text_completed: "Я человек",
+  text_completed_sr: "Aвтоматическая проверка на спам завершена", // TODO: verify by native speaker
 
   text_expired: "Срок АнтиРоботной проверки истёк",
   button_restart: "Начать заново",
@@ -261,6 +273,7 @@ const LANG_SV: Localization = {
 
   text_solving: "Verifierar att du är en människa..",
   text_completed: "Jag är en människa",
+  text_completed_sr: "Automatisk spamkontroll slutförd", // TODO: verify by native speaker
 
   text_expired: "Anti-robot-verifieringen har löpt ut",
   button_restart: "Börja om",

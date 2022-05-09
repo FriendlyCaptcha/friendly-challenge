@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.2
 
 - Fixed a bug which allowed for starting the same widget more than once
 - Improved the accessibility of the widget for users using screen readers, there is now a localized, semantic title when the widget is completed stating *"Automatic spam check completed"*. This makes understanding what is going on easier for those who can not see the checkmark symbol.

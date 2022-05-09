@@ -10,19 +10,19 @@ You can use the build that includes the polyfills:
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.9.1/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.9.1/widget.polyfilled.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.9.2/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.9.2/widget.polyfilled.min.js" async defer></script>
 
 <!-- OR from jsdelivr -->
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.1/dist/widget.module.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.2/dist/widget.module.min.js"
   async
   defer
 ></script>
 <script
   nomodule
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.1/dist/widget.polyfilled.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.2/dist/widget.polyfilled.min.js"
   async
   defer
 ></script>

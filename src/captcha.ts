@@ -230,6 +230,7 @@ export class WidgetInstance {
       this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey, this.lang));
       setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
     } catch (e: any) {
+      this.hasBeenStarted = false;
       this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);
       this.makeButtonStart();
       const code = "error_getting_puzzle";

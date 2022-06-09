@@ -181,6 +181,7 @@ export class WidgetInstance {
   }
 
   private expire() {
+    this.hasBeenStarted = false;
     this.e.innerHTML = getExpiredHTML(this.opts.solutionFieldName, this.lang);
     this.makeButtonStart();
   }

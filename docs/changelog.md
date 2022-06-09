@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.3
+
+- Add missing Typescript type declarations to package (see #109)
+- Fix a regression in 0.9.2 causing the retry button not working when an error occurs.
+
 ## 0.9.2
 
 - Fixed a bug which allowed for starting the same widget more than once

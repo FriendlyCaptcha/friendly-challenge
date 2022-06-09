@@ -283,6 +283,28 @@ const LANG_SV: Localization = {
   text_fetch_error: "Lyckades inte ansluta till",
 };
 
+// Turkish
+const LANG_TR: Localization = {
+  text_init: "Başlatılıyor..",
+  
+  text_ready: "Anti-Robot Doğrulaması",
+  button_start: "Doğrulamayı başlatmak için tıklayın",
+  
+  text_fetching: "Yükleniyor",
+  
+  text_solving: "Robot olmadığınız doğrulanıyor..",
+  text_completed: "Ben bir insanım",
+  text_completed_sr: "Otomatik spam kontrolü tamamlandı",
+  
+  text_expired: "Anti-Robot doğrulamasının süresi doldu",
+  button_restart: "Yeniden başlat",
+  
+  text_error: "Doğrulama başarısız oldu",
+  button_retry: "Tekrar dene",
+  text_fetch_error: "Bağlantı başarısız oldu",
+  };
+
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -296,4 +318,5 @@ export const localizations = {
   da: LANG_DA,
   ru: LANG_RU,
   sv: LANG_SV,
+  tr: LANG_TR,
 };

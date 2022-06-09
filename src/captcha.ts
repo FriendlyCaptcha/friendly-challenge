@@ -142,6 +142,7 @@ export class WidgetInstance {
   }
 
   private onWorkerError(e: any) {
+    this.hasBeenStarted = false;
     this.needsReInit = true;
     this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Background worker error " + e.message);
     this.makeButtonStart();
@@ -195,7 +196,6 @@ export class WidgetInstance {
       return;
     }
 
-    this.hasBeenStarted = true;
     const sitekey = this.opts.sitekey || this.e.dataset["sitekey"];
     if (!sitekey) {
       console.error("FriendlyCaptcha: sitekey not set on frc-captcha element");
@@ -225,11 +225,14 @@ export class WidgetInstance {
       return;
     }
 
+    this.hasBeenStarted = true;
+
     try {
       this.e.innerHTML = getFetchingHTML(this.opts.solutionFieldName, this.lang);
       this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey, this.lang));
       setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
     } catch (e: any) {
+      this.hasBeenStarted = false;
       this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);
       this.makeButtonStart();
       const code = "error_getting_puzzle";

@@ -25,6 +25,7 @@ export interface WidgetInstanceOptions {
    * This does not increase security.
    */
   forceJSFallback: boolean;
+  skipStyleInjection: boolean;
   startMode: "auto" | "focus" | "none";
   puzzleEndpoint: string;
   language: keyof typeof localizations | Localization;
@@ -74,6 +75,7 @@ export class WidgetInstance {
     this.opts = Object.assign(
       {
         forceJSFallback: false,
+        skipStyleInjection: false,
         startMode: "focus",
         puzzleEndpoint: element.dataset["puzzleEndpoint"] || PUZZLE_ENDPOINT_URL,
         startedCallback: () => 0,
@@ -104,7 +106,9 @@ export class WidgetInstance {
     }
 
     element.innerText = this.lang.text_init;
-    injectStyle();
+    if (!this.opts.skipStyleInjection) {
+      injectStyle();
+    }
     this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");
   }
 

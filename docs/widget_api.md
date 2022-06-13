@@ -117,6 +117,7 @@ The options object takes the following fields, they are all optional:
 * **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name.
 
 * **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles or are using our dedicated EU endpoint service.
+* **`skipStyleInjection`**: boolean, if this is set to true the Friendly Captcha widget CSS will no longer be automatically injected into your webpage. You will be responsible for styling the element yourself.
 
 ### Resetting the widget
 If you are building a single page application (SPA), chances are the page will not refresh after the captcha is submitted. As a solved captcha can only be used once, you will have to reset the widget yourself (e.g. on submission). You can call the `reset()` function on the widget instance to achieve this.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.4
+
+- Fixed the retry button not working after expiration.
+- Added `skipStyleInjection` option to the config object. When true is passed the `<script>` element is no longer attached automatically.
+
 ## 0.9.3
 
 - Add missing Typescript type declarations to package (see #109).

@@ -25,3 +25,5 @@ If any HTML element with id `frc-style` is present on the HTML document, the ori
 ```html
  <link rel="stylesheet" id="frc-style" href="/my-custom-widget-theme.css">
 ```
+
+Alternatively, if you are using the library approach, you can use the `skipStyleInjection` option to prevent a stylesheet from getting injected.

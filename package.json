@@ -34,6 +34,7 @@
     "prepublishOnly": "echo \"Error: Don't run 'npm publish' in root. Use 'npm run dist' instead.\" && exit 1"
   },
   "types": "friendly-challenge.d.ts",
+  "type": "module",
   "module": "index.js",
   "author": "Friendly Captcha GmbH <hello@friendlycaptcha.com>",
   "devDependencies": {

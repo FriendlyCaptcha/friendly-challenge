@@ -214,5 +214,38 @@ watch(container, () => {
 </script>
 ```
 
+### Full example in Svelte (with Typescript)
+The following example presents a way to embed the Friendly Captcha widget in a Svelte component:
+```svelte
+<script lang="ts">
+  import { WidgetInstance } from 'friendly-challenge'
+  import { onMount } from 'svelte'
+
+  let container: HTMLDivElement
+
+  function done(solution: string) {
+    console.log('Solution:', solution)
+  }
+
+  function error(error: any) {
+    console.error(error)
+  }
+
+  onMount(() => {
+    const widget = new WidgetInstance(container, {
+      startMode: 'auto',
+      doneCallback: done,
+      errorCallback: error,
+    })
+
+    return () => {
+      widget.destroy()
+    }
+  })
+</script>
+
+<div bind:this={container} class="frc-captcha" data-sitekey="YOUR_SITE_KEY" />
+```
+
 ## Questions or issues
 If you have any questions about the API or run into problems, the best place to get help is the *issues* page on the [github repository](https://github.com/FriendlyCaptcha/friendly-challenge/issues).

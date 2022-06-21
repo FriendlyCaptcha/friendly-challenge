@@ -35,7 +35,7 @@
   },
   "types": "friendly-challenge.d.ts",
   "type": "module",
-  "module": "index.js",
+  "main": "index.js",
   "author": "Friendly Captcha GmbH <hello@friendlycaptcha.com>",
   "devDependencies": {
     "@babel/cli": "^7.14.5",

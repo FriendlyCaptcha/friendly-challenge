@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Added `type: "module"` to `package.json` (see #117) to help fix some issues in Javascript build pipelines.
+
 ## 0.9.4
 
 - Fixed the retry button not working after expiration.

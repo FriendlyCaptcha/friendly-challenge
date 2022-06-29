@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     presets: [
       [
         "@babel/preset-env",
@@ -7,7 +7,7 @@ module.exports = {
             "transform-regenerator", "transform-async-to-generator"
           ],
           "targets": {
-            "browsers": ["since 2013", "not dead", "not ie <= 11", "not ie_mob <= 11"]
+            "browsers": ["since 2013", "not dead", "not ie <= 10", "not ie_mob <= 11"]
           },
           "modules": "auto",
           "useBuiltIns": "entry",

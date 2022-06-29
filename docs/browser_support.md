@@ -1,28 +1,28 @@
 # Browser Support
 
-All modern browsers are supported, on both mobile and desktop, all releases up to at least 8 years old. That includes Safari, Edge, Chrome, Firefox, and Opera. Internet Explorer 11 also works, with some sidenotes (see the section below). See the targeted [**browserlist compatible browsers**](https://browserslist.dev/?q=c2luY2UgMjAxMywgbm90IGRlYWQsIG5vdCBpZSA8PTExLCBub3QgaWVfbW9iIDw9IDEx).
+All modern browsers are supported, on both mobile and desktop, all releases up to at least 8 years old. That includes Safari, Edge, Chrome, Firefox, and Opera. Internet Explorer 11 also works, with some sidenotes (see the section below). See the targeted [**browserlist compatible browsers**](https://browserslist.dev/?q=c2luY2UgMjAxMywgbm90IGRlYWQsIG5vdCBpZSA8PTEwLCBub3QgaWVfbW9iIDw9IDEx).
 
 ## Polyfills
 
-If you want to support browsers over 4 years old, you will need some polyfills (`fetch`, `Promise`, `URL` and `Object.assign`).
+If you want to support browsers over 5 years old, you will need some polyfills (`fetch`, `Promise`, `URL` and `Object.assign`).
 
 You can use the build that includes the polyfills:
 
 ```html
 <!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.9.4/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.9.4/widget.polyfilled.min.js" async defer></script>
+<script type="module" src="https://unpkg.com/friendly-challenge@0.9.5/widget.module.min.js" async defer></script>
+<script nomodule src="https://unpkg.com/friendly-challenge@0.9.5/widget.polyfilled.min.js" async defer></script>
 
 <!-- OR from jsdelivr -->
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.4/dist/widget.module.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.5/dist/widget.module.min.js"
   async
   defer
 ></script>
 <script
   nomodule
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.4/dist/widget.polyfilled.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.5/dist/widget.polyfilled.min.js"
   async
   defer
 ></script>

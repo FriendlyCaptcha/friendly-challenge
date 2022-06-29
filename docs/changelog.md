@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
-- Added `type: "module"` to `package.json` (see #117) to help fix some issues in Javascript build pipelines.
+## 0.9.5
+- Added `type: "module"` to `package.json` (see #117) to help fix some issues in Javascript build pipelines. This may require some reconfiguring of your build pipeline.
+- Build pipeline updates and upgrades (updated build dependencies, explicitly support IE11 in browser targets).
 
 ## 0.9.4
 

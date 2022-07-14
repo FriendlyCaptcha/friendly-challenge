@@ -35,7 +35,7 @@ Example:
 
 ### data-lang attribute
 
-FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"fr"`, `"de"`, `"it"`, `"nl"`, `"pt"`, `"es"`, `"ca"`, `"da"`, `"ja"`, `"ru"` and `"sv"` for English, French, German, Italian, Dutch, Portuguese, Spanish, Catalan, Danish, Japanese, Russian and Swedish respectively.
+FriendlyCaptcha ships with some translations built-in (since version 0.7.0), right now valid values for this attribute are `"en"`, `"fr"`, `"de"`, `"it"`, `"nl"`, `"pt"`, `"es"`, `"ca"`, `"da"`, `"ja"`, `"ru"`, `"sv"`, `"el"`, `"uk"`, `"bg"`, `"cs"`, `"sk"`, `"no"`, `"fi"`, `"lt"`, `"lt"`, `"pl"`, `"et"`, `"hr"`, `"sr"`, `"sl"`, `"hu"`, and `"ro"` for English, French, German, Italian, Dutch, Portuguese, Spanish, Catalan, Danish, Japanese, Russian, Swedish, Greek, Ukrainian, Bulgarian, Czech, Slovak, Norwegian, Finnish, Latvian, Lithuanian, Polish, Estonian, Croatian, Serbian, Slovenian, Hungarian, and Romanian respectively.
 
 > Are you a native speaker and want to add your language?
 > Please make an issue [here](https://github.com/FriendlyCaptcha/friendly-challenge/issues).  

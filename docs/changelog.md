@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
-- Added `type: "module"` to `package.json` (see #117) to help fix some issues in Javascript build pipelines.
+## 0.9.5
+- Added localizations `"el"`, `"uk"`, `"bg"`, `"cs"`, `"sk"`, `"no"`, `"fi"`, `"lt"`, `"lt"`, `"pl"`, `"et"`, `"hr"`, `"sr"`, `"sl"`, `"hu"`, and `"ro"` (Greek, Ukrainian, Bulgarian, Czech, Slovak, Norwegian, Finnish, Latvian, Lithuanian, Polish, Estonian, Croatian, Serbian, Slovenian, Hungarian, and Romanian), a big thank you to @Tubilopto!
+- Added `type: "module"` to `package.json` (see #117) to help fix some issues in Javascript build pipelines. This may require some reconfiguring of your build pipeline.
+- Build pipeline updates and upgrades (updated build dependencies, explicitly support IE11 in browser targets).
 
 ## 0.9.4
 

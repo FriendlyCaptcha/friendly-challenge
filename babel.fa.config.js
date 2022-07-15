@@ -1,5 +1,5 @@
-// ONly applies fast-async
-module.exports = {
+// Only applies fast-async
+export default {
     "plugins": [
       ["module:fast-async", {
         "compiler": {

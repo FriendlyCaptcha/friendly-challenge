@@ -189,7 +189,8 @@ export class WidgetInstance {
 
   private expire() {
     this.hasBeenStarted = false;
-    if (this.e.isConnected) {
+    // Node.isConnected will be undefined in older browsers
+    if (this.e.isConnected !== false) {
       this.e.innerHTML = getExpiredHTML(this.opts.solutionFieldName, this.lang);
       this.makeButtonStart();
     }

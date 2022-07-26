@@ -1,0 +1,22 @@
+<html>
+  <head> </head>
+
+  <form action="">
+    <input type="text" />
+    <div
+      class="frc-captcha"
+      data-sitekey="FCMNBEA9O9MBNO86"
+      data-start="focus"
+      data-lang="de"
+      data-callback="callback"
+    ></div>
+  </form>
+
+  <script>
+    function callback(solution) {
+      console.log(solution);
+    }
+  </script>
+
+  <script src="./dist/widget.js" async defer></script>
+</html>

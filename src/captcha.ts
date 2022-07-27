@@ -71,6 +71,8 @@ export class WidgetInstance {
 
   private lang: Localization;
 
+  private expiryTimeout: ReturnType<typeof setTimeout> | undefined;
+
   constructor(element: HTMLElement, options: Partial<WidgetInstanceOptions> = {}) {
     this.opts = Object.assign(
       {
@@ -148,6 +150,7 @@ export class WidgetInstance {
   private onWorkerError(e: any) {
     this.hasBeenStarted = false;
     this.needsReInit = true;
+    if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
     this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Background worker error " + e.message);
     this.makeButtonStart();
 
@@ -186,8 +189,11 @@ export class WidgetInstance {
 
   private expire() {
     this.hasBeenStarted = false;
-    this.e.innerHTML = getExpiredHTML(this.opts.solutionFieldName, this.lang);
-    this.makeButtonStart();
+    // Node.isConnected will be undefined in older browsers
+    if (this.e.isConnected !== false) {
+      this.e.innerHTML = getExpiredHTML(this.opts.solutionFieldName, this.lang);
+      this.makeButtonStart();
+    }
   }
 
   public async start() {
@@ -235,9 +241,11 @@ export class WidgetInstance {
     try {
       this.e.innerHTML = getFetchingHTML(this.opts.solutionFieldName, this.lang);
       this.puzzle = decodeBase64Puzzle(await getPuzzle(this.opts.puzzleEndpoint, sitekey, this.lang));
-      setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
+      if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
+      this.expiryTimeout = setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
     } catch (e: any) {
       this.hasBeenStarted = false;
+      if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
       this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);
       this.makeButtonStart();
       const code = "error_getting_puzzle";
@@ -278,6 +286,7 @@ export class WidgetInstance {
     this.workerGroup.terminateWorkers();
     this.needsReInit = false;
     this.hasBeenStarted = false;
+    if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
     if (this.e) {
       this.e.remove();
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -300,6 +309,7 @@ export class WidgetInstance {
     this.workerGroup.terminateWorkers();
     this.needsReInit = false;
     this.hasBeenStarted = false;
+    if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
     this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");
   }
 }

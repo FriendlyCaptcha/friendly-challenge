@@ -222,23 +222,23 @@ const LANG_JA: Localization = {
 
 // Danish
 const LANG_DA: Localization = {
-  text_init: "Initialiserer..",
+  text_init: "Aktiverer...",
 
-  text_ready: "Anti-robot verifikation",
+  text_ready: "Jeg er ikke en robot",
   button_start: "Klik for at starte verifikationen",
 
-  text_fetching: "Henter udfordring",
+  text_fetching: "Henter data",
 
-  text_solving: "Bekræfter, at du er et menneske..",
-  text_completed: "Jeg er et menneske",
-  text_completed_sr: "Automatisk spamkontrol gennemført", // TODO: verify by native speaker
+  text_solving: "Kontrollerer at du er et menneske...",
+  text_completed: "Jeg er et menneske.",
+  text_completed_sr: "Automatisk spamkontrol gennemført",
 
-  text_expired: "Anti-Robot-verifikation er udløbet",
+  text_expired: "Verifikationen kunne ikke fuldføres",
   button_restart: "Genstart",
 
   text_error: "Bekræftelse mislykkedes",
   button_retry: "Prøv igen",
-  text_fetch_error: "Det lykkedes ikke at oprette forbindelse til",
+  text_fetch_error: "Forbindelsen mislykkedes",
 };
 
 // Russian
@@ -264,23 +264,23 @@ const LANG_RU: Localization = {
 
 // Swedish
 const LANG_SV: Localization = {
-  text_init: "Laddar...",
+  text_init: "Aktiverar...",
 
-  text_ready: "Anti-robot-verifiering",
-  button_start: "Klicka för att starta verifieringen",
+  text_ready: "Jag är inte en robot",
+  button_start: "Klicka för att verifiera",
 
-  text_fetching: "Hämtar utmaning",
+  text_fetching: "Hämtar data",
 
-  text_solving: "Verifierar att du är en människa..",
+  text_solving: "Kontrollerar att du är människa...",
   text_completed: "Jag är en människa",
-  text_completed_sr: "Automatisk spamkontroll slutförd", // TODO: verify by native speaker
+  text_completed_sr: "Automatisk spamkontroll slutförd",
 
   text_expired: "Anti-robot-verifieringen har löpt ut",
   button_restart: "Börja om",
 
-  text_error: "Verifieringen misslyckades",
-  button_retry: "Försök igen",
-  text_fetch_error: "Lyckades inte ansluta till",
+  text_error: "Verifiering kunde inte slutföras",
+  button_retry: "Omstart",
+  text_fetch_error: "Verifiering misslyckades",
 };
 
 // Turkish

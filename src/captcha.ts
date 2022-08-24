@@ -29,7 +29,7 @@ export interface WidgetInstanceOptions {
   startMode: "auto" | "focus" | "none";
   puzzleEndpoint: string;
   language: keyof typeof localizations | Localization;
-  solutionFieldName: "frc-captcha-solution";
+  solutionFieldName: string;
 
   sitekey: string;
 

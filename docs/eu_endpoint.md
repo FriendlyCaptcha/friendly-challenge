@@ -4,7 +4,7 @@ By default the FriendlyCaptcha widget talks to our global service served from al
 
 As a premium feature we offer a dedicated forwarding endpoint hosted in Germany as an additional guarantee that the personal information (i.e. visitor IP addresses) never leave the EU.
 
-> Note: Using this service requires a Friendly Captcha Advanced or Enterprise plan.
+> Note: Using this service requires a **Friendly Captcha Advanced** or **Enterprise** plan.
 
 ## Enabling the EU endpoint
 Open your [account page](https://app.friendlycaptcha.com/account") and click **Manage** on the app you want to enable the EU endpoint for.
@@ -46,15 +46,30 @@ You can do this by specifying both endpoints separated with a comma (`,`) in ord
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-puzzle-endpoint="https://eu-api.friendlycaptcha.eu/api/v1/puzzle,https://api.friendlycaptcha.com/api/v1/puzzle"></div>
 ```
 
+## EU Verification endpoint 
+Your servers can also use our EU endpoint for the verification of submitted puzzles.
+
+Instead of the [usual verification endpoint](./verification_api) your server makes the POST request to `https://eu-api.friendlycaptcha.eu/api/v1/siteverify`.
+
 ## Reference
-For reference, these are the puzzle endpoints.
+For reference, these are the puzzle and siteverify endpoints.
+
+### Puzzle (used in the widget configuration)
 
 | Endpoint Name   | URL |
 |----------------|----------|
 | 🌍 Global       | https://api.friendlycaptcha.com/api/v1/puzzle
 | 🇪🇺 EU       | https://eu-api.friendlycaptcha.eu/api/v1/puzzle
 
+### Siteverify (used in your backend server)
+
+| Endpoint Name   | URL |
+|----------------|----------|
+| 🌍 Global       | https://api.friendlycaptcha.com/api/v1/siteverify
+| 🇪🇺 EU       | https://eu-api.friendlycaptcha.eu/api/v1/siteverify
+
+
 ## Troubleshooting
-If your widget shows **Endpoint not allowed** or **403 Forbidden**, double-check that the you enabled the configured endpoint for the given sitekey.
+If your widget or the browser console shows **Endpoint not allowed** or **403 Forbidden**, double-check that the you enabled the configured endpoint for the given sitekey.
 
 If you run into any other issues you can of course always reach out.

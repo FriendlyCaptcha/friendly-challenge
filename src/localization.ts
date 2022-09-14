@@ -692,6 +692,7 @@ export const localizations = {
   hu: LANG_HU,
   ro: LANG_RO,
   zh: LANG_ZH,
+
   // alternative language codes
   nb: LANG_NO,
 };

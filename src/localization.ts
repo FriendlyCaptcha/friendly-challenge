@@ -640,6 +640,27 @@ const LANG_RO: Localization = {
   text_fetch_error: "Nu s-a putut conecta la",
 };
 
+// Chinese
+const LANG_ZH: Localization = {
+  text_init: "初始化中……",
+
+  text_ready: "人机验证",
+  button_start: "点击开始",
+
+  text_fetching: "正在加载",
+
+  text_solving: "人机校验中……",
+  text_completed: "我不是机器人",
+  text_completed_sr: "人机验证完成",
+
+  text_expired: "验证已过期",
+  button_restart: "重新开始",
+
+  text_error: "校验失败",
+  button_retry: "重试",
+  text_fetch_error: "无法连接到",
+};
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -670,6 +691,7 @@ export const localizations = {
   sl: LANG_SL,
   hu: LANG_HU,
   ro: LANG_RO,
+  zh: LANG_ZH,
   // alternative language codes
   nb: LANG_NO,
 };

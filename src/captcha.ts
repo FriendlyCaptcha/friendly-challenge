@@ -151,6 +151,7 @@ export class WidgetInstance {
     this.hasBeenStarted = false;
     this.needsReInit = true;
     if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
+    console.error("[FRC]", e);
     this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, "Background worker error " + e.message);
     this.makeButtonStart();
 
@@ -244,6 +245,7 @@ export class WidgetInstance {
       if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
       this.expiryTimeout = setTimeout(() => this.expire(), this.puzzle.expiry - 30000); // 30s grace
     } catch (e: any) {
+      console.error("[FRC]", e);
       this.hasBeenStarted = false;
       if (this.expiryTimeout) clearTimeout(this.expiryTimeout);
       this.e.innerHTML = getErrorHTML(this.opts.solutionFieldName, this.lang, e.message);

@@ -14,7 +14,7 @@
   "repository": "https://github.com/FriendlyCaptcha/friendly-challenge",
   "scripts": {
     "prebuild": "rimraf dist",
-    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "lint": "eslint src/**/*.ts",
     "build:html": "cp src/html/*.html dist/",
     "build:worker": "npm run build:worker:ts && npm run build:worker:compat && npm run build:worker:addpolyfill && npm run build:worker:minify",
     "build:worker:ts": "rollup -c rollup.worker.config.ts",

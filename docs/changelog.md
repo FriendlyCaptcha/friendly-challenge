@@ -4,8 +4,7 @@
 - Added Chinese (Simplified) (`"zh"`) localization (thank you @shyn!).
 - Added `"nb"` as an alias for Norwegian language (`"no"`).
 - Improved accessibility by hiding visual-only SVG icons by adding `aria-hidden="true"`.
-
-
+- Errors are now logged with `console.error` instead of only appearing in the widget.
 
 ## 0.9.5
 - Added localizations `"el"`, `"uk"`, `"bg"`, `"cs"`, `"sk"`, `"no"`, `"fi"`, `"lt"`, `"lt"`, `"pl"`, `"et"`, `"hr"`, `"sr"`, `"sl"`, `"hu"`, and `"ro"` (Greek, Ukrainian, Bulgarian, Czech, Slovak, Norwegian, Finnish, Latvian, Lithuanian, Polish, Estonian, Croatian, Serbian, Slovenian, Hungarian, and Romanian), a big thank you to @Tubilopto!

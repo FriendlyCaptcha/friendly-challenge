@@ -95,6 +95,8 @@ To verify the CAPTCHA solution, make a POST request to `https://api.friendlycapt
 
 You can pass these parameters in a JSON body, or as formdata.
 
+> If your account is on the **Advanced** or **Enterprise** plan your server can also make a request [to our EU endpoint](./eu_endpoint).
+
 ### The verification response
 
 The response will tell you whether the CAPTCHA solution is valid and hasn't been used before. The response body is a JSON object:

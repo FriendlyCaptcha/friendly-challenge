@@ -55,8 +55,10 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
         }
       }
     } catch (e) {
-      console.error("[FriendlyCaptcha]:", e);
-      throw Error(`${lang.text_fetch_error} <a class="frc-err-url" href="${urls[i]}">${urls[i]}</a>`);
+      console.error("[FRC Fetch]:", e);
+      const err = new Error(`${lang.text_fetch_error} <a class="frc-err-url" href="${urls[i]}">${urls[i]}</a>`);
+      (err as any).rawError = e;
+      throw err;
     }
   }
   // This code should never be reached.

@@ -112,7 +112,7 @@ The options object takes the following fields, they are all optional:
 * **`readyCallback`**: function, called when the solver is done initializing and is ready to start.
 * **`startedCallback`**: function, called when the solver has started.
 * **`doneCallback`**: function, called when the CAPTCHA has been completed. One argument will be passed: the solution string that should be sent to the server.
-* **`errorCallback`**: function, called when an internal error occurs. The error is passed as an object, the fields and values of this object are still to be documented and are changing frequently. Consider this experimental.
+* **`errorCallback`**: function, called when an internal error occurs. The error is passed as an object, the fields and values of this object are still to be documented may change in the future. Consider this experimental. In case of a fetch error (e.g. network connection loss or firewall block), the raw error of the fetch request can be retrieved under the `error.rawError` member variable.
 * **`language`**: string or object, the same values as the `data-lang` attribute can be provided, or a custom translation object for your language. See [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts) for what this object should look like.
 * **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name.
 

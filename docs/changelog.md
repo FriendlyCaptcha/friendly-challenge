@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.7
+- When an error is thrown by fetch (e.g. because of connection errors), the error of the fetch request can now be accessed under `error.rawError` in the object passed in the `onErrorCallback`.
+
 ## 0.9.6
 - Added Chinese (Simplified) (`"zh"`) localization (thank you @shyn!).
 - Added `"nb"` as an alias for Norwegian language (`"no"`).

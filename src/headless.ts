@@ -12,11 +12,10 @@ if (typeof navigator !== "undefined") {
  * it stops unsophisticated scripters from making any request whatsoever.
  */
 export function isHeadless() {
-  let correctPrototypes = true;
+  let correctPluginPrototype = true;
   try {
-    correctPrototypes = PluginArray.prototype === (nav.plugins as any).__proto__;
     if (nav.plugins.length > 0) {
-      correctPrototypes = correctPrototypes && Plugin.prototype === (nav.plugins as any)[0].__proto__;
+      correctPluginPrototype = Plugin.prototype === (nav.plugins as any)[0].__proto__;
     }
   } catch (e) {
     /* Do nothing, this browser misbehaves in mysterious ways */
@@ -31,6 +30,6 @@ export function isHeadless() {
     nav.webdriver === true ||
     !nav.language ||
     (nav.languages !== undefined && !nav.languages.length) || // IE 11 does not support NavigatorLanguage.languages https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages
-    !correctPrototypes
+    !correctPluginPrototype
   );
 }

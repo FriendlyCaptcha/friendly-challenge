@@ -662,7 +662,7 @@ const LANG_ZH: Localization = {
 };
 
 // Traditional Chinese
-const LANG_TW: Localization = {
+const LANG_ZH_TW: Localization = {
   text_init: "正在初始化……",
 
   text_ready: "反機器人驗證",
@@ -713,7 +713,7 @@ export const localizations = {
   hu: LANG_HU,
   ro: LANG_RO,
   zh: LANG_ZH,
-  tw: LANG_TW,
+  zh_TW: LANG_ZH_TW,
 
   // alternative language codes
   nb: LANG_NO,

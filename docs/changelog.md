@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.8
+- Fix for false positive headless errors in Chromium browsers when having certain plugins installed (`"Browser check failed, try a different browser"`).
+
 ## 0.9.7
 - When an error is thrown by fetch (e.g. because of connection errors), the error of the fetch request can now be accessed under `error.rawError` in the object passed in the `onErrorCallback`.
 

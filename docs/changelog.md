@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Added Chinese (Traditional) (`"zh_TW"`) localization (thank you @jhihyulin!).
+
 ## 0.9.8
 - Fix for false positive headless errors in Chromium browsers when having certain plugins installed (`"Browser check failed, try a different browser"`).
 

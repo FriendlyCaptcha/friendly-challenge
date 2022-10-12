@@ -45,6 +45,16 @@ It is recommended that you include the `async` and `defer` attributes like in th
 
 > If you want to support old browsers, you can instead use a polyfill build, see the [**browser support**](browser_support?id=polyfills) page.
 
+##### Download and self-host the widget library (releases)
+
+Instead of using a CDN (e.g. for GDPR reasons) you can of course also download the library .js files and host them on your server.
+Simply download the latest release from one of the CDN's mentioned above, like: https://cdn.jsdelivr.net/npm/friendly-challenge/
+
+- The module widget.module.min.js: https://cdn.jsdelivr.net/npm/friendly-challenge/widget.module.min.js
+- The nomodule widget.min.js: https://cdn.jsdelivr.net/npm/friendly-challenge/widget.min.js
+
+Please remember to update to the latest release from time to time.
+
 #### Option B: Import the library into your Javascript code
 
 Alternatively, you can install the **friendly-challenge** library using a package manager such as npm:

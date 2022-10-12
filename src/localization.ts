@@ -661,6 +661,27 @@ const LANG_ZH: Localization = {
   text_fetch_error: "无法连接到",
 };
 
+// Traditional Chinese
+const LANG_ZH_TW: Localization = {
+  text_init: "正在初始化……",
+
+  text_ready: "反機器人驗證",
+  button_start: "點擊開始驗證",
+
+  text_fetching: "載入中",
+
+  text_solving: "反機器人驗證中……",
+  text_completed: "我不是機器人",
+  text_completed_sr: "驗證完成",
+
+  text_expired: "驗證超時",
+  button_restart: "重新開始",
+
+  text_error: "驗證失敗",
+  button_retry: "重試",
+  text_fetch_error: "無法連線到",
+};
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -692,6 +713,7 @@ export const localizations = {
   hu: LANG_HU,
   ro: LANG_RO,
   zh: LANG_ZH,
+  zh_TW: LANG_ZH_TW,
 
   // alternative language codes
   nb: LANG_NO,

@@ -1,0 +1,308 @@
+{
+    "schemes": [
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This is the public API of Friendly Captcha",
+        "title": "Friendly Captcha API",
+        "contact": {
+            "name": "Friendly Captcha Support",
+            "url": "https://friendlycaptcha.com/support",
+            "email": "support@friendlycaptcha.com"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/api/v1/authInfo": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CoreApi"
+                ],
+                "summary": "Check if an API key is valid",
+                "operationId": "HandleSiteAuthInfoPost",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AuthInfoPOSTRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AuthInfoPOSTResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/puzzle": {
+            "get": {
+                "description": "The endpoint the widget uses to load a puzzle.\nIn most cases there is no reason to call this directly from your backend server.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CoreApi"
+                ],
+                "summary": "Serves a Puzzle",
+                "operationId": "PuzzleGet",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "SiteKey",
+                        "name": "sitekey",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PuzzleGETResponseData"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/siteverify": {
+            "post": {
+                "description": "The response will tell you whether the CAPTCHA solution is valid and hasn't been used before.\nIf you receive a response code other than 200 in production,\nyou should probably accept the user's form despite not having been able to verify the CAPTCHA solution.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CoreApi"
+                ],
+                "summary": "Verify the CAPTCHA solution,",
+                "operationId": "SiteVerifyPost",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SiteverifyPOSTRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SiteverifyPOSTResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/FriendlyCaptchaAPIError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AuthInfoPOSTRequest": {
+            "type": "object",
+            "required": [
+                "secret"
+            ],
+            "properties": {
+                "secret": {
+                    "type": "string"
+                }
+            }
+        },
+        "AuthInfoPOSTResponse": {
+            "type": "object",
+            "required": [
+                "success"
+            ],
+            "properties": {
+                "account_id": {
+                    "type": "integer"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "FriendlyCaptchaAPIError": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "type": "string"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "PuzzleGETResponseData": {
+            "type": "object",
+            "required": [
+                "puzzle"
+            ],
+            "properties": {
+                "puzzle": {
+                    "description": "The base64 encoded, cryptographically signed Puzzle",
+                    "type": "string",
+                    "example": "zXb9CIMTNoVEafRwrxHzQg=="
+                }
+            }
+        },
+        "SiteverifyPOSTRequest": {
+            "type": "object",
+            "required": [
+                "secret",
+                "solution"
+            ],
+            "properties": {
+                "secret": {
+                    "description": "An API key that proves it's you, create one on the Friendly Captcha website",
+                    "type": "string"
+                },
+                "sitekey": {
+                    "description": "Optional: the sitekey that you want to make sure the puzzle was generated from.",
+                    "type": "string"
+                },
+                "solution": {
+                    "description": "The solution value that the user submitted in the frc-captcha-solution field",
+                    "type": "string"
+                }
+            }
+        },
+        "SiteverifyPOSTResponse": {
+            "type": "object",
+            "required": [
+                "success"
+            ],
+            "properties": {
+                "details": {
+                    "type": "string"
+                },
+                "errors": {
+                    "description": "If you are seeing status code 400 or 401 your server code is probably not configured correctly.\nsecret_missing (400) You forgot to add the secret (=API key) parameter.\nsecret_invalid (401) The API key you provided was invalid.\nsolution_missing (400) You forgot to add the solution parameter.\nbad_request (400) Something else is wrong with your request, e.g. your request body is empty.\nsolution_invalid\t(200) The solution you provided was invalid (perhaps the user tried to tamper with the puzzle).\nsolution_timeout_or_duplicate (200) The puzzle that the solution was for has expired or has already been used.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "success": {
+                    "description": "If success is false, errors will be a list containing at least one of the error codes.",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@
   * [Themes & Dark mode](/theme.md)
   * [📱 Use in Flutter](/flutter.md)
   * [🇪🇺 EU-only Endpoint](/eu_endpoint.md)
-  * [OpenAPI Spec](/openapi_spec.md)
+  * [⚙️ OpenAPI](/openapi_spec.md)
   * [🤖 Automated Testing](/automated_testing.md)
   * [Changelog](/changelog.md)
 * **Links**

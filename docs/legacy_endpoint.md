@@ -40,6 +40,6 @@ Please replace the following in your backend code:
 
 Replace it with
 
-```https:/api.friendlycaptcha.com/api/v1/siteverify```
+```https://api.friendlycaptcha.com/api/v1/siteverify```
 
 > Note: If you are using the 🇪🇺 EU endpoint for siteverify, no changes are required in the backend code.

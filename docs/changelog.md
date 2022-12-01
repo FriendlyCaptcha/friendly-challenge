@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.9.9
+- Fix for NextJS 13 production builds.
 - Added Chinese (Traditional) (`"zh_TW"`) localization (thank you @jhihyulin!).
+- Added Vietnamese (`"vi"`) localization (thank you @duy13!).
 
 ## 0.9.8
 - Fix for false positive headless errors in Chromium browsers when having certain plugins installed (`"Browser check failed, try a different browser"`).

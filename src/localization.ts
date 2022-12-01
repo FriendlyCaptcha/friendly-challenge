@@ -682,6 +682,27 @@ const LANG_ZH_TW: Localization = {
   text_fetch_error: "無法連線到",
 };
 
+// Vietnamese
+const LANG_VI: Localization = {
+  text_init: "Đang khởi tạo..",
+
+  text_ready: "Xác minh chống Robot",
+  button_start: "Bấm vào đây để xác minh",
+
+  text_fetching: "Tìm nạp và xử lý thử thách",
+
+  text_solving: "Xác minh bạn là người..",
+  text_completed: "Bạn là người",
+  text_completed_sr: "Xác minh hoàn tất",
+
+  text_expired: "Xác minh đã hết hạn",
+  button_restart: "Khởi động lại",
+
+  text_error: "Xác minh thất bại",
+  button_retry: "Thử lại",
+  text_fetch_error: "Không kết nối được",
+};
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -714,6 +735,7 @@ export const localizations = {
   ro: LANG_RO,
   zh: LANG_ZH,
   zh_TW: LANG_ZH_TW,
+  vi: LANG_VI,
 
   // alternative language codes
   nb: LANG_NO,

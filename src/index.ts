@@ -1,3 +1,4 @@
 export { WidgetInstance } from "./captcha";
 export type { WidgetInstanceOptions } from "./captcha";
-export type { Localization, localizations } from "./localization";
+export { localizations } from "./localization";
+export type { Localization } from "./localization";

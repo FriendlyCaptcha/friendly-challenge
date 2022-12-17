@@ -56,19 +56,19 @@ const LANG_EN: Localization = {
 const LANG_FR: Localization = {
   text_init: "Chargement..",
 
-  text_ready: "Verification Anti-Robot",
+  text_ready: "Vérification Anti-Robot",
   button_start: "Cliquez ici pour vérifier",
 
-  text_fetching: "Chargement du challenge",
+  text_fetching: "Chargement du défi",
 
-  text_solving: "Vérification que vous êtes humain..",
-  text_completed: "Je suis humain",
-  text_completed_sr: "Vérification automatique des spams terminée", // TODO: verify by native speaker
+  text_solving: "Vérification que vous êtes un humain..",
+  text_completed: "Je suis un humain",
+  text_completed_sr: "Vérification automatique des spams terminée",
 
-  text_expired: "Verification échue",
-  button_restart: "Recommencer",
+  text_expired: "Vérification anti-robot expirée",
+  button_restart: "Redémarrer",
 
-  text_error: "Echec de verification",
+  text_error: "Échec de la vérification",
   button_retry: "Recommencer",
   text_fetch_error: "Problème de connexion avec",
 };

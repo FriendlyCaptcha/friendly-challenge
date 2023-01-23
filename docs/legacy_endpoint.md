@@ -24,7 +24,7 @@ Please perform the following updates. Upgrading should only take a few minutes, 
 
 ### Widget and the `friendly-challenge` library
 
-If you are using version `0.8.3` or below, please update to the latest version as soon as possible. If you are using a more recent version then still we would advise to upgrade to the latest version (`0.9.10`).
+If you are using version `0.8.3` or below, please update to the latest version as soon as possible. If you are using a more recent version still we advise to upgrade to the latest version (`0.9.10`).
 
 The changelog can be found [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/docs/changelog.md).
 

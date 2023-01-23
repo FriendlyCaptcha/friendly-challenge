@@ -1,4 +1,4 @@
-// Defensive init to make it easier to integrate with Gatsby and friends.
+// Defensive init to make it easier to integrate with Gatsby, NextJS, and friends.
 let nav: Navigator;
 let ua: string;
 if (typeof navigator !== "undefined") {
@@ -12,15 +12,6 @@ if (typeof navigator !== "undefined") {
  * it stops unsophisticated scripters from making any request whatsoever.
  */
 export function isHeadless() {
-  let correctPluginPrototype = true;
-  try {
-    if (nav.plugins.length > 0) {
-      correctPluginPrototype = Plugin.prototype === (nav.plugins as any)[0].__proto__;
-    }
-  } catch (e) {
-    /* Do nothing, this browser misbehaves in mysterious ways */
-  }
-
   return (
     //tell-tale bot signs
     ua.indexOf("headless") !== -1 ||
@@ -29,7 +20,6 @@ export function isHeadless() {
     ua.indexOf("crawl") !== -1 || // Only IE5 has two distributions that has this on windows NT.. so yeah.
     nav.webdriver === true ||
     !nav.language ||
-    (nav.languages !== undefined && !nav.languages.length) || // IE 11 does not support NavigatorLanguage.languages https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages
-    !correctPluginPrototype
+    (nav.languages !== undefined && !nav.languages.length) // IE 11 does not support NavigatorLanguage.languages https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages
   );
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.9.10
+- Fix for false positive headless browser check in rare cases on Windows devices (`"Browser check failed, try a different browser"`).
+- Improved French (`"fr"`) localization (thank you @mikejpr!).
+
 ## 0.9.9
 - Fix for NextJS 13 production builds.
 - Added Chinese (Traditional) (`"zh_TW"`) localization (thank you @jhihyulin!).

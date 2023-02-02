@@ -9,7 +9,7 @@ export interface Localization {
   button_start: string;
 
   // While the widget is downloading a puzzle (usually only takes a split second)
-  // If this is hard to translate, you could put something simple like "Loading.."
+  // If this is hard to translate, you could put something simple like "Loading..."
   text_fetching: string;
 
   // While the widget is solving
@@ -33,14 +33,14 @@ export interface Localization {
 
 // English
 const LANG_EN: Localization = {
-  text_init: "Initializing..",
+  text_init: "Initializing...",
 
   text_ready: "Anti-Robot Verification",
   button_start: "Click to start verification",
 
   text_fetching: "Fetching Challenge",
 
-  text_solving: "Verifying you are human..",
+  text_solving: "Verifying you are human...",
   text_completed: "I am human",
   text_completed_sr: "Automatic spam check completed",
 
@@ -54,14 +54,14 @@ const LANG_EN: Localization = {
 
 // French
 const LANG_FR: Localization = {
-  text_init: "Chargement..",
+  text_init: "Chargement...",
 
   text_ready: "Vérification Anti-Robot",
   button_start: "Cliquez ici pour vérifier",
 
   text_fetching: "Chargement du défi",
 
-  text_solving: "Vérification que vous êtes un humain..",
+  text_solving: "Vérification que vous êtes un humain...",
   text_completed: "Je suis un humain",
   text_completed_sr: "Vérification automatique des spams terminée",
 
@@ -75,14 +75,14 @@ const LANG_FR: Localization = {
 
 // German
 const LANG_DE: Localization = {
-  text_init: "Initialisierung..",
+  text_init: "Initialisierung...",
 
   text_ready: "Anti-Roboter-Verifizierung",
   button_start: "Hier klicken",
 
-  text_fetching: "Herausforderung laden..",
+  text_fetching: "Herausforderung laden...",
 
-  text_solving: "Verifizierung, dass Sie ein Mensch sind..",
+  text_solving: "Verifizierung, dass Sie ein Mensch sind...",
   text_completed: "Ich bin ein Mensch",
   text_completed_sr: "Automatische Spamprüfung abgeschlossen",
 
@@ -96,14 +96,14 @@ const LANG_DE: Localization = {
 
 // Dutch
 const LANG_NL: Localization = {
-  text_init: "Initializeren..",
+  text_init: "Initializeren...",
 
   text_ready: "Anti-robotverificatie",
   button_start: "Klik om te starten",
 
-  text_fetching: "Aan het laden..",
+  text_fetching: "Aan het laden...",
 
-  text_solving: "Anti-robotverificatie bezig..",
+  text_solving: "Anti-robotverificatie bezig...",
   text_completed: "Ik ben een mens",
   text_completed_sr: "Automatische anti-spamcheck voltooid",
 
@@ -138,14 +138,14 @@ const LANG_IT: Localization = {
 
 // Portuguese
 const LANG_PT: Localization = {
-  text_init: "Inicializando..",
+  text_init: "Inicializando...",
 
   text_ready: "Verificação Anti-Robô",
   button_start: "Clique para iniciar verificação",
 
-  text_fetching: "Carregando..",
+  text_fetching: "Carregando...",
 
-  text_solving: "Verificando se você é humano..",
+  text_solving: "Verificando se você é humano...",
   text_completed: "Eu sou humano",
   text_completed_sr: "Verificação automática de spam concluída", // TODO: verify by native speaker
 
@@ -159,14 +159,14 @@ const LANG_PT: Localization = {
 
 // Spanish
 const LANG_ES: Localization = {
-  text_init: "Inicializando..",
+  text_init: "Inicializando...",
 
   text_ready: "Verificación Anti-Robot",
   button_start: "Haga clic para iniciar la verificación",
 
   text_fetching: "Cargando desafío",
 
-  text_solving: "Verificando que eres humano..",
+  text_solving: "Verificando que eres humano...",
   text_completed: "Soy humano",
   text_completed_sr: "Verificación automática de spam completada", // TODO: verify by native speaker
 
@@ -187,7 +187,7 @@ const LANG_CA: Localization = {
 
   text_fetching: "Carregant repte",
 
-  text_solving: "Verificant que ets humà..",
+  text_solving: "Verificant que ets humà...",
   text_completed: "Soc humà",
   text_completed_sr: "Verificació automàtica de correu brossa completada", // TODO: verify by native speaker
 
@@ -243,14 +243,14 @@ const LANG_DA: Localization = {
 
 // Russian
 const LANG_RU: Localization = {
-  text_init: "Инициализация..",
+  text_init: "Инициализация...",
 
   text_ready: "АнтиРобот проверка",
   button_start: "Нажмите, чтобы начать проверку",
 
   text_fetching: "Получаю задачу",
 
-  text_solving: "Проверяю, что вы человек..",
+  text_solving: "Проверяю, что вы человек...",
   text_completed: "Я человек",
   text_completed_sr: "Aвтоматическая проверка на спам завершена", // TODO: verify by native speaker
 
@@ -285,14 +285,14 @@ const LANG_SV: Localization = {
 
 // Turkish
 const LANG_TR: Localization = {
-  text_init: "Başlatılıyor..",
+  text_init: "Başlatılıyor...",
 
   text_ready: "Anti-Robot Doğrulaması",
   button_start: "Doğrulamayı başlatmak için tıklayın",
 
   text_fetching: "Yükleniyor",
 
-  text_solving: "Robot olmadığınız doğrulanıyor..",
+  text_solving: "Robot olmadığınız doğrulanıyor...",
   text_completed: "Ben bir insanım",
   text_completed_sr: "Otomatik spam kontrolü tamamlandı",
 
@@ -306,14 +306,14 @@ const LANG_TR: Localization = {
 
 // Greek
 const LANG_EL: Localization = {
-  text_init: "Προετοιμασία..",
+  text_init: "Προετοιμασία...",
 
   text_ready: "Anti-Robot Επαλήθευση",
   button_start: " Κάντε κλικ για να ξεκινήσει η επαλήθευσης",
 
   text_fetching: " Λήψη πρόκλησης",
 
-  text_solving: " Επιβεβαίωση ανθρώπου..",
+  text_solving: " Επιβεβαίωση ανθρώπου...",
   text_completed: "Είμαι άνθρωπος",
   text_completed_sr: " Ο αυτόματος έλεγχος ανεπιθύμητου περιεχομένου ολοκληρώθηκε",
 
@@ -327,14 +327,14 @@ const LANG_EL: Localization = {
 
 // Ukrainian
 const LANG_UK: Localization = {
-  text_init: "Ініціалізація..",
+  text_init: "Ініціалізація...",
 
   text_ready: "Антиробот верифікація",
   button_start: "Натисніть, щоб розпочати верифікацію",
 
   text_fetching: "З’єднання",
 
-  text_solving: "Перевірка, що ви не робот..",
+  text_solving: "Перевірка, що ви не робот...",
   text_completed: "Я не робот",
   text_completed_sr: "Автоматична перевірка спаму завершена",
 
@@ -369,14 +369,14 @@ const LANG_BG: Localization = {
 
 // Czech
 const LANG_CS: Localization = {
-  text_init: "Inicializace..",
+  text_init: "Inicializace...",
 
   text_ready: "Ověření proti robotům",
   button_start: "Klikněte pro ověření",
 
   text_fetching: "Problém při načítání",
 
-  text_solving: "Ověření, že jste člověk..",
+  text_solving: "Ověření, že jste člověk...",
   text_completed: "Jsem člověk",
   text_completed_sr: "Automatická kontrola spamu dokončena",
 
@@ -390,14 +390,14 @@ const LANG_CS: Localization = {
 
 // Slovak
 const LANG_SK: Localization = {
-  text_init: "Inicializácia..",
+  text_init: "Inicializácia...",
 
   text_ready: "Overenie proti robotom",
   button_start: "Kliknite pre overenie",
 
   text_fetching: "Problém pri načítaní",
 
-  text_solving: "Overenie, že ste človek..",
+  text_solving: "Overenie, že ste človek...",
   text_completed: "Som človek",
   text_completed_sr: "Automatická kontrola spamu dokončená",
 
@@ -453,14 +453,14 @@ const LANG_FI: Localization = {
 
 // Latvian
 const LANG_LV: Localization = {
-  text_init: "Notiek inicializēšana..",
+  text_init: "Notiek inicializēšana...",
 
   text_ready: "Verifikācija, ka neesat robots",
   button_start: "Noklikšķiniet, lai sāktu verifikāciju",
 
   text_fetching: "Notiek drošības uzdevuma izgūšana",
 
-  text_solving: "Notiek pārbaude, vai esat cilvēks..",
+  text_solving: "Notiek pārbaude, vai esat cilvēks...",
   text_completed: "Es esmu cilvēks",
   text_completed_sr: "Automātiska surogātpasta pārbaude pabeigta",
 
@@ -474,14 +474,14 @@ const LANG_LV: Localization = {
 
 // Lithuanian
 const LANG_LT: Localization = {
-  text_init: "Inicijuojama..",
+  text_init: "Inicijuojama...",
 
   text_ready: "Patikrinimas, ar nesate robotas",
   button_start: "Spustelėkite patikrinimui pradėti",
 
   text_fetching: "Gavimo iššūkis",
 
-  text_solving: "Tikrinama, ar esate žmogus..",
+  text_solving: "Tikrinama, ar esate žmogus...",
   text_completed: "Esu žmogus",
   text_completed_sr: "Automatinė patikra dėl pašto šiukšlių atlikta",
 
@@ -495,14 +495,14 @@ const LANG_LT: Localization = {
 
 // Polish
 const LANG_PL: Localization = {
-  text_init: "Inicjowanie..",
+  text_init: "Inicjowanie...",
 
   text_ready: "Weryfikacja antybotowa",
   button_start: "Kliknij, aby rozpocząć weryfikację",
 
   text_fetching: "Pobieranie",
 
-  text_solving: "Weryfikacja, czy nie jesteś robotem..",
+  text_solving: "Weryfikacja, czy nie jesteś robotem...",
   text_completed: "Nie jestem robotem",
   text_completed_sr: "Zakończono automatyczne sprawdzanie spamu",
 
@@ -516,14 +516,14 @@ const LANG_PL: Localization = {
 
 // Estonian
 const LANG_ET: Localization = {
-  text_init: "Initsialiseerimine..",
+  text_init: "Initsialiseerimine...",
 
   text_ready: "Robotivastane kinnitus",
   button_start: "Kinnitamisega alustamiseks klõpsake",
 
   text_fetching: "Väljakutse toomine",
 
-  text_solving: "Kinnitatakse, et sa oled inimene..",
+  text_solving: "Kinnitatakse, et sa oled inimene...",
   text_completed: "Ma olen inimene",
   text_completed_sr: "Automaatne rämpsposti kontroll on lõpetatud",
 
@@ -544,7 +544,7 @@ const LANG_HR: Localization = {
 
   text_fetching: "Dohvaćanje izazova",
 
-  text_solving: "Provjeravamo jeste li čovjek..",
+  text_solving: "Provjeravamo jeste li čovjek...",
   text_completed: "Nisam robot",
   text_completed_sr: "Automatska provjera je završena",
 
@@ -579,7 +579,7 @@ const LANG_SR: Localization = {
 
 // Slovenian
 const LANG_SL: Localization = {
-  text_init: "Inicializiranje..",
+  text_init: "Inicializiranje...",
 
   text_ready: "Preverjanje robotov",
   button_start: "Kliknite za začetek preverjanja",
@@ -621,14 +621,14 @@ const LANG_HU: Localization = {
 
 // Romanian
 const LANG_RO: Localization = {
-  text_init: "Se inițializează..",
+  text_init: "Se inițializează...",
 
   text_ready: "Verificare anti-robot",
   button_start: "Click pentru a începe verificarea",
 
   text_fetching: "Downloading",
 
-  text_solving: "Verificare ca ești om..",
+  text_solving: "Verificare că ești om...",
   text_completed: "Sunt om",
   text_completed_sr: "Verificarea automată a spam-ului a fost finalizată",
 
@@ -637,7 +637,7 @@ const LANG_RO: Localization = {
 
   text_error: "Verificare eșuată",
   button_retry: "Reîncearcă",
-  text_fetch_error: "Nu s-a putut conecta la",
+  text_fetch_error: "Nu s-a putut conecta",
 };
 
 // Chinese
@@ -684,14 +684,14 @@ const LANG_ZH_TW: Localization = {
 
 // Vietnamese
 const LANG_VI: Localization = {
-  text_init: "Đang khởi tạo..",
+  text_init: "Đang khởi tạo...",
 
   text_ready: "Xác minh chống Robot",
   button_start: "Bấm vào đây để xác minh",
 
   text_fetching: "Tìm nạp và xử lý thử thách",
 
-  text_solving: "Xác minh bạn là người..",
+  text_solving: "Xác minh bạn là người...",
   text_completed: "Bạn là người",
   text_completed_sr: "Xác minh hoàn tất",
 

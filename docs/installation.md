@@ -12,7 +12,7 @@ Let's go!
 
 Log in to your Friendly Captcha account and head to the [Applications page](https://app.friendlycaptcha.eu/dashboard).
 
-Click `Create New Application` and enter the necessary details. Once you have completed this, take note of the `sitekey` value under the application nam,e, we will need it in the next step.
+Click `Create New Application` and enter the necessary details. Once you have completed this, take note of the `sitekey` value under the application name, we will need it in the next step.
 
 A sitekey always starts with the characters `FC`.
 

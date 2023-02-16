@@ -7,7 +7,7 @@ As a premium feature we offer a dedicated forwarding endpoint hosted in Germany 
 > Note: Using this service requires a **Friendly Captcha Advanced** or **Enterprise** plan.
 
 ## Enabling the EU endpoint
-Open your [account page](https://app.friendlycaptcha.com/account") and click **Manage** on the app you want to enable the EU endpoint for.
+Open your [account page](https://app.friendlycaptcha.eu/dashboard/accounts") and click **Manage** on the app you want to enable the EU endpoint for.
 
 In the **Puzzle Endpoints** section you are able to enable and disable the endpoints you allow your visitors to fetch puzzles from.
 

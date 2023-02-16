@@ -2,7 +2,7 @@
 
 **There are three steps to adding Friendly Captcha to your website:**
 
-1. Create an account on the [**Friendly Captcha website**](https://friendlycaptcha.com) (it's free) and generate a `sitekey`.
+1. Create an account on the [**Friendly Captcha website**](https://friendlycaptcha.com/signup) (it's free) and generate a `sitekey`.
 2. Add the Friendly Captcha widget to your website
 3. Change your server code to verify the CAPTCHA solutions
 
@@ -10,9 +10,11 @@ Let's go!
 
 ## 1. Generating a sitekey
 
-Log in to your Friendly Captcha account and head to the [account page](https://friendlycaptcha.com/account).
+Log in to your Friendly Captcha account and head to the [Applications page](https://app.friendlycaptcha.eu/dashboard).
 
-Click the `Create Application` button and enter the necessary details. Once you have completed this, take note of the `sitekey` value in the _apps_ table, we will need it in the next step.
+Click `Create New Application` and enter the necessary details. Once you have completed this, take note of the `sitekey` value under the application nam,e, we will need it in the next step.
+
+A sitekey always starts with the characters `FC`.
 
 > If you don't have an account yet, you can create one [here](https://friendlycaptcha.com/signup).
 
@@ -93,7 +95,7 @@ In the form data sent to the server, there will be an extra text field called `f
 
 ### Creating a verification request
 
-You will need an API key to prove it's you, you can create one on the [**Friendly Captcha account page**](https://friendlycaptcha.com/account).
+You will need an API key to prove it's you, you can create one on the [**API Keys page**](https://app.friendlycaptcha.eu/dashboard) in the dashboard.
 
 To verify the CAPTCHA solution, make a POST request to `https://api.friendlycaptcha.com/api/v1/siteverify` with the following parameters:
 

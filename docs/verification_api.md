@@ -1,6 +1,6 @@
 # Verification API
 
-You will need an API key to prove it's you, you can create one on the [**Friendly Captcha account page**](https://friendlycaptcha.com/account).
+You will need an API key to prove it's you, you can create one on the [**API Keys page**](https://app.friendlycaptcha.eu/dashboard) in the dashboard.
 
 To verify the CAPTCHA solution, make a POST request to `https://api.friendlycaptcha.com/api/v1/siteverify` with the following parameters:
 

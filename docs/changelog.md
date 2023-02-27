@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.9.11
+- Improvements to localizations, fix for Romanian (`"ro"`) localization (thank you @zcserei!).
+
 ### 0.9.10
 - Fix for false positive headless browser check in rare cases on Windows devices (`"Browser check failed, try a different browser"`).
 - Improved French (`"fr"`) localization (thank you @mikejpr!).

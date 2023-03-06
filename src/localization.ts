@@ -309,7 +309,7 @@ const LANG_EL: Localization = {
   text_init: "Προετοιμασία...",
 
   text_ready: "Anti-Robot Επαλήθευση",
-  button_start: " Κάντε κλικ για να ξεκινήσει η επαλήθευσης",
+  button_start: " Κάντε κλικ για να ξεκινήσει η επαλήθευση",
 
   text_fetching: " Λήψη πρόκλησης",
 
@@ -321,7 +321,7 @@ const LANG_EL: Localization = {
   button_restart: " Επανεκκίνηση",
 
   text_error: " Η επαλήθευση απέτυχε",
-  button_retry: " Δοκιμάσετε ξανά",
+  button_retry: " Δοκιμάστε ξανά",
   text_fetch_error: " Αποτυχία σύνδεσης με",
 };
 

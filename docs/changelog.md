@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.9.12
+- Don't use title attribute for debug information during solving
+
 ### 0.9.11
 - Improvements to localizations, fix for Romanian (`"ro"`) localization (thank you @zcserei!).
 

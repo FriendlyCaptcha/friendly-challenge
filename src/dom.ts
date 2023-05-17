@@ -23,9 +23,11 @@ function getTemplate(
   additionalContainerClasses?: string
 ) {
   return `<div class="frc-container${additionalContainerClasses ? " " + additionalContainerClasses : ""}">
-<svg class="frc-icon"${svgAriaHidden ? " aria-hidden=\"true\"" : ""} role="img" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 24 24">${svgContent}</svg>
+<svg class="frc-icon"${
+    svgAriaHidden ? ' aria-hidden="true"' : ""
+  } role="img" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 24 24">${svgContent}</svg>
 <div class="frc-content">
-    <span class="frc-text" ${debugData ? `title="${debugData}"` : ``}>${textContent}</span>
+    <span class="frc-text" ${debugData ? `data-debug="${debugData}"` : ``}>${textContent}</span>
     ${buttonText ? `<button type="button" class="frc-button">${buttonText}</button>` : ""}
     ${progress ? `<progress class="frc-progress" value="0">0%</progress>` : ""}
 </div>
@@ -83,7 +85,13 @@ export function getExpiredHTML(fieldName: string, l: Localization) {
   return getTemplate(fieldName, errorSVG, true, l.text_expired, ".EXPIRED", l.button_restart);
 }
 
-export function getErrorHTML(fieldName: string, l: Localization, errorDescription: string, recoverable = true, headless = false) {
+export function getErrorHTML(
+  fieldName: string,
+  l: Localization,
+  errorDescription: string,
+  recoverable = true,
+  headless = false
+) {
   return getTemplate(
     fieldName,
     errorSVG,

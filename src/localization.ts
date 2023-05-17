@@ -692,7 +692,7 @@ const LANG_VI: Localization = {
   text_fetching: "Tìm nạp và xử lý thử thách",
 
   text_solving: "Xác minh bạn là người...",
-  text_completed: "Bạn là người",
+  text_completed: "Bạn là con người",
   text_completed_sr: "Xác minh hoàn tất",
 
   text_expired: "Xác minh đã hết hạn",

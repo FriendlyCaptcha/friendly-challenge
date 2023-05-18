@@ -9,20 +9,15 @@ If you want to support browsers over 5 years old, you will need some polyfills (
 You can use the build that includes the polyfills:
 
 ```html
-<!-- from unpkg -->
-<script type="module" src="https://unpkg.com/friendly-challenge@0.9.11/widget.module.min.js" async defer></script>
-<script nomodule src="https://unpkg.com/friendly-challenge@0.9.11/widget.polyfilled.min.js" async defer></script>
-
-<!-- OR from jsdelivr -->
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.11/dist/widget.module.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.12/dist/widget.module.min.js"
   async
   defer
 ></script>
 <script
   nomodule
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.11/dist/widget.polyfilled.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.12/dist/widget.polyfilled.min.js"
   async
   defer
 ></script>

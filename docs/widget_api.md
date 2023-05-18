@@ -247,5 +247,35 @@ The following example presents a way to embed the Friendly Captcha widget in a S
 <div bind:this={container} class="frc-captcha" data-sitekey="YOUR_SITE_KEY" />
 ```
 
+### Full example in Angular
+
+```html
+<div class="frc-captcha" data-sitekey="<sitekey>" data-puzzle-endpoint="https://api.friendlycaptcha.com/api/v1/puzzle, https://eu-api.friendlycaptcha.eu/api/v1/puzzle" #frccaptcha></div>
+```
+
+```typescript
+import { WidgetInstance } from 'friendly-challenge'
+
+...
+
+  @ViewChild('frccaptcha', { static: false }) 
+  friendlyCaptcha: ElementRef<HTMLElement>; 
+
+...
+  ngAfterViewInit() {
+      const widget = new WidgetInstance(this.friendlyCaptcha.nativeElement, {
+        doneCallback: (a) => {
+          this.myForm.get('captcha')?.patchValue(true)
+          console.log('DONE: ', a);
+        },
+        errorCallback: (b) => {
+          console.log('FAILED', b);
+        },
+      })
+
+      widget.start()
+  }
+```
+
 ## Questions or issues
 If you have any questions about the API or run into problems, the best place to get help is the *issues* page on the [github repository](https://github.com/FriendlyCaptcha/friendly-challenge/issues).

@@ -17,7 +17,7 @@ You will only need to add the following directives:
 
 ### Nonce-based approach (Recommended)
 
-See [this guide](https://content-security-policy.com/nonce/) and include your nonce in the `widget.min.js` script tag.
+See [this guide](https://content-security-policy.com/nonce/) and include your nonce in the `widget.min.js` and `widget.module.min.js` script tag.
 
 ###  Hash-based approach
 

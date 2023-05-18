@@ -10,10 +10,10 @@ You will only need to add the following directives:
 
 - If you're loading the widget from the CDN:
 
-    `script-src 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/; worker-src blob:; child-src blob:"`
+    `script-src 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/; worker-src blob:; child-src blob:`
 - If you're loading the widget from your own bundle: 
 
-    `script-src 'wasm-unsafe-eval' 'self'; worker-src blob:; child-src blob:"`
+    `script-src 'wasm-unsafe-eval' 'self'; worker-src blob:; child-src blob:`
 
 ### Nonce-based approach (Recommended)
 

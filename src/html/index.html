@@ -46,6 +46,7 @@
     <button id="reset-button">Reset widget</button>
     <button id="destroy-button">Destroy widget</button>
     <button id="theme-button">Toggle dark theme</button>
+    <button id="lang-button">Set language to Vietnamese (reset required)</button>
     <script>
       function doneCallback() {
         const doneEl = document.createElement("div")
@@ -65,6 +66,11 @@
       document.querySelector("#destroy-button").addEventListener("click", function() {
         friendlyChallenge.autoWidget.destroy();
       });
+
+      document.querySelector("#lang-button").addEventListener("click", function() {
+        friendlyChallenge.autoWidget.loadLanguage("vi");
+      });
+
 
       document.querySelector("#theme-button").addEventListener("click", function() {
         [].forEach.call(document.querySelectorAll(".frc-captcha"), function(c) {

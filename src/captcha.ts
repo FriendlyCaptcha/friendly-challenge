@@ -69,7 +69,7 @@ export class WidgetInstance {
 
   private hasBeenDestroyed = false;
 
-  private lang: Localization;
+  private lang!: Localization;
 
   private expiryTimeout: ReturnType<typeof setTimeout> | undefined;
 
@@ -93,20 +93,8 @@ export class WidgetInstance {
     this.e = element;
     this.e.friendlyChallengeWidget = this;
 
-    // Load language
-    if (typeof this.opts.language === "string") {
-      let l = (localizations as any)[this.opts.language.toLowerCase()];
-      if (l === undefined) {
-        console.error('FriendlyCaptcha: language "' + this.opts.language + '" not found.');
-        // Fall back to English
-        l = localizations.en;
-      }
-      this.lang = l;
-    } else {
-      // We assign to a copy of the English language localization, so that any missing values will be English
-      this.lang = Object.assign(Object.assign({}, localizations.en), this.opts.language);
-    }
-
+    this.loadLanguage();
+    // @ts-ignore Ignore is required as TS thinks that `this.lang` is not assigned yet, but it happens in `this.loadLanguage()` above.
     element.innerText = this.lang.text_init;
     if (!this.opts.skipStyleInjection) {
       injectStyle();
@@ -133,6 +121,31 @@ export class WidgetInstance {
       } else {
         console.log("FriendlyCaptcha div seems not to be contained in a form, autostart will not work");
       }
+    }
+  }
+
+  /**
+   * Loads the configured language, or a language passed to this function.
+   * Note that only the next update will be in the new language, consider calling `reset()` after switching languages.
+   */
+  public loadLanguage(lang?: keyof typeof localizations | Localization) {
+    if (lang !== undefined) {
+      this.opts.language = lang;
+    } else if (this.e.dataset["lang"]) {
+      this.opts.language = this.e.dataset["lang"] as keyof typeof localizations;
+    }
+
+    if (typeof this.opts.language === "string") {
+      let l = (localizations as any)[this.opts.language.toLowerCase()];
+      if (l === undefined) {
+        console.error('FriendlyCaptcha: language "' + this.opts.language + '" not found.');
+        // Fall back to English
+        l = localizations.en;
+      }
+      this.lang = l;
+    } else {
+      // We assign to a copy of the English language localization, so that any missing values will be English
+      this.lang = Object.assign(Object.assign({}, localizations.en), this.opts.language);
     }
   }
 

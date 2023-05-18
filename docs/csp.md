@@ -10,7 +10,9 @@ You will only need to add the following directives:
 
 - If you're loading the widget from the CDN:
 
-    `script-src 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/; worker-src blob:; child-src blob:`
+    `script-src 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.11/widget.module.min.js; worker-src blob:; child-src blob:`
+
+    > note: make sure the widget version in the above CDN URL is correct
 - If you're loading the widget from your own bundle: 
 
     `script-src 'wasm-unsafe-eval' 'self'; worker-src blob:; child-src blob:`

@@ -97,7 +97,7 @@ function doneCallback(solution) {
 // This element should contain the `frc-captcha` class for correct styling
 const element = document.querySelector("#my-widget");
 const options = {
-    doneCallback: doneCallback;
+    doneCallback: doneCallback,
     sitekey: "<my sitekey>",
 }
 const widget = new WidgetInstance(element, options);

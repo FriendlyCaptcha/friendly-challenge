@@ -61,8 +61,8 @@ const LANG_FR: Localization = {
 
   text_fetching: "Chargement du défi",
 
-  text_solving: "Vérification que vous êtes un humain...",
-  text_completed: "Je suis un humain",
+  text_solving: "Nous vérifions que vous n'êtes pas un robot...",
+  text_completed: "Je ne suis pas un robot",
   text_completed_sr: "Vérification automatique des spams terminée",
 
   text_expired: "Vérification anti-robot expirée",

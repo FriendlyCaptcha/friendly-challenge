@@ -2,6 +2,7 @@
 
 ### Unreleased
 - Improvement to the French (`"fr"`) localization.
+- Added feature for not including the hidden form field at all.
 
 ### 0.9.12
 - No longer uses the title attribute for debug information during solving. Some screen readers would read this title as it updates.

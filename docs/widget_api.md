@@ -55,6 +55,8 @@ Example:
 <div class="frc-captcha" data-sitekey="<my sitekey>" data-solution-field-name="my-captcha-solution-field"></div>
 ```
 
+You can completely omit this hidden form field by setting this value to `"-"`.
+
 ### data-puzzle-endpoint
 *Only relevant if you are using our [dedicated EU endpoint service](/#/eu_endpoint)*.
 By default the widget fetches puzzles from `https://api.friendlycaptcha.com/api/v1/puzzle`, which serves puzzles globally from over 200 data centers. As a premium service we offer an alternative endpoint that serves requests from datacenters in Germany only.
@@ -114,7 +116,7 @@ The options object takes the following fields, they are all optional:
 * **`doneCallback`**: function, called when the CAPTCHA has been completed. One argument will be passed: the solution string that should be sent to the server.
 * **`errorCallback`**: function, called when an internal error occurs. The error is passed as an object, the fields and values of this object are still to be documented may change in the future. Consider this experimental. In case of a fetch error (e.g. network connection loss or firewall block), the raw error of the fetch request can be retrieved under the `error.rawError` member variable.
 * **`language`**: string or object, the same values as the `data-lang` attribute can be provided, or a custom translation object for your language. See [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/src/localization.ts) for what this object should look like.
-* **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name.
+* **`solutionFieldName`**: string, default `"frc-captcha-solution"`. The solution to the CAPTCHA will be put in a hidden form field with this name. If you set this value to `"-"`, no hidden form field is injected at all.
 
 * **`puzzleEndpoint`**: string, the URL the widget should retrieve its puzzle from. This defaults to Friendly Captcha's endpoint, you will only ever need to change this if you are creating your own puzzles or are using our dedicated EU endpoint service.
 * **`skipStyleInjection`**: boolean, if this is set to true the Friendly Captcha widget CSS will no longer be automatically injected into your webpage. You will be responsible for styling the element yourself.

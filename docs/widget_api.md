@@ -179,7 +179,7 @@ export default FriendlyCaptcha;
 The following example presents a way to embed the Friendly Captcha widget in a Vue component:
 ```html
 <template>
-  <div ref="container"></div>
+  <div ref="container" class="frc-captcha" data-sitekey="YOUR_SITE_KEY"></div>
 </template>
 
 <script lang="ts" setup>

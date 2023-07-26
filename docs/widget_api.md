@@ -184,7 +184,7 @@ The following example presents a way to embed the Friendly Captcha widget in a V
 
 <script lang="ts" setup>
 import { WidgetInstance } from "friendly-challenge";
-import { ref, watch } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 const container = ref();
 const widget = ref();
@@ -199,18 +199,19 @@ const errorCallback = (err) => {
   console.log(err);
 }
 
-watch(container, () => {
-  // reset the widget instance when the container changes
-  if (widget.value) {
-    widget.value.destroy();
-  }
-
+onMounted(() => {
   if (container.value) {
     widget.value = new WidgetInstance(container.value, {
       startMode: "auto",
-      doneCallback: doneCallback,
-      errorCallback: errorCallback 
+      doneCallback,
+      errorCallback
     });
+  }
+});
+
+onUnmounted(() => {
+  if (widget.value) {
+    widget.value.destroy();
   }
 });
 </script>

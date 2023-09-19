@@ -1,5 +1,8 @@
 # Changelog
 
+### Unreleased
+- Small tweak to the French (`"fr"`) localization.
+
 ### 0.9.13
 - Improvement to the French (`"fr"`) localization.
 - Added feature for not including the hidden form field at all by passing `"-"` as custom field name.

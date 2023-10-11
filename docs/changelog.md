@@ -1,21 +1,21 @@
 # Changelog
 
-### Unreleased
+## Unreleased
 - Small tweak to the French (`"fr"`) localization.
 
-### 0.9.13
+## 0.9.13
 - Improvement to the French (`"fr"`) localization.
 - Added feature for not including the hidden form field at all by passing `"-"` as custom field name.
 
-### 0.9.12
+## 0.9.12
 - No longer uses the title attribute for debug information during solving. Some screen readers would read this title as it updates.
 - Localization fix for Vietnamese (`"vi"`).
 - The widget now exposes a `loadLanguage` function that allows you to programmatically change the language of the widget.
 
-### 0.9.11
+## 0.9.11
 - Improvements to localizations, fix for Romanian (`"ro"`) localization (thank you @zcserei!).
 
-### 0.9.10
+## 0.9.10
 - Fix for false positive headless browser check in rare cases on Windows devices (`"Browser check failed, try a different browser"`).
 - Improved French (`"fr"`) localization (thank you @mikejpr!).
 

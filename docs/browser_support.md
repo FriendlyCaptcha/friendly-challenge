@@ -11,13 +11,13 @@ You can use the build that includes the polyfills:
 ```html
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.13/dist/widget.module.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.14/dist/widget.module.min.js"
   async
   defer
 ></script>
 <script
   nomodule
-  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.13/dist/widget.polyfilled.min.js"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.14/dist/widget.polyfilled.min.js"
   async
   defer
 ></script>

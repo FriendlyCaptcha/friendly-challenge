@@ -29,6 +29,9 @@ export interface Localization {
   button_retry: string;
   // This error message is followed by the URL, a space is added.
   text_fetch_error: string;
+
+  // Right to left language
+  rtl?: boolean;
 }
 
 // English
@@ -703,6 +706,29 @@ const LANG_VI: Localization = {
   text_fetch_error: "Không kết nối được",
 };
 
+// Hebrew
+const LANG_HE: Localization = {
+  text_init: "בביצוע...",
+
+  text_ready: "אימות אנוש",
+  button_start: "צריך ללחוץ להתחלת האימות",
+
+  text_fetching: "אתגר המענה בהכנה",
+
+  text_solving: "מתבצע אימות אנוש...",
+  text_completed: "אני לא רובוט",
+  text_completed_sr: "בדיקת הספאם האוטומטית הסתיימה",
+
+  text_expired: "פג תוקף אימות האנוש",
+  button_restart: "להתחיל שוב",
+
+  text_error: "אימות האנוש נכשל",
+  button_retry: "לנסות שוב",
+  text_fetch_error: "נכשל החיבור אל",
+
+  rtl: true,
+}
+
 export const localizations = {
   en: LANG_EN,
   de: LANG_DE,
@@ -736,6 +762,7 @@ export const localizations = {
   zh: LANG_ZH,
   zh_tw: LANG_ZH_TW,
   vi: LANG_VI,
+  he: LANG_HE,
 
   // alternative language codes
   nb: LANG_NO,

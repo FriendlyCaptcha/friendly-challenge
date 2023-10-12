@@ -8,6 +8,16 @@
     <script nomodule src="widget.min.js" defer async></script>
   
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      
+      .frc-captcha { /* Puts some space between the widgets below */
+        margin-top: 8px; 
+      }
+    </style> 
   </head>
   <body>
     <!-- This index.html is used for e2e testing -->
@@ -16,6 +26,7 @@
     <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="de"></div>
     <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="nl"></div>
     <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="ja"></div>
+    <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="he"></div>
     <h4>This one has an invalid data-lang, it should fall back to English.</h4>
     <div class="frc-captcha" data-sitekey="FCMGEMUD2KTDSQ5H" data-lang="ww"></div>
     <h3>Custom field name</h3>

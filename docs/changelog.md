@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.9.14
 - Small tweak to the French (`"fr"`) localization.
+- Added Hebrew (`"he"`) localization (thank you @tinytim84!).
 
 ## 0.9.13
 - Improvement to the French (`"fr"`) localization.

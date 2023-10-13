@@ -727,7 +727,29 @@ const LANG_HE: Localization = {
   text_fetch_error: "נכשל החיבור אל",
 
   rtl: true,
-}
+};
+
+// Thai
+const LANG_TH: Localization = {
+  text_init: "การเริ่มต้น...",
+
+  text_ready: " การตรวจสอบต่อต้านหุ่นยนต์",
+  button_start: "คลิกเพื่อเริ่มการตรวจสอบ",
+
+  text_fetching: "การดึงความท้าทาย",
+
+  text_solving: "ยืนยันว่าคุณเป็นมนุษย์...",
+  text_completed: "ฉันเป็นมนุษย์",
+  text_completed_sr: "การตรวจสอบสแปมอัตโนมัติเสร็จสมบูรณ์",
+
+  text_expired: "การตรวจสอบ ต่อต้านหุ่นยนต์ หมดอายุ",
+  button_restart: "รีสตาร์ท",
+
+  text_error: "การยืนยันล้มเหลว",
+  button_retry: "ลองใหม่",
+  text_fetch_error: "ไม่สามารถเชื่อมต่อได้"
+};
+
 
 export const localizations = {
   en: LANG_EN,
@@ -763,6 +785,7 @@ export const localizations = {
   zh_tw: LANG_ZH_TW,
   vi: LANG_VI,
   he: LANG_HE,
+  th: LANG_TH,
 
   // alternative language codes
   nb: LANG_NO,

@@ -123,6 +123,21 @@
     font-size: 0.9em;
 }
 
+/* RTL support */
+
+.frc-rtl {
+    direction: rtl;
+}
+
+.frc-rtl .frc-content {
+    margin: 4px 0 0 6px;
+}
+
+.frc-banner.frc-rtl {
+    left: 6px;
+    right: auto;
+}
+
 /* Dark theme */
 
 .dark.frc-captcha {

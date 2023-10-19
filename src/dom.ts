@@ -13,6 +13,7 @@ const errorSVG = `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S
  */
 function getTemplate(
   fieldName: string,
+  rtl: boolean | undefined,
   svgContent: string,
   svgAriaHidden: boolean,
   textContent: string,
@@ -22,7 +23,7 @@ function getTemplate(
   debugData?: string,
   additionalContainerClasses?: string
 ) {
-  return `<div class="frc-container${additionalContainerClasses ? " " + additionalContainerClasses : ""}">
+  return `<div class="frc-container${additionalContainerClasses ? " " + additionalContainerClasses : ""}${rtl?" frc-rtl":""}">
 <svg class="frc-icon"${
     svgAriaHidden ? ' aria-hidden="true"' : ""
   } role="img" xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 24 24">${svgContent}</svg>
@@ -31,7 +32,7 @@ function getTemplate(
     ${buttonText ? `<button type="button" class="frc-button">${buttonText}</button>` : ""}
     ${progress ? `<progress class="frc-progress" value="0">0%</progress>` : ""}
 </div>
-</div><span class="frc-banner"><a lang="en" href="https://friendlycaptcha.com/" rel="noopener" target="_blank"><b>Friendly</b>Captcha ⇗</a></span>
+</div><span class="frc-banner${rtl?" frc-rtl":""}"><a lang="en" href="https://friendlycaptcha.com/" rel="noopener" target="_blank"><b>Friendly</b>Captcha ⇗</a></span>
 ${fieldName === "-" ? "":`<input name="${fieldName}" class="frc-captcha-solution" type="hidden" value="${solutionString}">`}`;
 }
 
@@ -41,6 +42,7 @@ ${fieldName === "-" ? "":`<input name="${fieldName}" class="frc-captcha-solution
 export function getReadyHTML(fieldName: string, l: Localization) {
   return getTemplate(
     fieldName,
+    l.rtl,
     `<path d="M17,11c0.34,0,0.67,0.04,1,0.09V6.27L10.5,3L3,6.27v4.91c0,4.54,3.2,8.79,7.5,9.82c0.55-0.13,1.08-0.32,1.6-0.55 C11.41,19.47,11,18.28,11,17C11,13.69,13.69,11,17,11z"/><path d="M17,13c-2.21,0-4,1.79-4,4c0,2.21,1.79,4,4,4s4-1.79,4-4C21,14.79,19.21,13,17,13z M17,14.38"/>`,
     true,
     l.text_ready,
@@ -54,14 +56,14 @@ export function getReadyHTML(fieldName: string, l: Localization) {
  * Used when the widget is retrieving a puzzle
  */
 export function getFetchingHTML(fieldName: string, l: Localization) {
-  return getTemplate(fieldName, loaderSVG, true, l.text_fetching, ".FETCHING", undefined, true);
+  return getTemplate(fieldName, l.rtl, loaderSVG, true, l.text_fetching, ".FETCHING", undefined, true);
 }
 
 /**
  * Used when the solver is running, displays a progress bar.
  */
 export function getRunningHTML(fieldName: string, l: Localization) {
-  return getTemplate(fieldName, loaderSVG, true, l.text_solving, ".UNFINISHED", undefined, true);
+  return getTemplate(fieldName, l.rtl, loaderSVG, true, l.text_solving, ".UNFINISHED", undefined, true);
 }
 
 export function getDoneHTML(fieldName: string, l: Localization, solution: string, data: DoneMessage) {
@@ -70,6 +72,7 @@ export function getDoneHTML(fieldName: string, l: Localization, solution: string
   }`;
   return getTemplate(
     fieldName,
+    l.rtl, 
     `<title>${l.text_completed_sr}</title><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>`,
     false,
     l.text_completed,
@@ -82,7 +85,7 @@ export function getDoneHTML(fieldName: string, l: Localization, solution: string
 }
 
 export function getExpiredHTML(fieldName: string, l: Localization) {
-  return getTemplate(fieldName, errorSVG, true, l.text_expired, ".EXPIRED", l.button_restart);
+  return getTemplate(fieldName,  l.rtl, errorSVG, true, l.text_expired, ".EXPIRED", l.button_restart);
 }
 
 export function getErrorHTML(
@@ -94,6 +97,7 @@ export function getErrorHTML(
 ) {
   return getTemplate(
     fieldName,
+    l.rtl, 
     errorSVG,
     true,
     `<b>${l.text_error}</b><br>${errorDescription}`,

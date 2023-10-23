@@ -1,7 +1,7 @@
 // Defensive init to make it easier to integrate with Gatsby, NextJS, and friends.
 let nav: Navigator;
 let ua: string;
-if (typeof navigator !== "undefined") {
+if (typeof navigator !== "undefined" && typeof navigator.userAgent === "string") {
   nav = navigator;
   ua = nav.userAgent.toLowerCase();
 }

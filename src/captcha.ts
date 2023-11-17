@@ -136,7 +136,13 @@ export class WidgetInstance {
     }
 
     if (typeof this.opts.language === "string") {
-      let l = (localizations as any)[this.opts.language.toLowerCase()];
+      let langCode = this.opts.language.toLowerCase();
+      let l = (localizations as any)[langCode];
+      if (l === undefined && langCode[2] === '-') {
+        // Language has a locale '-' separator, remove it and try again
+        langCode = langCode.substring(0, 2);
+        l = (localizations as any)[langCode];
+      }
       if (l === undefined) {
         console.error('FriendlyCaptcha: language "' + this.opts.language + '" not found.');
         // Fall back to English

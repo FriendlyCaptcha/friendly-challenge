@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.15
+- Added fallback support for supplying RFC 1766 language codes such as `en-GB` or `fr-FR` (thank you @julianwachholz).
+- Fix for some Node-based server-side rendering setups (where `navigator` is undefined).
+
 ## 0.9.14
 - Small tweak to the French (`"fr"`) localization.
 - Added Hebrew (`"he"`) localization (thank you @tinytim84!).

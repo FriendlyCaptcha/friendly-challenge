@@ -15,3 +15,4 @@
     * [ 📘 Friendly Captcha website](https://friendlycaptcha.com)
     * [ 🗂️ Github repository](https://github.com/friendlycaptcha/friendly-challenge)
     * [ 📦 NPM package](https://www.npmjs.com/package/friendly-challenge)
+    * [ ⚡️ V2 Documentation](https://developer.friendlycaptcha.com/docs/)

@@ -141,7 +141,7 @@ export function updateProgressBar(element: HTMLElement, data: ProgressMessage) {
   const perc = (data.i + 1) / data.n;
   if (p) {
     p.value = perc;
-    p.innerText = perc.toFixed(2) + "%";
+    p.innerText = (perc*100).toFixed(1) + "%";
     p.title = data.i + 1 + "/" + data.n + " (" + ((data.h / data.t) * 0.001).toFixed(0) + "K/s)";
   }
 }

@@ -35,7 +35,7 @@ Example:
 
 ### data-lang attribute
 
-FriendlyCaptcha ships with built-in translations, valid values for this attribute are `"en"`, `"fr"`, `"de"`, `"it"`, `"nl"`, `"pt"`, `"es"`, `"ca"`, `"da"`, `"ja"`, `"ru"`, `"sv"`, `"el"`, `"uk"`, `"bg"`, `"cs"`, `"sk"`, `"no"`, `"fi"`, `"lv"`, `"lt"`, `"pl"`, `"et"`, `"hr"`, `"sr"`, `"sl"`, `"hu"`, `"ro"`, `"zh"`, `"zh_TW"`, `"vi"`, `"he"`, and `"th"` for English, French, German, Italian, Dutch, Portuguese, Spanish, Catalan, Danish, Japanese, Russian, Swedish, Greek, Ukrainian, Bulgarian, Czech, Slovak, Norwegian, Finnish, Latvian, Lithuanian, Polish, Estonian, Croatian, Serbian, Slovenian, Hungarian, Romanian, Chinese (Simplified), Chinese (Traditional), Vietnamese, Hebrew and Thai respectively.
+FriendlyCaptcha ships with built-in translations, valid values for this attribute are `"en"`, `"fr"`, `"de"`, `"it"`, `"nl"`, `"pt"`, `"es"`, `"ca"`, `"da"`, `"ja"`, `"ru"`, `"sv"`, `"el"`, `"uk"`, `"bg"`, `"cs"`, `"sk"`, `"no"`, `"fi"`, `"lv"`, `"lt"`, `"pl"`, `"et"`, `"hr"`, `"sr"`, `"sl"`, `"hu"`, `"ro"`, `"zh"`, `"zh_TW"`, `"vi"`, `"he"`, `"th"` and `"kr"` for English, French, German, Italian, Dutch, Portuguese, Spanish, Catalan, Danish, Japanese, Russian, Swedish, Greek, Ukrainian, Bulgarian, Czech, Slovak, Norwegian, Finnish, Latvian, Lithuanian, Polish, Estonian, Croatian, Serbian, Slovenian, Hungarian, Romanian, Chinese (Simplified), Chinese (Traditional), Vietnamese, Hebrew, Thai and Korean respectively.
 
 > Are you a native speaker and want to add your language?
 > Please make an issue [here](https://github.com/FriendlyCaptcha/friendly-challenge/issues).  

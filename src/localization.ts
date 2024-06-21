@@ -750,6 +750,26 @@ const LANG_TH: Localization = {
   text_fetch_error: "ไม่สามารถเชื่อมต่อได้"
 };
 
+// South Korean
+const LANG_KR: Localization = {
+  text_init: "초기화 중",
+
+  text_ready: "Anti-Robot 검증",
+  button_start: "검증을 위해 클릭해 주세요",
+
+  text_fetching: "검증 준비 중",
+
+  text_solving: "검증 중",
+  text_completed: "검증이 완료되었습니다",
+  text_completed_sr: "자동 스팸 확인 완료",
+
+  text_expired: "Anti-Robot 검증 만료",
+  button_restart: "다시 시작합니다",
+
+  text_error: "검증 실패",
+  button_retry: "다시 시도해 주세요",
+  text_fetch_error: "연결하지 못했습니다",
+}
 
 export const localizations = {
   en: LANG_EN,
@@ -786,6 +806,7 @@ export const localizations = {
   vi: LANG_VI,
   he: LANG_HE,
   th: LANG_TH,
+  kr: LANG_KR,
 
   // alternative language codes
   nb: LANG_NO,

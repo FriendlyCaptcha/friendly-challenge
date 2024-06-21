@@ -32,7 +32,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
     try {
       const response = await fetchAndRetryWithBackoff(
         urls[i] + "?sitekey=" + siteKey,
-        { headers: [["x-frc-client", "js-0.9.14"]], mode: "cors" },
+        { headers: [["x-frc-client", "js-0.9.16"]], mode: "cors" },
         2
       );
       if (response.ok) {

@@ -30,6 +30,7 @@ export interface WidgetInstanceOptions {
   puzzleEndpoint: string;
   language: keyof typeof localizations | Localization;
   solutionFieldName: string;
+  styleNonce: string;
 
   sitekey: string;
 
@@ -87,6 +88,7 @@ export class WidgetInstance {
         sitekey: element.dataset["sitekey"] || "",
         language: element.dataset["lang"] || "en",
         solutionFieldName: element.dataset["solutionFieldName"] || "frc-captcha-solution",
+        styleNonce: null,
       },
       options
     );
@@ -97,7 +99,7 @@ export class WidgetInstance {
     // @ts-ignore Ignore is required as TS thinks that `this.lang` is not assigned yet, but it happens in `this.loadLanguage()` above.
     element.innerText = this.lang.text_init;
     if (!this.opts.skipStyleInjection) {
-      injectStyle();
+      injectStyle(this.opts.styleNonce);
     }
     this.init(this.opts.startMode === "auto" || this.e.dataset["start"] === "auto");
   }

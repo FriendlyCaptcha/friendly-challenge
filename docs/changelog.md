@@ -3,9 +3,11 @@
 ## 0.9.16
 
 - Added Korean (`"kr"`) localization (thank you @dimitriBouteille!).
+- Fixed the percentage text for the progress bar.
+- Added support for a `styleNonce` parameter when creating widgets programmatically, which is useful for specific CSP setups (thank you @rience!).
 
 ## 0.9.15
-- Added fallback support for supplying RFC 1766 language codes such as `en-GB` or `fr-FR` (thank you @julianwachholz).
+- Added fallback support for supplying RFC 1766 language codes such as `en-GB` or `fr-FR` (thank you @julianwachholz!).
 - Fix for some Node-based server-side rendering setups (where `navigator` is undefined).
 
 ## 0.9.14

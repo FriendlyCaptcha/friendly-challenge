@@ -118,11 +118,16 @@ export function findCaptchaElements() {
  * Injects the style if no #frc-style element is already present
  * (to support custom stylesheets)
  */
-export function injectStyle() {
+export function injectStyle(styleNonce: string | null = null) {
   if (!document.querySelector("#frc-style")) {
     const styleSheet = document.createElement("style");
     styleSheet.id = "frc-style";
     styleSheet.innerHTML = css;
+
+    if (styleNonce) {
+      styleSheet.setAttribute('nonce', styleNonce);
+    }
+
     document.head.appendChild(styleSheet);
   }
 }

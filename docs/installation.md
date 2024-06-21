@@ -137,3 +137,6 @@ If you receive a response code other than 200 in production, you should probably
 Maybe your server is misconfigured or the Friendly Captcha servers are down. While we try to make sure that never happens, it is a good idea to assume one day disaster will strike.
 
 An example: you are using Friendly Captcha for a sign up form and you can't verify the solution, it is better to trust the user and let them sign up anyway, because otherwise no signup will be possible at all. Do send an alert to yourself!
+
+### Checking your integration
+To check your if your integration was done successfully, you can follow this [guide](https://support.friendlycaptcha.com/en/article/how-can-i-test-if-my-integration-is-working-15lbbb7/).

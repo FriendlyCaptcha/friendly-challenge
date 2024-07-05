@@ -10,11 +10,11 @@ This documentation will show you how to integrate Friendly Captcha into your web
 ![Friendly Captcha widget solving screenshot](https://i.imgur.com/BNRdsxS.png) ![Friendly Captcha widget finished screenshot](https://i.imgur.com/HlMY7QM.png)
 
 ## Friendly Captcha v2
-We are slowly rolling out Friendly Captcha v2 to all customers.
 
-This documentation website is for Friendly Captcha v1, which is the version we recommend for critical production use-cases. 
+Friendly Captcha v2 is the next generation of our product, and since July 2024 is available to all users!
 
-If you would like to participate in the *v2 beta preview*, click the link in the header on the [Friendly Captcha v2 Developer Hub](https://developer.friendlycaptcha.com) for more information.
+This documentation website is for Friendly Captcha v1, which we will keep supporting for the foreseeable future. If you wish to try the **beta** version of v2, refer to the [upgrade guide in the v2 documentation](https://developer.friendlycaptcha.com/docs/guides/upgrading-to-v2/introduction).
+
 
 ## Next steps
 * The [**installation guide**](/installation) shows you how to add Friendly Captcha to your website in 3 steps.

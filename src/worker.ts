@@ -42,29 +42,31 @@ self.onmessage = async (evt: any) => {
      * If WASM support is not present, it uses the JS version instead.
      */
     if (data.type === "solver") {
+      let s: Solver;
+
       if (data.forceJS) {
         solverType = SOLVER_TYPE_JS;
-        const s = await getJSSolver();
+        s = await getJSSolver();
         setSolver(s);
       } else {
         try {
           solverType = SOLVER_TYPE_WASM;
           const module = WebAssembly.compile(decode(base64));
-          const s = await getWasmSolver(await module);
-          setSolver(s);
+          s = await getWasmSolver(await module);
         } catch (e: any) {
           console.log(
             "FriendlyCaptcha failed to initialize WebAssembly, falling back to Javascript solver: " + e.toString()
           );
           solverType = SOLVER_TYPE_JS;
-          const s = await getJSSolver();
-          setSolver(s);
+          s = await getJSSolver();
         }
       }
+
       self.postMessage({
         type: "ready",
         solver: solverType,
       });
+      setSolver(s);
     } else if (data.type === "start") {
       const solve = await solver;
 

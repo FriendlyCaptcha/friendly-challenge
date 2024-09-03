@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.17
+
+- Fixed order of `start` and `ready` events
+- Fixed incorrect unit in CSS
+- Upgraded NPM dependencies to fix minor security issues
+
 ## 0.9.16
 
 - Added Korean (`"kr"`) localization (thank you @dimitriBouteille!).
@@ -7,48 +13,59 @@
 - Added support for a `styleNonce` parameter when creating widgets programmatically, which is useful for specific CSP setups (thank you @rience!).
 
 ## 0.9.15
+
 - Added fallback support for supplying RFC 1766 language codes such as `en-GB` or `fr-FR` (thank you @julianwachholz!).
 - Fix for some Node-based server-side rendering setups (where `navigator` is undefined).
 
 ## 0.9.14
+
 - Small tweak to the French (`"fr"`) localization.
 - Added Hebrew (`"he"`) localization (thank you @tinytim84!).
 - Added Thai (`"th"`) localization (thank you @samlaukinoon!).
 
 ## 0.9.13
+
 - Improvement to the French (`"fr"`) localization.
 - Added feature for not including the hidden form field at all by passing `"-"` as custom field name.
 
 ## 0.9.12
+
 - No longer uses the title attribute for debug information during solving. Some screen readers would read this title as it updates.
 - Localization fix for Vietnamese (`"vi"`).
 - The widget now exposes a `loadLanguage` function that allows you to programmatically change the language of the widget.
 
 ## 0.9.11
+
 - Improvements to localizations, fix for Romanian (`"ro"`) localization (thank you @zcserei!).
 
 ## 0.9.10
+
 - Fix for false positive headless browser check in rare cases on Windows devices (`"Browser check failed, try a different browser"`).
 - Improved French (`"fr"`) localization (thank you @mikejpr!).
 
 ## 0.9.9
+
 - Fix for NextJS 13 production builds.
 - Added Chinese (Traditional) (`"zh_TW"`) localization (thank you @jhihyulin!).
 - Added Vietnamese (`"vi"`) localization (thank you @duy13!).
 
 ## 0.9.8
+
 - Fix for false positive headless errors in Chromium browsers when having certain plugins installed (`"Browser check failed, try a different browser"`).
 
 ## 0.9.7
+
 - When an error is thrown by fetch (e.g. because of connection errors), the error of the fetch request can now be accessed under `error.rawError` in the object passed in the `onErrorCallback`.
 
 ## 0.9.6
+
 - Added Chinese (Simplified) (`"zh"`) localization (thank you @shyn!).
 - Added `"nb"` as an alias for Norwegian language (`"no"`).
 - Improved accessibility by hiding visual-only SVG icons by adding `aria-hidden="true"`.
 - Errors are now logged with `console.error` instead of only appearing in the widget.
 
 ## 0.9.5
+
 - Added localizations `"el"`, `"uk"`, `"bg"`, `"cs"`, `"sk"`, `"no"`, `"fi"`, `"lt"`, `"lt"`, `"pl"`, `"et"`, `"hr"`, `"sr"`, `"sl"`, `"hu"`, and `"ro"` (Greek, Ukrainian, Bulgarian, Czech, Slovak, Norwegian, Finnish, Latvian, Lithuanian, Polish, Estonian, Croatian, Serbian, Slovenian, Hungarian, and Romanian), a big thank you to @Tubilopto!
 - Added `type: "module"` to `package.json` (see #117) to help fix some issues in Javascript build pipelines. This may require some reconfiguring of your build pipeline.
 - Build pipeline updates and upgrades (updated build dependencies, explicitly support IE11 in browser targets).
@@ -67,7 +84,7 @@
 ## 0.9.2
 
 - Fixed a bug which allowed for starting the same widget more than once
-- Improved the accessibility of the widget for users using screen readers, there is now a localized, semantic title when the widget is completed stating *"Automatic spam check completed"*. This makes understanding what is going on easier for those who can not see the checkmark symbol.
+- Improved the accessibility of the widget for users using screen readers, there is now a localized, semantic title when the widget is completed stating _"Automatic spam check completed"_. This makes understanding what is going on easier for those who can not see the checkmark symbol.
 - Updated dependencies.
 
 ## 0.9.1

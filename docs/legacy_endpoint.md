@@ -12,8 +12,6 @@ We are planning to sunset the API endpoints on the old domain entirely. Therefor
 
 Serving our API from a separate subdomain allows for better reliability and better privacy preservation.
 
-
-
 This change also offers us more flexibility in how we serve our website and apps. It simplifies moving away from a non-EU CDN provider.
 
 ---
@@ -24,7 +22,7 @@ Please perform the following updates. Upgrading should only take a few minutes, 
 
 ### Widget and the `friendly-challenge` library
 
-If you are using version `0.8.3` or below, please update to the latest version as soon as possible. If you are using a more recent version still we advise to upgrade to the latest version (`0.9.16`).
+If you are using version `0.8.3` or below, please update to the latest version as soon as possible. If you are using a more recent version still we advise to upgrade to the latest version (`0.9.17`).
 
 The changelog can be found [here](https://github.com/FriendlyCaptcha/friendly-challenge/blob/master/docs/changelog.md).
 
@@ -36,10 +34,10 @@ Please upgrade to the latest version. Versions of the plugin before `1.2.0` are 
 
 Please replace the following in your backend code:
 
-```https://friendlycaptcha.com/api/v1/siteverify```
+`https://friendlycaptcha.com/api/v1/siteverify`
 
 Replace it with
 
-```https://api.friendlycaptcha.com/api/v1/siteverify```
+`https://api.friendlycaptcha.com/api/v1/siteverify`
 
 > Note: If you are using the 🇪🇺 EU endpoint for siteverify, no changes are required in the backend code.

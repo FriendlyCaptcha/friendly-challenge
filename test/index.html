@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>FC Test</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <h1>FC Test</h1>
+    <p>
+      This is a test with the exact same Content-Security-Policy. Friendly Captcha v2 loads correctly and works as
+      intended.
+    </p>
+    <code>
+      upgrade-insecure-requests; frame-ancestors 'none'; default-src 'self'; script-src 'nonce-da696c85b2'
+      'strict-dynamic' 'unsafe-inline' https:; object-src 'none'; base-uri 'self'; style-src 'self' 'unsafe-inline';
+      img-src 'self' data:; media-src 'self'; frame-src 'self' *.frcapi.com; font-src 'self' data:; worker-src blob:;
+      child-src blob:; connect-src 'self' *.pl-business.com *.friendlycaptcha.com
+    </code>
+
+    <br /><br />
+
+    <form>
+      <div class="frc-captcha" data-sitekey="FCMNBEA9O9MBNO86"></div>
+    </form>
+
+    <script type="module" src="/widget.module.min.js" async defer></script>
+  </body>
+</html>

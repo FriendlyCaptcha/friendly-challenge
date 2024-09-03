@@ -140,7 +140,7 @@ export class WidgetInstance {
     if (typeof this.opts.language === "string") {
       let langCode = this.opts.language.toLowerCase();
       let l = (localizations as any)[langCode];
-      if (l === undefined && langCode[2] === '-') {
+      if (l === undefined && langCode[2] === "-") {
         // Language has a locale '-' separator, remove it and try again
         langCode = langCode.substring(0, 2);
         l = (localizations as any)[langCode];
@@ -281,7 +281,7 @@ export class WidgetInstance {
       return;
     }
 
-    this.workerGroup.start(this.puzzle);
+    await this.workerGroup.start(this.puzzle);
   }
 
   /**

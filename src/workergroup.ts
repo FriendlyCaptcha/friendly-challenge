@@ -28,6 +28,7 @@ export class WorkerGroup {
   // initialize some value, so ts is happy
   private solverType: 1 | 2 = 1;
 
+  private readyPromise: Promise<void> = new Promise(() => {});
   private readyCount = 0;
   private startCount = 0;
 
@@ -42,6 +43,9 @@ export class WorkerGroup {
 
     this.progress = 0;
     this.totalHashes = 0;
+
+    let setReady: () => void;
+    this.readyPromise = new Promise((resolve) => (setReady = resolve));
 
     this.readyCount = 0;
     this.startCount = 0;
@@ -62,6 +66,7 @@ export class WorkerGroup {
           this.solverType = data.solver;
           // We are ready, when all workers are ready
           if (this.readyCount == this.workers.length) {
+            setReady();
             this.readyCallback();
           }
         } else if (data.type === "started") {
@@ -121,7 +126,9 @@ export class WorkerGroup {
     }
   }
 
-  start(puzzle: Puzzle) {
+  async start(puzzle: Puzzle) {
+    await this.readyPromise;
+
     this.puzzleSolverInputs = getPuzzleSolverInputs(puzzle.buffer, puzzle.n);
     this.solutionBuffer = new Uint8Array(8 * puzzle.n);
     this.numPuzzles = puzzle.n;

@@ -61,6 +61,7 @@ self.onmessage = async (evt: any) => {
           setSolver(s);
         }
       }
+
       self.postMessage({
         type: "ready",
         solver: solverType,

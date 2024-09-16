@@ -50,7 +50,7 @@ Simply download the latest release from one of the CDN's mentioned above, like: 
 - The module widget.module.min.js: https://cdn.jsdelivr.net/npm/friendly-challenge/widget.module.min.js
 - The nomodule widget.min.js: https://cdn.jsdelivr.net/npm/friendly-challenge/widget.min.js
 
-**It is recommended to update to the latest release from time to time.**
+**Please remember to update to the latest release from time to time.**
 
 #### Option B: Import the library into your Javascript code
 

@@ -37,8 +37,8 @@ String buildPageContent({String sitekey, String theme = "", String start = "auto
     <meta charset="utf-8">
     <title>Friendly Captcha Verification</title>
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.17/widget.module.min.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.17/widget.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.18/widget.module.min.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.18/widget.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         html, body {

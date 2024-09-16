@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.18
+
+- Added Arabic (`"ar"`) localization (thank you @achaabni).
+
 ## 0.9.17
 
 - Fixed order of `start` and `ready` events

@@ -14,7 +14,7 @@ You will only need to add the following directives:
 
   `script-src 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/; worker-src blob:; child-src blob:`
 
-  > note: as an extra precaution you can use the full path to our CDN hosted widget by replacing `https://cdn.jsdelivr.net/npm/` above with `https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.18/widget.module.min.js https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.18/widget.min.js` (making sure the widget versions are correct)
+  > note: as an extra precaution you can use the full path to our CDN hosted widget by replacing `https://cdn.jsdelivr.net/npm/` above with `https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.19/widget.module.min.js https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.19/widget.min.js` (making sure the widget versions are correct)
 
 - If you're loading the widget from your own bundle:
 

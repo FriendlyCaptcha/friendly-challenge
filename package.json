@@ -1,6 +1,6 @@
 {
   "name": "friendly-challenge",
-  "version": "0.9.18",
+  "version": "0.9.19",
   "description": "The client code used for FriendlyCaptcha (widget script, html, styling and webworker solvers)",
   "keywords": [
     "captcha",
@@ -67,8 +67,7 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.10.4",
-    "core-js": "^3.6.5",
+    "core-js": "^3.41.0",
     "friendly-pow": "0.2.2",
     "object-assign-polyfill": "^0.1.0",
     "promis": "^1.1.4",

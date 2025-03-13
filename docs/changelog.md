@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.19
+
+- Update dependencies (`core-js`), no functional changes.
+
 ## 0.9.18
 
 - Added Arabic (`"ar"`) localization (thank you @achaabni).

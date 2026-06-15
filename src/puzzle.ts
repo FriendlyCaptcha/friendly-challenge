@@ -3,6 +3,17 @@ import { difficultyToThreshold } from "friendly-pow/encoding";
 import { NUMBER_OF_PUZZLES_OFFSET, PUZZLE_DIFFICULTY_OFFSET, PUZZLE_EXPIRY_OFFSET } from "friendly-pow/puzzle";
 import { Localization } from "./localization";
 
+class UserFacingError extends Error {
+  rawError: Error;
+
+  constructor(message: string) {
+    super(message);
+    this.name = "UserFacingError";
+    // no underlying error; this is for API compatibility only
+    this.rawError = this;
+  }
+}
+
 export interface Puzzle {
   signature: string;
   base64: string;
@@ -32,7 +43,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
     try {
       const response = await fetchAndRetryWithBackoff(
         urls[i] + "?sitekey=" + siteKey,
-        { headers: [["x-frc-client", "js-0.9.19"]], mode: "cors" },
+        { headers: [["x-frc-client", "js-0.9.20"]], mode: "cors" },
         2
       );
       if (response.ok) {
@@ -47,7 +58,11 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
         }
 
         if (json && json.errors && json.errors[0] === "endpoint_not_enabled") {
-          throw Error(`Endpoint not allowed (${response.status})`);
+          throw new UserFacingError(`Endpoint not allowed (${response.status})`);
+        }
+
+        if (json && json.errors && json.errors[0] === "account_usage_limit_reached") {
+          throw new UserFacingError("Usage limit reached");
         }
 
         if (i === urls.length - 1) {
@@ -55,6 +70,7 @@ export async function getPuzzle(urlsSeparatedByComma: string, siteKey: string, l
         }
       }
     } catch (e) {
+      if (e instanceof UserFacingError) throw e;
       console.error("[FRC Fetch]:", e);
       const err = new Error(`${lang.text_fetch_error} <a class="frc-err-url" href="${urls[i]}">${urls[i]}</a>`);
       (err as any).rawError = e;

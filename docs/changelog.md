@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.20
+
+- Display user-facing configuration errors in the widget.
+
 ## 0.9.19
 
 - Update dependencies (`core-js`), no functional changes.

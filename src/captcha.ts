@@ -52,7 +52,7 @@ export class WidgetInstance {
   private e!: HTMLElement & { friendlyChallengeWidget?: WidgetInstance };
 
   /**
-   * The captcha has been succesfully solved.
+   * The captcha has been successfully solved.
    */
   public valid = false;
   private opts: WidgetInstanceOptions;
@@ -285,7 +285,7 @@ export class WidgetInstance {
   }
 
   /**
-   * This is to be called when the puzzle has been succesfully completed.
+   * This is to be called when the puzzle has been successfully completed.
    * Here the hidden field gets updated with the solution.
    * @param data message from the webworker
    */

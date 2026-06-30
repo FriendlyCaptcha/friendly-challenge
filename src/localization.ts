@@ -60,7 +60,7 @@ const LANG_FR: Localization = {
   text_init: "Chargement...",
 
   text_ready: "Vérification Anti-Robot",
-  button_start: "Clique ici pour vérifier",
+  button_start: "Cliquez ici pour vérifier",
 
   text_fetching: "Chargement du défi",
 
